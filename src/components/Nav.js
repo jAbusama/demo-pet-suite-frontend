@@ -1,31 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import routeLinks from '../Routes'
+import useGlobal from '../services/useGlobal'
 
-function Nav() {
+function Navigation() {
+	const [gState, gActions] = useGlobal()
 	return (
-		<nav className='navbar navbar-expand-sm navbar-dark bg-dark sticky-top'>
-			<div className='container-fluid'>
-				<Link to='/' className='navbar-brand'>
+		<nav classNameName='navbar navbar-expand-sm navbar-dark bg-dark sticky-top'>
+			<div classNameName='container-fluid'>
+				<Link to='/' classNameName='navbar-brand'>
 					logo
 				</Link>
-				<button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarResponsive'>
-					<span className='navbar-toggler-icon' />
+				<button classNameName='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarResponsive'>
+					<span classNameName='navbar-toggler-icon' />
 				</button>
-				<div className='collapse navbar-collapse' id='navbarResponsive'>
-					<ul className='navbar-nav ml-auto'>
-						{routeLinks.map(link => (
-							<li className='nav-item'>
-								<Link to={link.path} className='nav-link'>
-									{link.label}{' '}
-								</Link>
-							</li>
-						))}
+				<div classNameName='collapse navbar-collapse' id='navbarResponsive'>
+					<ul classNameName='navbar-nav ml-auto'>
+						{
+							gState.routeLinks.map(link => (
+								<li key={link.key} classNameName='nav-item'>
+									<Link  to={link.path} classNameName='nav-link'>
+										{link.label}{' '}
+									</Link>
+								</li>
+							))
+						}
 					</ul>
 				</div>
 			</div>
 		</nav>
+		
 	)
 }
 
-export default Nav
+export default Navigation

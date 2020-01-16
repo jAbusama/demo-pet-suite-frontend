@@ -1,16 +1,16 @@
-export const apiUrl = 'http://127.0.0.1:3333/api/'
+export const apiUrl = 'http://192.168.1.107:3333/api/'
 
-export const apiRequest = async (method = 'GET', url = '', data = {}, headers = {}) => {
+export const apiRequest = async(method = 'GET', url = '', data = {}) => {
 	try {
 		const options = {
-			method  : method,
-			body    : method == 'GET' ? null : JSON.stringify(data),
+			method:		method,
+			body: 		method === 'GET' ? null : JSON.stringify(data),
 			headers : {
-				Accept         : 'application/json',
-				'Content-Type' : 'appication/json'
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
 			}
 		}
-		let response = await fetch(apiUrl + url + options)
+		let response = await fetch(apiUrl + url, options)
 		console.log(`API request successfull on ${url}`)
 		return await response.json()
 	} catch (e) {
