@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, NavLink, Link } from 'react-router-dom'
 import useGlobal from '../services/useGlobal'
 
-function Test() {
+function Sidebar() {
   const [gState, gActions] = useGlobal()
   const routeLinks = gState.routeLinks
   return (
@@ -14,7 +14,7 @@ function Test() {
         <ul className="nav flex-column sidebar-nav-list">
           {
             routeLinks.map(link => (
-              <NavLink exact style={{textDecoration: 'none'}} activeClassName='selected' to={link.path} > 
+              <NavLink key={link.key} exact style={{textDecoration: 'none'}} activeClassName='selected' to={link.path} > 
                 <li className='nav-item'>
                   <i className={link.icon}></i>
                   {link.label}
@@ -29,4 +29,4 @@ function Test() {
   )
 }
 
-export default Test
+export default Sidebar

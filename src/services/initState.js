@@ -1,3 +1,5 @@
+import storage from 'store'
+
 const initState = {
 	users:						[],
 	usersLoaded:			false,
@@ -8,7 +10,7 @@ const initState = {
 	isLogin: 					false,
 	token: 						'',
 	user: 						'',
-	routeLinks:				[]
+	routeLinks:				''
 }
 
 export default initState

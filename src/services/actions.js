@@ -7,17 +7,34 @@ const history = createBrowserHistory()
 const actions = {
   login   : async (store, user) => {
 		const res = await apiRequest('POST', 'login', user)
+		storage.set('isLogin', true)
+		storage.set('user', res.user)
 		if(res.user.role === 'manager'){
-			await store.setState({ user: res.user, token: res.token, isLogin: true, routeLinks: adminRoutes})
+			storage.set('routeLinks', adminRoutes )
+			await store.setState({ user: res.user, token: res.token, isLogin: storage.get('isLogin'), routeLinks: adminRoutes})
 		}
 		else if(res.user.role === 'employee') {
-			await store.setState({ user: res.user, token: res.token, isLogin: true, routeLinks: employeeRoutes})
+			storage.set('routeLinks', employeeRoutes )
+			await store.setState({ user: res.user, token: res.token})
 		}
 		else {
-			await store.setState({ user: res.user, token: res.token, isLogin: true, routeLinks: ownerRoutes})
+			storage.set('routeLinks', ownerRoutes )
+			await store.setState({ user: res.user, token: res.token})
 		}
 		history.push('/')
-  },
+	},
+	
+	logout: async(store, user) => {
+		const res = await apiRequest('GET', 'logout')
+		if(res.status) {
+			storage.clearAll()
+			await store.setState({ user: [], token: '', isLogin: false })
+			history.push('/')
+		}
+		else {
+			console.log('error', res)
+		}
+	},
 
   getUser : async store => {
     const res = await apiRequest('GET', 'users')

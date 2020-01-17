@@ -2,7 +2,9 @@ import React from 'react'
 import Nav from '../components/Nav'
 // import Sidebar from '../components/Sidebar'
  import Sidebar from '../components/Sidebar'
+ import storage  from 'store'
 function MainLayout({ children }) {
+	
 	return (
 		<React.Fragment>
 			<div className='row'>

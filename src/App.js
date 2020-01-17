@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
+import storage from 'store'
 import { BrowserRouter as Router, Route, Switch, Links } from 'react-router-dom'
 // import Nav from './components/Nav'
 // import Login from './pages/auth/Login'
@@ -49,6 +50,9 @@ function App() {
   // <Router>
   // 	<Switch>{routeLinks.map(route => <Route {...route} path={route.path} />)}</Switch>
   // </Router>
+  useEffect(() => {
+    // storage.clearAll()
+  })
 
   const [gState, gActions] = useGlobal()
   
