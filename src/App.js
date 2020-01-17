@@ -54,13 +54,13 @@ function App() {
   
  
   return (
-    <div>
+    <React.Fragment>
       { gState.isLogin ? 
         <Router>
           <Switch>{adminRoutes.map(route => <Route {...route} path={route.path} />)}</Switch> 
         </Router> : <Auth/>
       } 
-    </div>
+    </React.Fragment>
   )
 }
 

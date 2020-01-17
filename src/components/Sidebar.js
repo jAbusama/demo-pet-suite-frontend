@@ -1,29 +1,32 @@
 import React from 'react'
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
-import { Link } from 'react-router-dom'
+import { BrowserRouter as Router, NavLink, Link } from 'react-router-dom'
 import useGlobal from '../services/useGlobal'
-import '@trendmicro/react-sidenav/dist/react-sidenav.css'
-import '../styles/test.css'
 
-function Sidebar() {
+function Test() {
   const [gState, gActions] = useGlobal()
-  return (    
-    <div id='wrapper'>
-      <div id='sidebar-wrapper'>
-        <ul className='sidebar-nav'>
+  const routeLinks = gState.routeLinks
+  return (
+    <div className='wrapper'>
+      <div id="sidebar">
+        <div className='sidebar-header'>
+          <h3>Pet Suite</h3>
+        </div>
+        <ul className="nav flex-column sidebar-nav-list">
           {
-            gState.routeLinks.map(link => (
-              <li key={link.key} classNameName='nav-item'>
-                <Link  to={link.path} classNameName='nav-link'>
-                 <i className={link.icon}> </i> {link.label}{' '}
-                </Link>
-              </li>
+            routeLinks.map(link => (
+              <NavLink exact style={{textDecoration: 'none'}} activeClassName='selected' to={link.path} > 
+                <li className='nav-item'>
+                  <i className={link.icon}></i>
+                  {link.label}
+                </li>
+              </NavLink>
             ))
           }
         </ul>
       </div>
     </div>
+    
   )
 }
 
-export default Sidebar
+export default Test
