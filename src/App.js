@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import routeLinks from './Routes'
-import Auth from './pages/auth/index'
+import { login, register} from './pages/auth/index'
+
 import storage  from 'store'
 import useGlobal from './services/useGlobal'
 
@@ -31,7 +32,8 @@ function App() {
             </Switch>
             : 
             <Switch>
-              <Route path='/' component={Auth} />
+              <Route exact path='/' component={ login } />
+              <Route path='/register' component={ register } />
             </Switch>
         } 
       </Router>
