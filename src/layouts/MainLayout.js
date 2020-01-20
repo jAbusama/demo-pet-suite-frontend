@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
-// import Sidebar from '../components/Sidebar'
- import Sidebar from '../components/Sidebar'
- import storage  from 'store'
+import Sidebar from '../components/Sidebar'
+import useGlobal from '../services/useGlobal'
+import actions from '../services/actions'
 function MainLayout({ children }) {
-	
+
+	 const [ gState ] = useGlobal()
+	const isToggle = gState.isToggle
+	useEffect(() => {
+		console.log(isToggle)
+		return () => console.log('unmount')
+	},[])
 	return (
 		<React.Fragment>
 			<div className='row'>
-				<div className="col-3 sidebar">
+				<div className={`col-2 ${isToggle && 'active' }`} id='sidebar'>
 					<Sidebar />
 				</div>
-				<div className="col-9 content">
+				<div className="col content">
 					<Nav />
 					<div>{children}</div>
 				</div>

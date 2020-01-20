@@ -4,15 +4,17 @@ import bg from '../../images/bg.jpg'
 
 function Auth() {
   return (
-    <div>
-      <div className='row'>
-        <div className='col-8'>
-          <img src={bg} alt='dogs-in-the-basket' className='bg-auth' />
-        </div>
-        <div className='col-4'>
-          <Login />
-        </div>
+    <div className='row login-front'>
+      <div className='mobile-login-background'>
+        <img src={bg} alt='dogs-in-the-basket' className='bg-auth' />
       </div>
+      <div className='col auth-bg'>
+        <img src={bg} alt='dogs-in-the-basket' className='bg-auth' />
+      </div>
+      <div className='col-4 d-flex justify-content-center auth-form box'>
+        <Login />
+      </div>
+      
     </div>
   )
 }

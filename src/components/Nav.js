@@ -1,37 +1,37 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 import useGlobal from '../services/useGlobal'
-
 function Navigation() {
 	const [gState, gActions] = useGlobal()
-	const logout = () => {
+	const user = gState.user.email
+	const logout = (e) => {
+		e.preventDefault()
 		gActions.logout()
 	}
 
+	useEffect(() => {
+		console.log('render')
+	}, [])
+
 	return (
-		<div className='sm-shadow mt-3'>
-			<nav className="navbar navbar-expand-lg navbar-light bg-light">
-				<button className='btn btn-info'>
-				<i className="fas fa-outdent"></i>
-				</button>
-				<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span className="navbar-toggler-icon"></span>
-				</button>
-				<ul className='navbar-nav ml-auto'>
-					<li className="nav-item dropdown">
-						<a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Dropdown
-						</a>
-						<div className="dropdown-menu" aria-labelledby="navbarDropdown">
-							<button className='dropdown-item'> Profile</button>
-							<div className="dropdown-divider"></div>
-							<button className="dropdown-item" > Logout</button>
-						</div>
-					</li>
-				</ul>
-			</nav>
-		</div>
-		
+		<nav className="navbar navbar-expand-lg navbar-ligth bg-ligth mt-3 shadow">
+			<button className='btn btn-info btn-toggler' onClick={() => gActions.toggleSidebar()}>
+			<i className="fas fa-outdent"></i>
+			</button>
+			<ul className='navbar-nav ml-auto'>
+				<li className="nav-item dropdown">
+					<span className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{user}
+					</span>
+					<div className="dropdown-menu" aria-labelledby="navbarDropdown">
+						<button className='dropdown-item'>Profile</button>
+						<div className="dropdown-divider"></div>
+						<form onSubmit={logout}>
+							<button className="dropdown-item" type='submit' >Logout</button>
+						</form>	
+					</div>
+				</li>
+			</ul>
+		</nav>	
 	)
 }
 

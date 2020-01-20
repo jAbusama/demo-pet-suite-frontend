@@ -1,7 +1,6 @@
 import { apiRequest } from './api'
 import storage from 'store'
 import { createBrowserHistory } from 'history'
-import { adminRoutes, employeeRoutes, ownerRoutes } from '../Routes'
 const history = createBrowserHistory()
 
 const actions = {
@@ -9,31 +8,41 @@ const actions = {
 		const res = await apiRequest('POST', 'login', user)
 		storage.set('isLogin', true)
 		storage.set('user', res.user)
-		if(res.user.role === 'manager'){
-			storage.set('routeLinks', adminRoutes )
-			await store.setState({ user: res.user, token: res.token, isLogin: storage.get('isLogin'), routeLinks: adminRoutes})
+		storage.set('token', res.token)
+		if(res.status){
+			if(res.user.role === 'manager'){
+				await store.setState({ user: res.user, token: res.token, isLogin: true, loginLoaded: true } )
+			}
+			else if(res.user.role === 'employee') {
+				await store.setState({  user: res.user, token: res.token, isLogin: true, loginLoaded: true })
+			}
+			else {
+				await store.setState({  user: res.user, token: res.token, isLogin: true, loginLoaded: true })
+			}
+			history.push('/')
 		}
-		else if(res.user.role === 'employee') {
-			storage.set('routeLinks', employeeRoutes )
-			await store.setState({ user: res.user, token: res.token})
-		}
-		else {
-			storage.set('routeLinks', ownerRoutes )
-			await store.setState({ user: res.user, token: res.token})
-		}
-		history.push('/')
+	},
+
+	getLogin: (store) => {
+		store.setState({user: storage.get('user'), token: storage.get('token'), isLogin: storage.get('isLogin'),
+			routeLinks: storage.get('routeLinks'), loginLoaded: true })
 	},
 	
 	logout: async(store, user) => {
 		const res = await apiRequest('GET', 'logout')
 		if(res.status) {
 			storage.clearAll()
+			storage.set('isLogin', false)
 			await store.setState({ user: [], token: '', isLogin: false })
 			history.push('/')
 		}
 		else {
 			console.log('error', res)
 		}
+	},
+
+	toggleSidebar: store => {
+		store.setState({isToggle: !store.state.isToggle})
 	},
 
   getUser : async store => {

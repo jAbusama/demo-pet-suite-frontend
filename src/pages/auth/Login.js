@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import useGlobal from '../../services/useGlobal'
 
 function Login() {
+
   const initialState = {
     email    : '',
     password : ''
@@ -9,32 +10,23 @@ function Login() {
   // const [ user, setUser ] = useState(initialState)
 
   const [user, setUser] = useState(initialState)
-	
   const [state, actions] = useGlobal()
-
-  const login = async (e) => {
-		e.preventDefault()
+  
+  const logIn = async e => {
+    e.preventDefault()
     await actions.login(user)
   }
 
   const styles = {
-    bg       : {
-      padding : '100px 100px 0 0'
-    },
     accounts : {
       cursor : 'pointer',
       color  : 'blue'
     }
   }
 
-  const logIn = async e => {
-    e.preventDefault()
-    await actions.login(user)
-  }
-
   return (
-    <div className='login' style={styles.bg}>
-      <form onSubmit={logIn}>
+    <div className='login'>
+      <form onSubmit={ logIn }>
         <h1>PetSuite</h1>
         <div className='form-group'>
           <label htmlFor='email'>Email</label>
@@ -60,38 +52,42 @@ function Login() {
         </div>
         <div className='form-group'>
           <small>
-            Sign in as:
-            <span
+            <i className='sign-in-as'> Sign in as : </i>
+           
+            <u
               onClick={() => setUser({ password: 'pass1234', email: 'manager@petsuite.com' })}
               style={styles.accounts}
             >
               {' '}
               Manager
-            </span>
-            <span
+            </u>
+            <u
               onClick={() => setUser({ password: 'pass1234', email: 'employee@petsuite.com' })}
               style={styles.accounts}
             >
               {' '}
               Employee
-            </span>
-            <span
+            </u>
+            <u
               onClick={() => setUser({ password: 'pass1234', email: 'owner@petsuite.com' })}
               style={styles.accounts}
             >
               {' '}
               Owner
-            </span>
+            </u>
           </small>
         </div>
-        <div className='tect-center'>
-          <small className='form-text text-muted'>
+        <div className='text-center'>
+          <small className='form-text text-muted login-footer'>
             Don't have an account ? <u style={styles.accounts}> Regiter</u> here
           </small>
+         
+            <button type='submit' className='btn btn-primary '>
+              Login
+            </button>
+          
         </div>
-        <button type='submit' className='btn btn-primary'>
-          Login
-        </button>
+        
       </form>
     </div>
   )
