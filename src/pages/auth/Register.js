@@ -20,6 +20,7 @@ function Register() {
     e.preventDefault()
     gActions.register(values)
   }
+  console.log(gState.validationError)
 
   const styles = {
     accounts : {
@@ -31,6 +32,8 @@ function Register() {
   return (
     <React.Fragment>
       <div className='form'>
+        <div className="notification">
+        </div>
       <form onSubmit={ register } >
         <h1>Register</h1>
   
@@ -45,6 +48,10 @@ function Register() {
               value={ values.firstname }
               onChange={ handleChange }
             />
+            <div className="invalid-feedback">
+              {gState.notificationError.message}
+            </div>
+            
           </div>
           <div className="form-group col">
             <label htmlFor='lastname'>Lastname</label>

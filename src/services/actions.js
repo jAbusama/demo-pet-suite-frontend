@@ -42,8 +42,12 @@ const actions = {
 	},
 
 	register: async (store, user ) => {
-		const res = await apiRequest('POST', 'register')
+		const res = await apiRequest('POST', 'register', user)
+		if(res.status) {
+			history.push('/')
+		}
 		console.log(res)
+		// await store.setState({ validationError: res.err })
 	},
 
 	toggleSidebar: store => {
