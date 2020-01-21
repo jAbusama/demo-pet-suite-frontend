@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import routeLinks from './Routes'
 import { login, register} from './pages/auth/index'
+import routeLinks from './Routes'
+
 
 import storage  from 'store'
 import useGlobal from './services/useGlobal'
@@ -13,10 +14,10 @@ function App() {
   // <Router>
   // 	<Switch>{routeLinks.map(route => <Route {...route} path={route.path} />)}</Switch>
   // </Router>
-  
   const [gState, gActions] = useGlobal()
   let isLogin = storage.get('isLogin')
   useEffect(() => {
+    // storage.clearAll()
     if(!gState.loginLoaded) {
       gActions.getLogin()
     }

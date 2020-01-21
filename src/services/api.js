@@ -1,5 +1,5 @@
-// export const apiUrl = 'http://192.168.1.107:3333/api/'
-export const apiUrl = 'http://localhost:3333/api/'
+export const apiUrl = 'http://192.168.1.107:3333/api/'
+// export const apiUrl = 'http://localhost:3333/api/'
 
 export const apiRequest = async(method = 'GET', url = '', data = {}) => {
 	try {

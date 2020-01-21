@@ -6,10 +6,10 @@ const history = createBrowserHistory()
 const actions = {
   login   : async (store, user) => {
 		const res = await apiRequest('POST', 'login', user)
-		storage.set('isLogin', true)
-		storage.set('user', res.user)
-		storage.set('token', res.token)
 		if(res.status){
+			storage.set('isLogin', true)
+			storage.set('user', res.user)
+			storage.set('token', res.token)
 			if(res.user.role === 'manager'){
 				await store.setState({ user: res.user, token: res.token, isLogin: true, loginLoaded: true } )
 			}
@@ -20,6 +20,10 @@ const actions = {
 				await store.setState({  user: res.user, token: res.token, isLogin: true, loginLoaded: true })
 			}
 			history.push('/')
+		}
+		else {
+			//console.log(res)
+			await store.setState({ notificationError: res.message, notificationsLoaded: false})
 		}
 	},
 
@@ -48,6 +52,10 @@ const actions = {
 		}
 		console.log(res)
 		// await store.setState({ validationError: res.err })
+	},
+
+	notificationDefault: store => {
+		store.setState({ notificationError: '', notificationsLoaded: true })
 	},
 
 	toggleSidebar: store => {

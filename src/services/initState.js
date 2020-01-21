@@ -12,8 +12,9 @@ const initState = {
 	loginLoaded:					false,
 	isToggle: 						false,
 	validationError:			[],
-	notificationError: 		[],
-	notificationSuccess: 	[]
+	notificationsLoaded:	false,
+	notificationError: 		'',
+	notificationSuccess: 	''
 	
 }
 // storage.get('isLogin'),

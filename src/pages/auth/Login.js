@@ -1,18 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useGlobal from '../../services/useGlobal'
 import { Link } from 'react-router-dom'
+import Notification from '../../components/Notification'
 
 function Login() {
 
+ useEffect(() => {
+   
+ },[])
   const initialState = {
     email    : '',
     password : ''
   }
-  // const [ user, setUser ] = useState(initialState)
+  
 
   const [user, setUser] = useState(initialState)
   const [ gState, gActions ] = useGlobal()
-  
+
   const logIn = async e => {
     e.preventDefault()
     await gActions.login(user)
@@ -27,6 +31,8 @@ function Login() {
 
   return (
     <div className='form'>
+      {gState.notificationsLoaded === false && <Notification message= {gState.notificationError}
+        gActions= {gActions} />}
       <form onSubmit={ logIn }>
         <h1>PetSuite</h1>
         <div className='form-group'>

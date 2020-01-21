@@ -3,9 +3,8 @@ import Login from './Login'
 import Register from './Register'
 import bg from '../../images/bg.jpg'
 
-
-
 export function login() {
+  
   return (
     <div className='row login-front'>
       <div className='mobile-login-background'>
