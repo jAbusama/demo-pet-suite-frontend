@@ -1,8 +1,12 @@
 import React from 'react'
-import MainLayout from '../../layouts/MainLayout'
+import UseGlobal from '../../services/useGlobal'
 
-function Users() {
-	return <MainLayout>Users</MainLayout>
+function CreateForm() {
+	return (
+		<React.Fragment>
+
+		</React.Fragment>
+	)
 }
 
-export default Users
+export default CreateForm

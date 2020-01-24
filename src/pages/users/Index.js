@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom'
 function Users(props) {
 
 	const searchState = {
-		search: ''
+		search: '',
+		showCreate: false
 	}
 
 	const [state, setState] = useState(searchState)
@@ -46,15 +47,15 @@ function Users(props) {
 
 	const userOption = (
 		<div>
-		<span className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		</span>
-		<div className="dropdown-menu" aria-labelledby="navbarDropdown">
-			<button className='dropdown-item'>Edit</button>
-			<div className="dropdown-divider"></div>
-			<form>
-				<button className="dropdown-item" type='submit' >Delete</button>
-			</form>	
-		</div>
+			<span className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			</span>
+			<div className="dropdown-menu" aria-labelledby="navbarDropdown">
+				<button className='dropdown-item options'>Edit</button>
+				<div className="dropdown-divider"></div>
+				<form>
+					<button className="dropdown-item options" type='submit' >Delete</button>
+				</form>	
+			</div>
 		</div>
 	)
 	return (
@@ -62,10 +63,17 @@ function Users(props) {
 			<div className="filters">
 				<div className="row">
 					<div className="col">
-						<button className='btn btn-success btn-sm'>Search</button>
+						<div className=" bg-light rounded rounded-pill shadow-sm">
+							<div className="input-group search ">
+								<input type="search" placeholder="What're you searching for?" aria-describedby="button-search" className="form-control border-0 bg-light"/>
+								<div className="input-group-append">
+									<button id="button-seacrh" type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div className="col d-flex justify-content-end">
-						<button className='btn btn-primary btn-sm'>Add User</button>
+						<button className='btn btn-primary btn-sm'><i class="fas fa-plus-circle"></i> Add User</button>
 					</div>
 				</div>
 			</div>
@@ -86,26 +94,28 @@ function Users(props) {
 
 				<div className="card">
 					<div className="card-body">
-						<table className='table table-sm'>
-							<thead>
-								<tr>
-									{tableHeader.map(header => (
-										<th className="" key={header.key}>{header.title}</th>
-									))}
-								</tr>
-							</thead>
-							<tbody>
-								{tableData().map(user => (
-									<tr key= {user._id}>
-										<td>{user.firstname} {user.lastname}</td>
-										<td>{user.email}</td>
-										<td>{user.mobile}</td>
-										<td>{userOption}</td>
+						<div className='table-border'>
+							<table className='table table-sm table-hover table-condesed'>
+								<thead>
+									<tr>
+										{tableHeader.map(header => (
+											<th className="" key={header.key}>{header.title}</th>
+										))}
 									</tr>
-								))}
-							</tbody>
-						</table>
-						<div className='footer'>
+								</thead>
+								<tbody>
+									{tableData().map(user => (
+										<tr key= {user._id}>
+											<td>{user.firstname} {user.lastname}</td>
+											<td>{user.email}</td>
+											<td>{user.mobile}</td>
+											<td>{userOption}</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+						<div className='table-footer'>
 							<nav arial-label="Page Navigationn example" >
 								<ul className="pagination">
 									<li className="page-item">
@@ -122,7 +132,7 @@ function Users(props) {
 									</li>
 									<li className="page-item">
 										<Link to='#' className='page-link' aria-label="Next">
-											<span aria-hidden='true'>&laquo;</span>
+											<span aria-hidden='true'>&raquo;</span>
 											<span className='sr-only'>Next</span>
 										</Link>
 									</li>

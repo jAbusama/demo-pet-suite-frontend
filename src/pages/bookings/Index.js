@@ -61,7 +61,7 @@ function Bookings(props) {
 			<button className='dropdown-item'>Edit</button>
 			<div className="dropdown-divider"></div>
 			<form>
-				<button className="dropdown-item" type='submit' >Delete</button>
+				<button className="dropdown-item" type='submit'>Delete</button>
 			</form>	
 		</div>
 		</div>
@@ -72,10 +72,17 @@ function Bookings(props) {
 			<div className="filters">
 				<div className="row">
 					<div className="col">
-						<button className='btn btn-success btn-sm'>Search</button>
+						<div className=" bg-light rounded rounded-pill shadow-sm">
+							<div className="input-group search ">
+								<input type="search" placeholder="What're you searching for?" aria-describedby="button-search" className="form-control border-0 bg-light"/>
+								<div className="input-group-append">
+									<button id="button-seacrh" type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div className="col d-flex justify-content-end">
-						<button className='btn btn-primary btn-sm'>Add Booking</button>
+						<button className='btn btn-primary btn-sm'><i className="fas fa-plus-circle"></i> Add Booking</button>
 					</div>
 				</div>
 			</div>
@@ -96,29 +103,31 @@ function Bookings(props) {
 
 				<div className="card">
 					<div className="card-body">
-						<table className='table table-sm'>
-							<thead>
-								<tr>
-									{tableHeader.map(header => (
-										<th key={header.key}>{header.title}</th>
-									))}
-								</tr>
-							</thead>
-							<tbody>
-								{tableData().map(booking => (
-									<tr key= {booking._id}>
-										{booking.pet.map(pet => (
-												<td key={pet._id}>{ pet.name }</td>
+						<div className='table-border'>
+							<table className='table table-sm table-hover table-condesed'>
+								<thead>
+									<tr>
+										{tableHeader.map(header => (
+											<th key={header.key}>{header.title}</th>
 										))}
-										<td>{ booking.checkIn }</td>
-										<td>{ booking.checkOut }</td>
-										<td>{ booking.bookBy.firstname } { booking.bookBy.lastname }</td>
-										<td>{ booking.status }</td>
-										<td>{ bookingOption }</td>
 									</tr>
-								))}
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									{tableData().map(booking => (
+										<tr key= {booking._id}>
+											{booking.pet.map(pet => (
+													<td key={pet._id}>{ pet.name }</td>
+											))}
+											<td>{ booking.checkIn }</td>
+											<td>{ booking.checkOut }</td>
+											<td>{ booking.bookBy.firstname } { booking.bookBy.lastname }</td>
+											<td>{ booking.status }</td>
+											<td>{ bookingOption }</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
