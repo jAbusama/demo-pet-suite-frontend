@@ -27,6 +27,16 @@ body {
   height: 100%;
   align-content: center;
 }
+.remember {
+  color: whitesmoke;
+}
+
+.remember input {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
 
 .btn_style {
   color: white !important;
@@ -46,20 +56,26 @@ body {
 .links a {
   margin-left: 4px;
 }
-/* .sidebar-header .logo-mobile {
+
+.sidebar-header .logo-mobile {
   display: none;
-} */
-.sidebar-nav-list {
-  overflow: hidden;
 }
 
 #sidebar.active {
   overflow: hidden;
-  transition: all 0.7s;
-  max-width: 0;
+  max-width: 80px;
+  transition: all 0.3s;
 }
 #sidebar.active .sidebar-header h3 {
   display: none;
+  transition: all 0.3s;
+}
+#sidebar.active .sidebar-header strong {
+  display: block;
+  font-size: 40px;
+  font-weight: 700;
+  margin: auto !important;
+  transition: all 0.3s;
 }
 #sidebar.active .nav li {
   max-height: 52px !important;
@@ -155,6 +171,16 @@ body {
   background-color: #000080 !important;
   color: #fff !important;
 }
+.content {
+  width: 100%;
+  min-height: 100vh;
+}
+#sidebar.active {
+  min-width: 80px !important;
+  max-width: 80px !important;
+  text-align: center
+}
+
 
 h3 {
   margin: 0 !important;
@@ -186,32 +212,6 @@ label {
 .form {
   padding: 20px;
 }
-
-
-/* content css */
-.content {
-  width: 100%;
-  min-height: 100vh;
-  padding: 0px !important;
-}
-
-.filters{
-  padding: 10px;
-}
-
-.records {
-  background-color: #F0F2F5;
-  color: rgba(0, 0, 0, 0.65);
-  padding: 20px;
-}
-.record-header {
-  padding: 12px 24px 16px;
-}
-.breadcrumb {
-  padding: 0 !important;
-}
-
-
 
 @media (max-width: 992px) {
   

@@ -3,7 +3,7 @@ import { useForm }  from './useForm'
 import { Link } from 'react-router-dom'
 import useGlobal from '../../services/useGlobal'
 
-function Register() {
+function Register({ props }) {
   const initValues = {
     firstname: '',
     lastname: '',
@@ -18,9 +18,8 @@ function Register() {
 
   const register = (e) => {
     e.preventDefault()
-    gActions.register(values)
+    gActions.register(values, props)
   }
-  console.log(gState.validationError)
 
   const styles = {
     accounts : {
@@ -38,7 +37,7 @@ function Register() {
         <h1>Register</h1>
   
         <div className="form-row">
-          <div className="form-group col">
+          <div className="form-group col-lg-6 col-md-12">
             <label htmlFor='firstname'>Firstname</label>
             <input
               type='text'
@@ -49,11 +48,11 @@ function Register() {
               onChange={ handleChange }
             />
             <div className="invalid-feedback">
-              {gState.notificationError.message}
+              { gState.notificationError.message }
             </div>
             
           </div>
-          <div className="form-group col">
+          <div className="form-group col-lg-6 col-md-12">
             <label htmlFor='lastname'>Lastname</label>
             <input
               type='text'
@@ -116,7 +115,7 @@ function Register() {
           />
         </div>
 
-        <div className='text-center'>
+        <div className='text-center form-group'>
           <small className='form-text text-muted login-footer'>
            Already have an account ? <u style={styles.accounts}>
                <Link to='/'>
@@ -124,11 +123,9 @@ function Register() {
                </Link>
                </u> here
           </small>
-         
-            <button type='submit' className='btn btn-primary '>
-              Register
-            </button>
-            
+          <button type='submit' className='btn btn-primary '>
+            Register
+          </button>
         </div>
       </form>
     </div>

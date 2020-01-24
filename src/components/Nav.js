@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import useGlobal from '../services/useGlobal'
-function Navigation() {
+
+function Navigation({ props }) {
+	
 	const [gState, gActions] = useGlobal()
 	const user = gState.user.email
 	const logout = (e) => {
 		e.preventDefault()
-		gActions.logout()
+		gActions.logout(props)
 	}
 
 	useEffect(() => {
@@ -13,7 +15,7 @@ function Navigation() {
 	}, [])
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-ligth bg-ligth mt-3 shadow">
+		<nav className="navbar navbar-expand-lg navbar-ligth bg-ligth m-3 shadow">
 			<button className='btn btn-info btn-toggler' onClick={() => gActions.toggleSidebar()}>
 			<i className="fas fa-outdent"></i>
 			</button>

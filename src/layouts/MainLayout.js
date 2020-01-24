@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
 import Sidebar from '../components/Sidebar'
 import useGlobal from '../services/useGlobal'
-import actions from '../services/actions'
-function MainLayout({ children }) {
 
-	 const [ gState ] = useGlobal()
+function MainLayout({ props, children }) {
+
+	const [ gState ] = useGlobal()
 	const isToggle = gState.isToggle
 	useEffect(() => {
 		console.log(isToggle)
@@ -18,7 +18,7 @@ function MainLayout({ children }) {
 					<Sidebar />
 				</div>
 				<div className="col content">
-					<Nav />
+					<Nav props={props} />
 					<div>{children}</div>
 				</div>
 			</div>

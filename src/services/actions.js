@@ -1,10 +1,8 @@
 import { apiRequest } from './api'
 import storage from 'store'
-import { createBrowserHistory } from 'history'
-const history = createBrowserHistory()
 
 const actions = {
-  login   : async (store, user) => {
+  login   : async (store, user, props) => {
 		const res = await apiRequest('POST', 'login', user)
 		if(res.status){
 			storage.set('isLogin', true)
@@ -19,7 +17,7 @@ const actions = {
 			else {
 				await store.setState({  user: res.user, token: res.token, isLogin: true, loginLoaded: true })
 			}
-			history.push('/')
+			props.history.push('/')
 		}
 		else {
 			//console.log(res)
@@ -32,27 +30,43 @@ const actions = {
 			routeLinks: storage.get('routeLinks'), loginLoaded: true })
 	},
 	
-	logout: async(store, user) => {
+	logout: async(store, props) => {
 		const res = await apiRequest('GET', 'logout')
 		if(res.status) {
 			storage.clearAll()
 			storage.set('isLogin', false)
 			await store.setState({ user: [], token: '', isLogin: false })
-			history.push('/')
+			props.history.push('/')
 		}
 		else {
 			console.log('error', res)
 		}
 	},
 
-	register: async (store, user ) => {
+	register: async (store, user, props ) => {
 		const res = await apiRequest('POST', 'register', user)
 		if(res.status) {
-			history.push('/')
+			props.history.push('/')
 		}
 		console.log(res)
 		// await store.setState({ validationError: res.err })
 	},
+
+	getUsers: async(store) => {
+		const res = await apiRequest('GET', 'users')
+		store.setState({ users: res.users, isLoading: false, usersLoaded: true })
+	},
+
+	getPets: async(store) => {
+		const res = await apiRequest('GET', 'pets')
+		store.setState({ pets: res.pets, isLoading: false, petsLoaded: true })
+	},
+
+	getBookings: async(store) => {
+		const res = await apiRequest('GET', 'bookings')
+		store.setState({ bookings: res.bookings, isLoading: false, bookingsLoaded: true })
+	},
+
 
 	notificationDefault: store => {
 		store.setState({ notificationError: '', notificationsLoaded: true })

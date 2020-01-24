@@ -2,25 +2,27 @@ import React, { useState, useEffect } from 'react'
 import useGlobal from '../../services/useGlobal'
 import { Link } from 'react-router-dom'
 import Notification from '../../components/Notification'
+import {useForm} from './useForm'
 
-function Login() {
 
- useEffect(() => {
-   
- },[])
-  const initialState = {
+function Login({ props }) {
+  console.log(props)
+
+  let initialState = {
     email    : '',
     password : ''
   }
+
+  console.log(initialState)
   
-
-  const [user, setUser] = useState(initialState)
+  const [values, handleChange, data] = useForm(initialState)
   const [ gState, gActions ] = useGlobal()
-
+  // const [user, setUser] = useState(initialState)
   const logIn = async e => {
     e.preventDefault()
-    await gActions.login(user)
+    await gActions.login(values, props)
   }
+
 
   const styles = {
     accounts : {
@@ -42,8 +44,8 @@ function Login() {
             name='email'
             id='email'
             className='form-control'
-            value={user.email}
-            onChange={e => setUser({ ...user, email: e.target.value })}
+            value={ values.email }
+            onChange={ handleChange }
           />
         </div>
         <div className='form-group'>
@@ -53,8 +55,8 @@ function Login() {
             name='password'
             id='password'
             className='form-control'
-            value={user.password}
-            onChange={e => setUser({ ...user, password: e.target.value })}
+            value={ values.password }
+            onChange={ handleChange }
           />
         </div>
         <div className='form-group'>
@@ -62,21 +64,24 @@ function Login() {
             <i className='sign-in-as'> Sign in as : </i>
            
             <u
-              onClick={() => setUser({ password: 'pass1234', email: 'manager@petsuite.com' })}
+              id='manager'
+              onClick={data}
               style={styles.accounts}
             >
               {' '}
               Manager
             </u>
             <u
-              onClick={() => setUser({ password: 'pass1234', email: 'employee@petsuite.com' })}
+              id='employee'
+              onClick={data}
               style={styles.accounts}
             >
               {' '}
               Employee
             </u>
             <u
-              onClick={() => setUser({ password: 'pass1234', email: 'owner@petsuite.com' })}
+              id='owner'
+              onClick={data}
               style={styles.accounts}
             >
               {' '}
