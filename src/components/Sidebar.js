@@ -16,12 +16,17 @@ function Sidebar() {
       <ul className="nav flex-column sidebar-nav-list">
         {
           routeLinks().map(link => (
-            <NavLink key={link.key} exact style={{ textDecoration: 'none' }} activeClassName='selected' to={link.path} > 
-              <li className='nav-item '>
-                <i className={link.icon}></i>
-                <span>{link.label}</span>
-              </li>
-            </NavLink>
+            <li className='nav-item ' key={link.key} >
+              <NavLink 
+                style={{ textDecoration: 'none' }}  
+                exact
+                activeClassName='selected' 
+                className='nav-link'
+                to={link.path} > 
+                  <i className={link.icon}></i>
+                  <span>{link.label}</span>
+              </NavLink>
+            </li>
           ))
         }
       </ul>

@@ -54,7 +54,9 @@ const actions = {
 
 	getUsers: async(store) => {
 		const res = await apiRequest('GET', 'users')
-		store.setState({ users: res.users, isLoading: false, usersLoaded: true })
+		if(res.users.length !== 0){
+			store.setState({ users: res.users, isLoading: false, usersLoaded: true })
+		}
 	},
 
 	getPets: async(store) => {

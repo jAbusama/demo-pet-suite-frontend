@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import useGlobal from '../../services/useGlobal'
 import { Link } from 'react-router-dom'
 import Notification from '../../components/Notification'
-import {useForm} from './useForm'
+import {useForm} from '../useForm'
 
 
 function Login({ props }) {

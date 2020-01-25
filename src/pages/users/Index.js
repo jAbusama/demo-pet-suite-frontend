@@ -73,7 +73,7 @@ function Users(props) {
 						</div>
 					</div>
 					<div className="col d-flex justify-content-end">
-						<button className='btn btn-primary btn-sm'><i class="fas fa-plus-circle"></i> Add User</button>
+						<button className='btn btn-primary btn-sm'><i className="fas fa-plus-circle"></i> Add User</button>
 					</div>
 				</div>
 			</div>
@@ -104,14 +104,14 @@ function Users(props) {
 									</tr>
 								</thead>
 								<tbody>
-									{tableData().map(user => (
+									{tableData.length !== 0 ? (tableData().map(user => (
 										<tr key= {user._id}>
 											<td>{user.firstname} {user.lastname}</td>
 											<td>{user.email}</td>
 											<td>{user.mobile}</td>
 											<td>{userOption}</td>
 										</tr>
-									))}
+									))) : (<tr><td>No Data</td></tr>) }
 								</tbody>
 							</table>
 						</div>

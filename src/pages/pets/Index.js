@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import useGlobal from '../../services/useGlobal'
 import MainLayout from '../../layouts/MainLayout'
+import CreateForm from'./CreateUser'
 
 function Pets(props) {
 	
 	const searchState = {
-		search: ''
+		search: '',
+		showCreate: false
 	}
 
 	const [state, setState] = useState(searchState)
@@ -66,6 +68,7 @@ function Pets(props) {
 
 	return (
 		<MainLayout props={props}>
+			{state.showCreate && <CreateForm state={state} setState={setState} />}
 			<div className="filters">
 				<div className="row">
 					<div className="col">
@@ -79,11 +82,13 @@ function Pets(props) {
 						</div>
 					</div>
 					<div className="col d-flex justify-content-end">
-						<button className='btn btn-primary btn-sm'><i class="fas fa-plus-circle"></i> Add Pet</button>
+						<button className='btn btn-primary btn-sm' onClick={() => setState({...state, showCreate: true})}>
+							<i className="fas fa-plus-circle"></i> Add Pet
+						</button>
 					</div>
 				</div>
 			</div>
-
+			
 			<div className="records">
 				<div className="record-header">
 					<div className="breadcrumb">
