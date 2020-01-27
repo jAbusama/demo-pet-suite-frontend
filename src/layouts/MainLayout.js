@@ -19,9 +19,9 @@ function MainLayout({ props, children }) {
 	},[])
 
 	return (
-		<React.Fragment>
-			<div className='row main-content' style={{height: '100vh'}}>
-				<div className={`col-2  ${isToggle && 'active' }`} id='sidebar-wrapper'>
+		<div className="container-fluid">
+			<div className='row main-content' >
+				<div className={`col-2 ${isToggle && 'active' }`} id='sidebar-wrapper'>
 					<Sidebar />
 				</div>
 				<div className="col" id='content-wrapper'>
@@ -29,7 +29,7 @@ function MainLayout({ props, children }) {
 					<div>{children}</div>
 				</div>
 			</div>
-		</React.Fragment>
+		</div>
 	)
 }
 

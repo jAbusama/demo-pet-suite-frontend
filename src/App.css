@@ -11,6 +11,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background: #fafafa !important;
 }
+
+.container-fluid {
+  padding: 0 !important;
+}
 .navbar {
   border-radius: 10px;
   padding: 15px !important;
@@ -53,22 +57,23 @@ body {
   margin-left: 4px;
 }
 
+
+.main-content {
+  height: 100vh;
+}
+
 /* sidebar */
 
 #sidebar-wrapper { 
   display: block;
-  position: relative;
-  z-index: 1px;
   width: 200px;
+  min-width: 200px;
   background-color: #152238;
   padding: 0;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
-}
-.sidebar-content {
-  height: 100%;
 }
 .sidebar-header {
   display: block;
@@ -81,6 +86,7 @@ body {
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
+
 .sidebar-header .logo-web {
   display: block;
   font-size: 25px;
@@ -160,24 +166,10 @@ body {
   text-align: center;
   padding: 0 !important;
 }
-
-.main-content {
-  /* width: 100%; */
-  /* height: 100vh; */
-  /* overflow: hidden; */
-  /* -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal; */
-  /* flex-direction: row; */
-}
-/* Content */
-.main-content > #content-wrapper {
-  overflow-x: hidden;
-}
 #content-wrapper {
+  display: block;
+  position: relative;
   background-color: #F0F2F5;
-  display: flex;
-  /* flex: auto; */
-  /* overflow: hidden; */
   flex-direction: column;
   padding: 0 !important;
   -webkit-box-flex: 1;
@@ -197,6 +189,8 @@ body {
 .filters .col .btn{
   font-size: 14px !important;
 }
+
+/* tables */
 .records {
   background-color: #F0F2F5;
   color: rgba(0, 0, 0, 0.65);
@@ -210,6 +204,32 @@ body {
 .breadcrumb {
   padding: 0 !important;
 }
+.table-border {
+ border: 1px solid #CFCFCF;
+ border-radius: 5px;
+ padding: 5px !important; 
+ margin-bottom: 10px;
+}
+.pagination {
+  margin: 0 !important;
+}
+table th {
+  border-top: none !important;
+}
+table {
+  font-size: 14px !important;
+  margin: 0 !important;
+}
+table th, td {
+  padding: 8px !important;
+}
+.btn-option span {
+  padding: 0 !important;
+}
+
+
+
+
 .dropdown a{
   color: #000 !important;
 }

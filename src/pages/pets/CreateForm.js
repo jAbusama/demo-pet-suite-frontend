@@ -100,7 +100,7 @@ const owners = () => {
 						<label htmlFor="owner">Pet Owner</label>
 						<div className="input-group mb-3">
 							<select className='custom-select form-control' name='owner' id='owner'>
-								<option selected value="">Select Owner</option>
+								<option>Select Owner...</option>
 								{owners().map(owner => (
 								<option key={owner._id} value={owner._id}>{ owner.firstname } { owner.lastname }</option>
 								))}

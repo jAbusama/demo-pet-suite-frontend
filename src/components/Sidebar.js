@@ -8,7 +8,7 @@ import routeLinks from '../Routes'
 function Sidebar() {
 
   return (
-      <div className="sidebar-content">
+      <div className="sidebar-content sticky-top">
         <div className=' d-flex justify-content-center sidebar-header'>
           <h3 className='logo-web'>Pet Suite</h3>
           {/* <strong className='logo-mobile' >PS</strong> */}
