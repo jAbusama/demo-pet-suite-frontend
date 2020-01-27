@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useGlobal from '../../services/useGlobal'
 import MainLayout from '../../layouts/MainLayout'
+import CreateForm from './CreateForm'
 
 function Bookings(props) {
 
@@ -69,6 +70,8 @@ function Bookings(props) {
 
 	return (
 		<MainLayout props={props}>
+			{state.showCreate && <CreateForm state={state} setState={setState} />}
+
 			<div className="filters">
 				<div className="row">
 					<div className="col">
@@ -81,8 +84,10 @@ function Bookings(props) {
 							</div>
 						</div>
 					</div>
-					<div className="col d-flex justify-content-end">
-						<button className='btn btn-primary btn-sm'><i className="fas fa-plus-circle"></i> Add Booking</button>
+					<div className="col input-group d-flex justify-content-end">
+						<button className='btn btn-primary btn-sm' onClick={() => setState({...state, showCreate: true})}>
+							<i className="fas fa-plus-circle"></i> Add Pet
+						</button>
 					</div>
 				</div>
 			</div>

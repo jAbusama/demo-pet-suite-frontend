@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useGlobal from '../../services/useGlobal'
 import MainLayout from '../../layouts/MainLayout'
-import CreateForm from'./CreateUser'
+import CreateForm from'./CreateForm'
 
 function Pets(props) {
 	
@@ -14,10 +14,12 @@ function Pets(props) {
 	const [gState, gActions] = useGlobal()
 
 	useEffect(() => {
+		console.log('render')
 		if(!gState.petsLoaded){
 			gActions.getPets()
 		}
 	})
+	
 	const tableHeader = [
 		{
 			title: 'Name',
@@ -69,11 +71,12 @@ function Pets(props) {
 	return (
 		<MainLayout props={props}>
 			{state.showCreate && <CreateForm state={state} setState={setState} />}
+
 			<div className="filters">
 				<div className="row">
 					<div className="col">
-						<div className=" bg-light rounded rounded-pill shadow-sm">
-							<div className="input-group search ">
+						<div className="bg-light rounded rounded-pill shadow-sm">
+							<div className="input-group search">
 								<input type="search" placeholder="What're you searching for?" aria-describedby="button-search" className="form-control border-0 bg-light"/>
 								<div className="input-group-append">
 									<button id="button-seacrh" type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
@@ -81,7 +84,7 @@ function Pets(props) {
 							</div>
 						</div>
 					</div>
-					<div className="col d-flex justify-content-end">
+					<div className="col input-group d-flex justify-content-end">
 						<button className='btn btn-primary btn-sm' onClick={() => setState({...state, showCreate: true})}>
 							<i className="fas fa-plus-circle"></i> Add Pet
 						</button>

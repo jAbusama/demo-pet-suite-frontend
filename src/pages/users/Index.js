@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useGlobal from '../../services/useGlobal'
 import MainLayout from '../../layouts/MainLayout'
+import CreateForm from './CreateForm'
 import { Link } from 'react-router-dom'
 
 function Users(props) {
@@ -58,8 +59,11 @@ function Users(props) {
 			</div>
 		</div>
 	)
+	
 	return (
 		<MainLayout props={props}>
+			{state.showCreate && <CreateForm state={state} setState={setState} />}
+
 			<div className="filters">
 				<div className="row">
 					<div className="col">
@@ -72,8 +76,10 @@ function Users(props) {
 							</div>
 						</div>
 					</div>
-					<div className="col d-flex justify-content-end">
-						<button className='btn btn-primary btn-sm'><i className="fas fa-plus-circle"></i> Add User</button>
+					<div className="col input-group d-flex justify-content-end">
+						<button className='btn btn-primary btn-sm' onClick={() => setState({...state, showCreate: true})}>
+							<i className="fas fa-plus-circle"></i> Add Pet
+						</button>
 					</div>
 				</div>
 			</div>
@@ -104,7 +110,7 @@ function Users(props) {
 									</tr>
 								</thead>
 								<tbody>
-									{tableData.length !== 0 ? (tableData().map(user => (
+									{tableData().length !== 0 ? (tableData().map(user => (
 										<tr key= {user._id}>
 											<td>{user.firstname} {user.lastname}</td>
 											<td>{user.email}</td>

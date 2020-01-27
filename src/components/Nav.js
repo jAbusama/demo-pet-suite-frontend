@@ -16,7 +16,7 @@ function Navigation({ props }) {
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar-ligth bg-ligth m-3 shadow">
-			<button className='btn btn-info btn-toggler' onClick={() => gActions.toggleSidebar()}>
+			<button className='btn btn-info btn-toggler btn-sm' onClick={() => gActions.toggleSidebar()}>
 			<i className="fas fa-outdent"></i>
 			</button>
 			<ul className='navbar-nav ml-auto'>

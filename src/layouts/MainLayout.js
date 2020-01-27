@@ -20,7 +20,7 @@ function MainLayout({ props, children }) {
 
 	return (
 		<React.Fragment>
-			<div className='row'>
+			<div className='row main-content' style={{height: '100vh'}}>
 				<div className={`col-2  ${isToggle && 'active' }`} id='sidebar-wrapper'>
 					<Sidebar />
 				</div>
