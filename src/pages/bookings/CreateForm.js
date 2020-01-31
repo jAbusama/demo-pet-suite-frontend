@@ -21,7 +21,7 @@ const [gState, gActions] = useGlobal()
 		<div className="drawer">
 			<div className="drawer-header">
 				<div className="drawer-title">
-					Add Pet
+					Add Booking
 				</div>
 				<button className="btn btn-link drawer-close" onClick={() => setState({...state, showCreate: false})}>X</button>
 			</div>
@@ -127,7 +127,7 @@ const [gState, gActions] = useGlobal()
 					</div>
 
 					<div className="form-group">
-						<button className='btn btn-primary btn-sm '>Add User</button>
+						<button className='btn btn-primary btn-sm '>Add Booking</button>
 					</div>
 				</form>
 			</div>

@@ -6,14 +6,11 @@ import {useForm} from '../useForm'
 
 
 function Login({ props }) {
-  console.log(props)
 
   let initialState = {
     email    : '',
     password : ''
   }
-
-  console.log(initialState)
   
   const [values, handleChange, data] = useForm(initialState)
   const [ gState, gActions ] = useGlobal()

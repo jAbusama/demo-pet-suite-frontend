@@ -88,7 +88,7 @@ function Bookings(props) {
 					</div>
 					<div className="col input-group d-flex justify-content-end">
 						<button className='btn btn-primary btn-sm' onClick={() => setState({...state, showCreate: true})}>
-							<i className="fas fa-plus-circle"></i> Add Pet
+							<i className="fas fa-plus-circle"></i> Add Booking
 						</button>
 					</div>
 				</div>

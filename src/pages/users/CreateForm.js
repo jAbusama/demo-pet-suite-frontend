@@ -5,14 +5,23 @@ import useGlobal from '../../services/useGlobal'
 function CreateUser({state, setState}) {
 
 const initValues = {
-	name: '',
-	breed: '',
-	type: '',
-	size: '',
-	owner: ''
+	firstname: '',
+	lastname: '',
+	email: '',
+	mobile: '',
+	password: '',
+	repassword: '',
+	role: 'owner'
 }
 const [values, handleChange] = useForm(initValues)
 const [gState, gActions] = useGlobal()
+
+const submitHandler = (e) => {
+	e.preventDefault()
+	// console.log('test')
+	gActions.createUser(values)
+	// form.resetField()
+}
 
 	return (
 		<React.Fragment>
@@ -21,12 +30,12 @@ const [gState, gActions] = useGlobal()
 		<div className="drawer">
 			<div className="drawer-header">
 				<div className="drawer-title">
-					Add Pet
+					Add User
 				</div>
 				<button className="btn btn-link drawer-close" onClick={() => setState({...state, showCreate: false})}>X</button>
 			</div>
 			<div className="drawer-body">
-				<form >
+				<form onSubmit={submitHandler}>
 					<div className="form-row">
 						<div className="form-group col">
 							<label htmlFor="label">Firstname</label>
@@ -115,10 +124,7 @@ const [gState, gActions] = useGlobal()
 					<div className="form-group">
 						<label htmlFor="role">Role</label>
 						<div className="input-group mb-3">
-							<div className="input-group-prepend">
-								<label className='input-group-text' htmlFor="roles">Options</label>
-							</div>
-							<select className='custom-select form-control' name='role' id='roles'>
+							<select className='custom-select form-control' name='role' onChange={handleChange} id='roles'>
 								<option value="owner">Owner</option>
 								<option value="employee">Employee</option>
 								<option value="manager">Manager</option>
@@ -127,7 +133,7 @@ const [gState, gActions] = useGlobal()
 					</div>
 
 					<div className="form-group">
-						<button className='btn btn-primary btn-sm '>Add User</button>
+						<button className='btn btn-primary btn-sm' type='submit' >Add User</button>
 					</div>
 				</form>
 			</div>

@@ -54,20 +54,58 @@ const actions = {
 
 	getUsers: async(store) => {
 		const res = await apiRequest('GET', 'users')
-		if(res.users.length !== 0){
-			store.setState({ users: res.users, isLoading: false, usersLoaded: true })
+		if(res.status) {
+			if(res.users.length !== 0){
+				store.setState({ users: res.users, isLoading: false, usersLoaded: true })
+			}
 		}
+		else {
+			console.log('error: ', res)
+		}
+		
+	},
+
+	createUser: async(store, user) => {
+		const res = await apiRequest('POST', 'users', user)
+		if(res.status){
+			await store.actions.getUsers()
+		}
+		console.log('error: ', res)
+	},
+
+	deleteUser: async(store, id) => {
+		const res = await apiRequest('DELETE', 'users', id)
+		if(res.status) {
+			await store.actions.getUsers()
+		}
+		console.log(res)
 	},
 
 	getPets: async(store) => {
 		const res = await apiRequest('GET', 'pets')
-		store.setState({ pets: res.pets, isLoading: false, petsLoaded: true })
+		if(res.status) {
+			if(res.pets.length !==0) {
+				store.setState({ pets: res.pets, isLoading: false, petsLoaded: true })
+			}
+		}
+		else {
+			console.log('error: ', res)
+		}
 	},
 
 	getBookings: async(store) => {
 		const res = await apiRequest('GET', 'bookings')
-		store.setState({ bookings: res.bookings, isLoading: false, bookingsLoaded: true })
+		if(res.status) {
+			if(res.bookings.length !==0) {
+				store.setState({ bookings: res.bookings, isLoading: false, bookingsLoaded: true })
+			}	
+		}
+		else {
+			console.log('error: ', res)
+		}
 	},
+
+	
 
 
 	notificationDefault: store => {

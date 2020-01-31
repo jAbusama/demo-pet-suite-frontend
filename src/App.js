@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { login, register} from './pages/auth/index'
+import index from './public/index'
 import routeLinks from './Routes'
 
 
@@ -11,11 +12,10 @@ import './App.css'
 // import PropTypes from 'prop-types'
 
 function App() {
-  // <Router>
-  // 	<Switch>{routeLinks.map(route => <Route {...route} path={route.path} />)}</Switch>
-  // </Router>
+
   const [gState, gActions] = useGlobal()
   let isLogin = storage.get('isLogin')
+  let user = storage.get('user')
   useEffect(() => {
     // storage.clearAll()
     if(!gState.loginLoaded) {
@@ -27,13 +27,19 @@ function App() {
     <React.Fragment>
       <Router>
         {
-          isLogin ? 
-            <Switch>
-              { routeLinks().map(route => <Route {...route} path={route.path} />) }
-            </Switch>
+          isLogin ?
+            user.role === 'owner' ? 
+              <Switch>
+                 <Route exact path='/' component={ index } />
+              </Switch> 
+              :    
+              <Switch>
+                { routeLinks().map(route => <Route {...route} path={route.path} />) }
+              </Switch>
             : 
             <Switch>
-              <Route exact path='/' component={ login } />
+              <Route exact path='/' component={ index } />
+              <Route exact path='/login' component={ login } />
               <Route path='/register' component={ register } />
             </Switch>
         } 

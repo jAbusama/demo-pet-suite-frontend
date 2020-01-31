@@ -25,8 +25,6 @@ const owners = () => {
 	return gState.users.filter(onwer => onwer.role === 'owner')
 }
 
-// console.log(owners())
-
 	return (
 		<React.Fragment>
 		<div id='drawer-wrapper' onClick={() => setState({...state, showCreate: false})}>
@@ -109,7 +107,7 @@ const owners = () => {
 					</div>
 
 					<div className="form-group">
-						<button className='btn btn-primary btn-sm '>Add User</button>
+						<button className='btn btn-primary btn-sm '>Add Pet</button>
 					</div>
 				</form>
 			</div>

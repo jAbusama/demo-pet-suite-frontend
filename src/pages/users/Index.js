@@ -46,7 +46,7 @@ function Users(props) {
 		return gState.users
 	}
 
-	const userOption = (
+	const userOption = (id) => (
 		<div className='btn-option'>
 			<span className="btn btn-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i className="fas fa-caret-down"></i>
@@ -54,9 +54,9 @@ function Users(props) {
 			<div className="dropdown-menu" aria-labelledby="navbarDropdown">
 				<button className='dropdown-item options btn-sm'>Edit</button>
 				<div className="dropdown-divider"></div>
-				<form>
-					<button className="dropdown-item options btn-sm" type='submit' >Delete</button>
-				</form>	
+					<button className="dropdown-item options btn-sm" onClick={() => gActions.deleteUser(id)} >
+						Delete
+					</button>
 			</div>
 		</div>
 	)
@@ -79,7 +79,8 @@ function Users(props) {
 					</div>
 					<div className="col input-group d-flex justify-content-end">
 						<button className='btn btn-primary btn-sm' onClick={() => setState({...state, showCreate: true})}>
-							<i className="fas fa-plus-circle"></i> Add Pet
+							<i className="fas fa-plus-circle"></i>
+							Add User
 						</button>
 					</div>
 				</div>
@@ -116,7 +117,7 @@ function Users(props) {
 											<td>{user.firstname} {user.lastname}</td>
 											<td>{user.email}</td>
 											<td>{user.mobile}</td>
-											<td>{userOption}</td>
+											<td>{userOption(user._id)}</td>
 										</tr>
 									))) : (<tr><td>No Data</td></tr>) }
 								</tbody>
