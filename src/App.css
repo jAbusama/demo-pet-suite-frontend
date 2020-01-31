@@ -15,7 +15,7 @@ body {
 .container-fluid {
   padding: 0 !important;
 }
-.navbar {
+#admin-header .navbar {
   border-radius: 10px;
   padding: 15px !important;
 }
@@ -226,9 +226,6 @@ table th, td {
 .btn-option span {
   padding: 0 !important;
 }
-
-
-
 
 .dropdown a{
   color: #000 !important;

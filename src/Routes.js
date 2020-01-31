@@ -85,6 +85,59 @@ const ownerRoutes = [
 	}
 ]
 
+const publicRoutes = [
+	{
+		key: 'home',
+		path: '/',
+		icon: 'fa fa-home',
+		exact: true,
+		label: 'Home',
+		component: PublicHome
+	},
+	{
+		key: 'about-us',
+		path: '/about-us',
+		icon: 'fa fa-home',
+		label: 'About Us',
+		component: AboutUs
+	},
+	{
+		key: 'Book Now',
+		path: '/book-now',
+		icon: 'fa fa-home',
+		label: 'Book Now',
+		component: BookNow
+	},
+	{
+		key: 'rooms',
+		path: '/rooms',
+		icon: 'fa fa-home',
+		label: 'Rooms',
+		component: Rooms
+	},
+	{
+		key: 'blog',
+		path: '/blog',
+		icon: 'fa fa-home',
+		label: 'Blog',
+		component: PublicHome
+	},
+	{
+		key: 'login',
+		path: '/login',
+		icon: 'fa fa-home',
+		label: 'Login',
+		component: Login
+	},
+	{
+		key: 'register',
+		path: '/register',
+		icon: 'fa fa-home',
+		label: 'Register',
+		component: Register
+	},
+]
+
 
 export default function routeLinks() {
 	return route() 

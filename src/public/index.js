@@ -1,10 +1,11 @@
 import React from 'react'
+import PublicLayout from '../layouts/public'
 
 function Home() { 
 
   return (
     <div className="home">
-      <h1 className='display-4'>Home</h1>
+      <PublicLayout/>
     </div>
   )
 }
