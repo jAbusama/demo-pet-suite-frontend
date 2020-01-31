@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { login, register} from './pages/auth/index'
-import index from './public/index'
+// import index from './public/index'
 import routeLinks from './Routes'
 
 
@@ -30,7 +30,7 @@ function App() {
           isLogin ?
             user.role === 'owner' ? 
               <Switch>
-                 <Route exact path='/' component={ index } />
+                 {/* <Route exact path='/' component={ index } /> */}
               </Switch> 
               :    
               <Switch>
@@ -38,10 +38,13 @@ function App() {
               </Switch>
             : 
             <Switch>
-              <Route exact path='/' component={ index } />
-              <Route exact path='/login' component={ login } />
-              <Route path='/register' component={ register } />
+              { routeLinks().map(route => <Route {...route} path={route.path} />) }
             </Switch>
+            // <Switch>
+            //   <Route exact path='/' component={ index } />
+            //   <Route exact path='/login' component={ login } />
+            //   <Route path='/register' component={ register } />
+            // </Switch>
         } 
       </Router>
     </React.Fragment>

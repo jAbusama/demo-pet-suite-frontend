@@ -118,7 +118,7 @@ function Register({ props }) {
         <div className='text-center form-group'>
           <small className='form-text text-muted login-footer'>
            Already have an account ? <u style={styles.accounts}>
-               <Link to='/'>
+               <Link to='/login'>
                 Login
                </Link>
                </u> here

@@ -1,10 +1,16 @@
 import React from 'react'
 import Navbar from '../public/components/navbar'
 
-function PublicLayout() {
+function PublicLayout({ children }) {
   return(
     <div className="container-fluid">
-      <Navbar />
+      <header id='public-header'>
+        <Navbar />
+      </header>
+
+      <div>
+        { children }
+        </div>
     </div>
   )
 }

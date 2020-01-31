@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
+import routeLinks from '../../Routes'
 
 function Navbar() {
   return(
     <React.Fragment>
-      <header className='public-header'>
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark py-4">
+      
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top py-4">
+        <div className='container'>
           <Link to='/' href="" className="nabvar-brand">Logo</Link>
           <button 
             className='navbar-toggler' 
@@ -20,7 +22,14 @@ function Navbar() {
 
           <div className="collapse navbar-collapse" id='navbarList'>
             <ul className='navbar-nav ml-auto'>
-              <li className="nav-item">
+              {
+                routeLinks().map(route => (
+                  <li key={route.key} className="nav-item">
+                    <NavLink exact className="nav-link" activeClass to={ route.path }>{ route.label }</NavLink>
+                  </li>
+                ))
+              }
+              {/* <li className="nav-item">
                 <Link className="nav-link">Home</Link>
               </li>
               <li className="nav-item">
@@ -40,11 +49,12 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <Link className="nav-link">Register</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
+          </div>
         </nav>
-      </header>
+
     </React.Fragment>
   )
 }

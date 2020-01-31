@@ -2,6 +2,13 @@ import Dashboard from './pages/Dashboard'
 import Users from './pages/users/Index'
 import Pets from './pages/pets/Index'
 import Bookings from './pages/bookings/Index'
+import PublicHome from './public/pages/index'
+import AboutUs from './public/pages/about-us/index'
+import BookNow from './public/pages/book-now/index'
+import Rooms from './public/pages/book-now/index'
+import Blog from './public/pages/blog/index'
+import { login, register} from './pages/auth/index'
+
 import storage from 'store'
 
 const adminRoutes = [
@@ -120,21 +127,21 @@ const publicRoutes = [
 		path: '/blog',
 		icon: 'fa fa-home',
 		label: 'Blog',
-		component: PublicHome
+		component: Blog
 	},
 	{
 		key: 'login',
 		path: '/login',
 		icon: 'fa fa-home',
 		label: 'Login',
-		component: Login
+		component: login
 	},
 	{
 		key: 'register',
 		path: '/register',
 		icon: 'fa fa-home',
 		label: 'Register',
-		component: Register
+		component: register
 	},
 ]
 
@@ -145,7 +152,7 @@ export default function routeLinks() {
 
 function route() {
 	const user = storage.get('user')
-	let route = ownerRoutes
+	let route = publicRoutes
 	if(user !== (undefined && '')) {
 		if(user.role === 'manager') {
 			route = adminRoutes
@@ -154,7 +161,7 @@ function route() {
 			route = employeeRoutes
 		}
 		else {
-		 route = ownerRoutes
+		 route = publicRoutes
 		}
 	}
 	return route
