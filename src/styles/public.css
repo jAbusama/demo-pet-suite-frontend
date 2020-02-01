@@ -77,3 +77,37 @@ html, body {
 #public-home-section3 .heading {
   color:#fff;
 }
+.feature-rooms figure {
+  position: relative;
+  float: left;
+  overflow: hidden;
+}
+.overlap-text {
+  position: absolute;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 13px;
+  bottom: 20px;
+  left: 20px;
+  z-index: 99;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1rem;
+  margin-block-end: 1rem;
+}
+
+.subscribe .form-group {
+  position: relative;
+}
+
+.subscribe button {
+  border: none;
+  background: none;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+}

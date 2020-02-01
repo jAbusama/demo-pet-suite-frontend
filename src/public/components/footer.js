@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function PublicFooter() {
+  const date = new Date()
   return (
     <footer className='jumbotron m-0 p-5' id='public-footer'>
       <div className="container">
@@ -19,16 +20,17 @@ function PublicFooter() {
             <p>We are socialized. Follow us</p>
             <p className="lead">
               <Link to='#' className='p-3'>
-                <i className="fa fa-facebook"></i>
+
+                <i className="fab fa-facebook"></i>
               </Link>
               <Link to='#' className='p-3'>
-                <i className="fa fa-twitter"></i>
+                <i className="fab fa-twitter"></i>
               </Link>
               <Link to='#' className='p-3'>
-                <i className="fa fa-instagram"></i>
+                <i className="fab fa-instagram"></i>
               </Link>
               <Link to='#' className='p-3'>
-                <i className="fa fa-youtube-play"></i>
+                <i className="fab fa-youtube"></i>
               </Link>
             </p>
           </div>
@@ -38,10 +40,11 @@ function PublicFooter() {
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, odio.</p>
             <form action="#" className="subscribe">
               <div className="form-group">
-                <button type='submit' >
-                  <i className="fa fa-arrow-icon"></i>
-                </button>
+                
                 <input type="text" className="form-control" placeholder='Enter Email'/>
+                <button type='submit' >
+                  <i className="fas fa-long-arrow-alt-right"></i>
+                </button>
               </div>
             </form>
           </div>
@@ -49,7 +52,7 @@ function PublicFooter() {
 
         <div className="row justify-content-center">
           <div className="col-md-7 text-center">
-            © Copyright ©2020 All rights reserved | Pet Suites
+            &copy; Copyright &copy; {date.getFullYear()} All rights reserved | Pet Suites
             <i className="fa fa-heart-o" aria-hidden="true"></i>
           </div>
         </div>
