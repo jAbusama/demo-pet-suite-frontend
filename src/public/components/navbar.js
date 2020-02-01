@@ -6,52 +6,38 @@ function Navbar() {
   return(
     <React.Fragment>
       
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top py-4">
-        <div className='container'>
-          <Link to='/' href="" className="nabvar-brand">Logo</Link>
-          <button 
-            className='navbar-toggler' 
-            type='button' 
-            data-taggle='collapse' 
-            data-target='#navbarList' 
-            aria-expanded='false' 
-            aria-label='Toggle navigation'
-            >
-              <span className="navbar-toggle-icon"></span>
-          </button>
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top py-3">
+          <div className='container'>
+            <Link to='/' href="" className="navbar-brand">Logo</Link>
+            <button 
+              className='navbar-toggler' 
+              type='button' 
+              data-toggle='collapse' 
+              data-target='#navbarList' 
+              aria-expanded='false' 
+              aria-label='Toggle navigation'
+              >
+                <span className="navbar-toggler-icon"></span>
+            </button>
 
-          <div className="collapse navbar-collapse" id='navbarList'>
-            <ul className='navbar-nav ml-auto'>
-              {
-                routeLinks().map(route => (
-                  <li key={route.key} className="nav-item">
-                    <NavLink exact className="nav-link" activeClass to={ route.path }>{ route.label }</NavLink>
-                  </li>
-                ))
-              }
-              {/* <li className="nav-item">
-                <Link className="nav-link">Home</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link">About Us</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link">Book Now</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link">Rooms</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link">Blog</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link">Login</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link">Register</Link>
-              </li> */}
-            </ul>
-          </div>
+            <div className="collapse navbar-collapse" id='navbarList'>
+              <ul className='navbar-nav ml-auto'>
+                {
+                  routeLinks().map(route => (
+                    route.key === 'register' ? 
+                    <li key={route.key} className="nav-item">
+                      <NavLink exact className="nav-link btn btn-outline-success" to={ route.path }>
+                        { route.label }
+                      </NavLink>
+                    </li>
+                    :
+                    <li key={route.key} className="nav-item">
+                      <NavLink exact className={`nav-link ${ route.class }`} to={ route.path }>{ route.label }</NavLink>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
           </div>
         </nav>
 

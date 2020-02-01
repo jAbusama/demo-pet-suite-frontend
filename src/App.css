@@ -365,7 +365,7 @@ label {
     box-shadow: black;
     min-width: 260px !important;
   }
-  .navbar .btn-toggler {
+  #admin-header .navbar .btn-toggler {
     display: none;
   }
   .form h1 {

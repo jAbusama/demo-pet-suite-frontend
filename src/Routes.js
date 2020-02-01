@@ -3,7 +3,7 @@ import Users from './pages/users/Index'
 import Pets from './pages/pets/Index'
 import Bookings from './pages/bookings/Index'
 import PublicHome from './public/pages/index'
-import AboutUs from './public/pages/about-us/index'
+import AboutUs from './public/pages/about-us/about-us'
 import BookNow from './public/pages/book-now/index'
 import Rooms from './public/pages/book-now/index'
 import Blog from './public/pages/blog/index'
@@ -133,6 +133,7 @@ const publicRoutes = [
 		key: 'login',
 		path: '/login',
 		icon: 'fa fa-home',
+		class: 	'ml-5',
 		label: 'Login',
 		component: login
 	},

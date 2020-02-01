@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../public/components/navbar'
+import PublicFooter from '../public/components/footer'
 
 function PublicLayout({ children }) {
   return(
@@ -10,7 +11,11 @@ function PublicLayout({ children }) {
 
       <div>
         { children }
-        </div>
+      </div>
+
+      <div className="footer">
+        <PublicFooter />
+      </div>
     </div>
   )
 }
