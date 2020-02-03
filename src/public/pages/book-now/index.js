@@ -2,17 +2,19 @@ import React from 'react'
 import PublicLayout from '../../../layouts/public'
 import bg_image_1 from '../../../images/big_image_1.jpg'
 import img_1 from '../../../images/img_1.jpg'
+import RoomCard from '../../components/roomCard'
+import VideoSection from '../../components/videoSection'
+import Banner from '../../components/banner'
 
 function BookNow() {
+
+  const heading = 'Reservation'
+  const introText = 'Discover the worlds #1 luxury suites for your pets'
+
   return(
     <PublicLayout>
-      <div className='container-fluid home-bg-img'>
-        <img className='img-fluid home-img' src={ bg_image_1 } alt="hotel"/>
-        <div className="carousel-caption">
-          <h1> Reservation </h1>
-          <h4> Discover the worlds #1 luxury suites for your pets</h4>
-        </div>
-      </div>
+
+      <Banner bg_media={ bg_image_1 } heading= { heading } introText= { introText }/>
 
       <section className='padding' id='booking-section'>
         <div className="container">
@@ -25,25 +27,25 @@ function BookNow() {
                 
                 <div className="form-row">
                   <div className="form-group col">
-                    <label htmlFor="">
+                    <label htmlFor="arrive-date">
                       Arrive Date
                     </label>
-                    <div className="input-group date" id="datetimepickerStart" data-target-input="nearest">
-                      <input type="text" className="form-control datetimepicker-input" placeholder='dd/mm/yyyy' data-target="#datetimepickerStart"/>
-                      <div className="input-group-append" data-target="#datetimepickerStart" data-toggle="datetimepicker">
-                          <div className="input-group-text"><i className="fa fa-calendar"></i></div>
+                    <div className="input-group date" id="datetimepickerArrive" data-target-input="nearest">
+                      <input name='arrive-date' type="text" className="form-control datetimepicker-input" placeholder='dd/mm/yyyy' data-target="#datetimepickerArrive"/>
+                      <div className="input-group-append" data-target="#datetimepickerArrive" data-toggle="datetimepicker">
+                        <div className="input-group-text"><i className="fa fa-calendar"></i></div>
                       </div>
                     </div>  
                   </div>
 
                   <div className="form-group col">
-                    <label htmlFor="">
+                    <label htmlFor="daparture-date">
                       Daparture Date
                     </label>
-                    <div className="input-group date" id="datetimepickerStart" data-target-input="nearest">
-                      <input type="text" className="form-control datetimepicker-input" placeholder='dd/mm/yyyy' data-target="#datetimepickerStart"/>
-                      <div className="input-group-append" data-target="#datetimepickerStart" data-toggle="datetimepicker">
-                          <div className="input-group-text"><i className="fa fa-calendar"></i></div>
+                    <div className="input-group date" id="datetimepickerDaparture" data-target-input="nearest">
+                      <input name="deaparture-date" type="text" className="form-control datetimepicker-input" placeholder='dd/mm/yyyy' data-target="#datetimepickerDeparture"/>
+                      <div className="input-group-append" data-target="#datetimepickerDeparture" data-toggle="datetimepicker">
+                        <div className="input-group-text"><i className="fa fa-calendar"></i></div>
                       </div>
                     </div>  
                   </div>
@@ -51,11 +53,9 @@ function BookNow() {
 
                 <div className="form-row">
                   <div className="form-group col">
-                    <label htmlFor="">
-                      Room
-                    </label>
-                    <select className="custom-select" id="inputGroupSelect01">
-                      <option selected>Guest...</option>
+                    <label htmlFor="room">Room</label>
+                    <select name='room' className="custom-select" id="inputGroupSelect01">
+                      <option value='0'>Room...</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -65,85 +65,51 @@ function BookNow() {
                   </div>
 
                   <div className="form-group col">
-                    <label htmlFor="">
-                      Daparture Date
-                    </label>
-                    <select className="custom-select" id="inputGroupSelect01">
-                      <option selected>Guest...</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="5">4</option>
-                      <option value="5+">5+</option>
+                    <label htmlFor="pets">Pets</label>
+                    <select className="custom-select" id="guest">
+                      <option value='0' >Guest...</option>
+                      <option value="1">Pet 1</option>
+                      <option value="2">Pet 2</option>
+                      <option value="3">Pet 3</option>
+                      <option value="5">Pet 4</option>
                     </select>
                     
                   </div>
                 </div>
 
-                <div className="form-row">
-                  <label htmlFor="">Email</label>
-                  <input type="text" name='email' className='form-control'/>
+                <div className="form-group">
+                  <label htmlFor="note">Write Note</label>
+                  <textarea type="text" name='note' className='form-control' rows='5'></textarea>
                 </div>
 
-                <div className="form-row">
-                  <label htmlFor="">Write Note</label>
-                  <textarea type="text" name='email' className='form-control' rows='5'></textarea>
+                <div className="form-group d-flex justify-content-center">
+                  <input type="submit" className='btn btn-success'value='Reserve Now'/>
                 </div>
-
-                <input type="submit" className='btn btn-success form-control'value='Reserve Now'/>
               
               </form>
             </div>
 
             <div className="col-md-1"></div>
 
+            
 
             <div className="col-md-5">
               <h2 className="mb-5">
                 Featured Room
               </h2>
-              <div className="feature-rooms">
-                <div className="image">
-                <figure>
-                  <img src={ img_1 } alt="" className="img-fluid"/>
-                 
-                  <div className="overlap-text">
-                    <span>FEATURED ROOM </span>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                  </div>
-                  </figure>
-                 
-                </div>
-                
-                <div className="entry-body">
-                  <h2 className="mt-0">
-                    Presidential Room
-                  </h2>
-                  <ul className='room-specs'>
-                    <li>
-                      <i className="fas fa-users"></i>
-                      &nbsp; 2 Guest
-                    </li>
-                    <li>
-                      <i className="fas fa-paw"></i>
-                      &nbsp; For Cats
-                    </li>
-                  </ul>
-                  <p>
-                    Nulla vel metus scelerisque ante sollicitudin. 
-                    Fusce condimentum nunc ac nisi vulputate fringilla.
-                  </p>
-                  <button className='btn btn-success'>Book Now From $20</button>
-                </div>
-              </div>
+              <RoomCard 
+                roomName='Presidential Room'
+                category='featured' 
+                media={ img_1 }   
+                shortText='Nulla vel metus scelerisque ante sollicitudin. Fusce condimentum nunc ac nisi vulputate fringilla.' 
+              />
             </div>
+
           </div>
         </div>
       </section>
+
+      <VideoSection />
 
     </PublicLayout>
   )

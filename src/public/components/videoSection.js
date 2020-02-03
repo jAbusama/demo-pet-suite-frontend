@@ -1,16 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import img_5 from '../../images/img_5.jpg'
 
 function VideoSection()  {
   return (
-    <section className='' id='public-home-section3'>
-      <img src={img_5} alt="" className="img-fluid"/>
-      <div className="container">
-        <div className="row justify-content-center text-center">
-          <div className="col-md-9">
-            <div className="carousel-caption">
-
+    <section className='videoSection' id='public-video-section'>
+      <div className="container d-flex align-items-center">
+        <div className="row  justify-content-center  text-center">
+          <div className="col-md-9 text-center">
+            <div className="caption">
               <h2 className='heading'>Relax and Enjoy you Holiday</h2>
               <p className="lead mb-5">
                 Lorem ipsum dolor sit amet, 

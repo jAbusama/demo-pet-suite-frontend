@@ -1,5 +1,6 @@
 import React from 'react'
 import VideoSection from '../../components/videoSection'
+import Banner from '../../components/banner'
 import PublicLayout from '../../../layouts/public'
 import bg_image_1 from '../../../images/big_image_1.jpg'
 import f_img_1 from '../../../images/f_img_1.png'
@@ -8,17 +9,12 @@ import person_2 from '../../../images/person_2.jpg'
 import person_3 from '../../../images/person_3.jpg'
 
 function AboutUs() {
+  const heading = 'About Luxury Pet Suites'
+  const introText = 'Discover the worlds #1 luxury suites for your pets'
   return(
     <PublicLayout>
 
-      <div className='container-fluid home-bg-img'>
-        <img className='img-fluid home-img' src={ bg_image_1 } alt="hotel"/>
-        <div className="carousel-caption">
-          <h1> About Luxury Suites</h1>
-          <h4> Discover the worlds #1 luxury suites for your pets</h4>
-        </div>
-      </div>
-
+      <Banner bg_media={ bg_image_1 } heading= { heading } introText= { introText }/>
 
       <section className='padding' id='public-about-section1'>
 

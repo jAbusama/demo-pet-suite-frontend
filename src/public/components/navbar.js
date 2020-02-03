@@ -6,7 +6,7 @@ function Navbar() {
   return(
     <React.Fragment>
       
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top py-3">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3">
           <div className='container'>
             <Link to='/' href="" className="navbar-brand">Logo</Link>
             <button 

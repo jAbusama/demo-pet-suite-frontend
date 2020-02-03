@@ -1,15 +1,9 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { login, register} from './pages/auth/index'
-// import index from './public/index'
 import routeLinks from './Routes'
-
-
 import storage  from 'store'
 import useGlobal from './services/useGlobal'
-
 import './App.css'
-// import PropTypes from 'prop-types'
 
 function App() {
 

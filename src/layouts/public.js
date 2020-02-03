@@ -9,7 +9,7 @@ function PublicLayout({ children }) {
         <Navbar />
       </header>
 
-      <div>
+      <div className='content'>
         { children }
       </div>
 

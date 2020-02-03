@@ -5,8 +5,9 @@ import Bookings from './pages/bookings/Index'
 import PublicHome from './public/pages/index'
 import AboutUs from './public/pages/about-us/about-us'
 import BookNow from './public/pages/book-now/index'
-import Rooms from './public/pages/book-now/index'
-import Blog from './public/pages/blog/index'
+import Rooms from './public/pages/rooms/index'
+import Blog from './public/pages/blog/blog'
+import ContactUs  from './public/pages/contact-us/contact-us'
 import { login, register} from './pages/auth/index'
 
 import storage from 'store'
@@ -128,6 +129,13 @@ const publicRoutes = [
 		icon: 'fa fa-home',
 		label: 'Blog',
 		component: Blog
+	},
+	{
+		key: 'contact-us',
+		path: '/contact-us',
+		icon: 'fa fa-home',
+		label: 'Contact Us',
+		component: ContactUs
 	},
 	{
 		key: 'login',
