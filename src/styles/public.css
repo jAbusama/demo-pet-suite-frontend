@@ -9,6 +9,7 @@ html, body {
 h1, h2, h3, h4, h5, h6 {
   color: #000;
   font-family: "Playfair Display", times, serif;
+  margin-bottom: .5rem !important;
 }
 p{
   margin-top: 0;
@@ -31,7 +32,7 @@ ul {
 #public-header nav {
   align-items: center !important;
   background-color: transparent !important;
-  padding: .8rem 4rem .8rem 4rem !important;
+  /* padding: .8rem 4rem .8rem 4rem !important; */
 }
 
 #public-header nav .nav-item {
@@ -92,11 +93,6 @@ ul {
 .padding {
   padding: 7rem 0;
 }
-
-.heading {
-  font-size: 50px;
-  margin-bottom: 30px;
-}
 .rooms-entry .room-name { 
   color: #b99365;
 }
@@ -116,9 +112,8 @@ ul {
   padding: 0 20px 20px 0;
 }
 .rooms-entry .entry-body .room-specs li i{
-  font-size: 30px;
-  position: relative;
-  top: 4px;
+  font-size: 20px;
+  /* position: relative; */
   margin-right: 10px;
 }
 .rooms-entry .btn-sm {
@@ -148,15 +143,37 @@ ul {
   left: 20px;
   z-index: 99;
 }
+.btn-primary {
+  background: #b99365 !important;
+  color: #fff !important;
+  border: 2px solid #b99365 !important;
+}
+
+.btn-primary:hover {
+  background: transparent !important;
+  border: 2px solid #b99365;
+  color: #b99365 !important;
+}
 
 #public-video-section {
   width: 100%;
   height: 500px !important;
   background: url('../images/img_5.jpg') no-repeat center fixed ;
   background-size: cover;
-  filter: brightness(70%); 
-  position: relative;
+  /* filter: brightness(70%); 
+  position: relative; */
 }
+
+/* #public-video-section:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  opacity: .5;
+  content: '';
+} */
 #public-video-section .caption {
   z-index: -99 !important;
   color:#fff;
@@ -200,6 +217,11 @@ ul {
   letter-spacing: .2em;
   color: #ccc;
 }
+#book-bar .btn {
+  padding: 0 !important;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
 
 .blog-card .blog-entry-body .blog-category:after {
   content: '';
@@ -219,9 +241,6 @@ ul {
   text-decoration: none;
   transition: .3s all ease;
 }
-.blog-card .blog-entry-body .btn-blog {
-  
-}
 .blog-card .blog-entry-body .btn-primary {
   background-color: #b99365;
   border-color: #b99365;
@@ -232,9 +251,26 @@ ul {
   border-color: #b99365;
   background-color: transparent;
 }
-
 .blog-card .blog-entry-body .btn:hover {
   background: #b99365;
   color: #fff;
+}
+#public-footer {
+  background: #f2f2f2;
+  padding: 5em 0;
+  font-size: 16px;
+}
+#public-footer h3 {
+  margin-bottom: 20px !important;
+  font-size: 13px;
+  letter-spacing: .2em;
+  color: #b3b3b3;
+  text-transform: uppercase;
+}
+#public-footer p {
+  color: #000;
+}
+#public-footer a {
+  color: #000;
 }
 

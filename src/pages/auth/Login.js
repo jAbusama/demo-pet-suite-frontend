@@ -33,7 +33,7 @@ function Login({ props }) {
       {gState.notificationsLoaded === false && <Notification message= {gState.notificationError}
         gActions= {gActions} />}
       <form onSubmit={ logIn }>
-        <h1>PetSuite</h1>
+        <h1 className='heading'>PetSuite</h1>
         <div className='form-group'>
           <label htmlFor='email'>Email</label>
           <input

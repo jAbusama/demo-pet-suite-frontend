@@ -35,11 +35,6 @@ function ContactUs() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Daparture Date</label>
-                  <input type="text" name='email' className="form-control"/>
-                </div>
-
-                <div className="form-group">
                   <label htmlFor="">Email</label>
                   <input type="text" name='email' className='form-control'/>
                 </div>
@@ -49,7 +44,7 @@ function ContactUs() {
                   <textarea type="text" name='email' className='form-control' rows='5'></textarea>
                 </div>
 
-                <input type="submit" className='btn btn-success form-control'value='Send Message'/>
+                <input type="submit" className='btn btn-primary'value='Send Message'/>
               
               </form>
             </div>

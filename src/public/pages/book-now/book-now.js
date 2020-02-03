@@ -83,7 +83,7 @@ function BookNow() {
                 </div>
 
                 <div className="form-group d-flex justify-content-center">
-                  <input type="submit" className='btn btn-success'value='Reserve Now'/>
+                  <input type="submit" className='btn btn-primary'value='Reserve Now'/>
                 </div>
               
               </form>

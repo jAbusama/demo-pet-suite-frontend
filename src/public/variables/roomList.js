@@ -1,6 +1,6 @@
 import img_1 from '../../images/img_1.jpg'
 import img_2 from '../../images/img_2.jpg'
-import img_4 from '../../images/img_4.jpg'
+import img_3 from '../../images/img_3.jpg'
 
 export const roomList = [
   {
@@ -21,7 +21,7 @@ export const roomList = [
     key: 'vice-room',
     roomName: 'Vice Room',
     shortText: 'Nulla vel metus scelerisque ante sollicitudin. Fusce condimentum nunc ac nisi vulputate fringilla.',
-    media: img_4,
+    media: img_3,
     category: 'Most Visited'
   },
   {
@@ -42,7 +42,7 @@ export const roomList = [
     key: 'premium-room',
     roomName: 'Premium Room',
     shortText: 'Nulla vel metus scelerisque ante sollicitudin. Fusce condimentum nunc ac nisi vulputate fringilla.',
-    media: img_4,
+    media: img_3,
     category: 'best seller'
   },
   {

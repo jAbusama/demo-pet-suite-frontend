@@ -30,14 +30,29 @@ body {
   padding: 0 !important;
 }
 .auth-form {
-  margin: auto;
   padding: 0 !important;
+}
+.login-front .form {
+  padding: 0 !important;
+  margin: auto !important;
+}
+.login-front .btn-back {
+  padding: 10px !important;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 14px;
+}
+.login-front .btn-back:hover {
+  color: #b33c05;
 }
 .container {
   height: 100%;
   align-content: center;
 }
-
+.heading {
+  font-size: 50px;
+  margin-bottom: 30px;
+}
 .btn_style {
   color: white !important;
   background-color: #ffc312 !important;

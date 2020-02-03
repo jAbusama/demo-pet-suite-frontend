@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function PublicFooter() {
   const date = new Date()
   return (
-    <footer className='jumbotron m-0 p-5' id='public-footer'>
+    <footer id='public-footer'>
       <div className="container">
         <div className="row mb-5">
           <div className="col-md-4">

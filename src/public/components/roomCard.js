@@ -2,12 +2,12 @@ import React from 'react'
 
 function RoomCard({media, roomName, category, roomsSpecs, review, roomsSpecsIcon, shortText  }) {
   return(
-        <div className="rooms-entry">
+        <div className="rooms-entry shadow">
           <figure>
             <img src={ media } alt="" className="img-fluid"/>
             
             <div className="overlap-text">
-              <span>{ category }</span>
+              <span>{ category }&nbsp; </span>
               <i className="fas fa-star"></i>
               <i className="fas fa-star"></i>
               <i className="fas fa-star"></i>
@@ -17,7 +17,7 @@ function RoomCard({media, roomName, category, roomsSpecs, review, roomsSpecsIcon
           </figure> 
           
           <div className="entry-body">
-            <h3 className="room-name mt-0">
+            <h3 className="room-name mt-0 mb-3">
               { roomName }
             </h3>
             <ul className='room-specs'>
@@ -33,7 +33,10 @@ function RoomCard({media, roomName, category, roomsSpecs, review, roomsSpecsIcon
             <p>
               { shortText }
             </p>
-            <button className='btn btn-success btn-sm'>Book Now From $20</button>
+            <div className="text-center">
+              <button className='btn btn-primary btn-sm'>Book Now From $20</button>
+            </div>
+            
           </div>
         </div>
   )

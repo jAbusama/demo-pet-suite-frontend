@@ -1,12 +1,11 @@
 import React from 'react'
 import VideoSection from '../../components/videoSection'
 import Banner from '../../components/banner'
+import StaffCard from '../../components/staffCard'
 import PublicLayout from '../../../layouts/public'
 import bg_image_1 from '../../../images/big_image_1.jpg'
 import f_img_1 from '../../../images/f_img_1.png'
-import person_1 from '../../../images/person_1.jpg'
-import person_2 from '../../../images/person_2.jpg'
-import person_3 from '../../../images/person_3.jpg'
+import { staffList } from '../../variables/staffList'
 
 function AboutUs() {
   const heading = 'About Luxury Pet Suites'
@@ -73,65 +72,20 @@ function AboutUs() {
             </div>
 
             <div className="row">
-              <div className="col-md-4">
-                <div className="staff-entry">
-                  <img src={ person_1 } alt="" className="card-img-top"/>
-                  <div className="staff-body">
-                    <div className="staff-position text-muted">
-                      STAFF
-                    </div>
-                    <h3 className="staff-name mb-3">
-                      Michelle Aguilar
-                    </h3>
-                    <p className="mb-4">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                      Ipsum deserunt illo quis similique dolore voluptatem culpa 
-                      voluptas rerum, dolor totam.
-                    </p>
-                    <button className='btn btn-outline-primary btn-sm'>READ BIO</button>
-                  </div>
-                </div>
-              </div>
 
-              <div className="col-md-4">
-                <div className="staff-entry">
-                  <img src={ person_2 } alt="" className="card-img-top"/>
-                  <div className="staff-body">
-                    <div className="staff-position text-muted">
-                      STAFF
-                    </div>
-                    <h3 className="staff-name mb-3">
-                      Michelle Aguilar
-                    </h3>
-                    <p className="mb-4">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                      Ipsum deserunt illo quis similique dolore voluptatem culpa 
-                      voluptas rerum, dolor totam.
-                    </p>
-                    <button className='btn btn-outline-primary btn-sm'>READ BIO</button>
+              {
+                staffList.map(staff => (
+                  <div key={ staff.key } className="col-md-4">
+                    <StaffCard 
+                      profile={ staff.profile }
+                      name= { staff.name }
+                      position={ staff.position }
+                      bio={ staff.bio } 
+                    />
                   </div>
-                </div>
-              </div>
-
-              <div className="col-md-4">
-                <div className="staff-entry">
-                  <img src={ person_3 } alt="" className="card-img-top"/>
-                  <div className="staff-body">
-                    <div className="staff-position text-muted">
-                      STAFF
-                    </div>
-                    <h3 className="staff-name mb-3">
-                      Michelle Aguilar
-                    </h3>
-                    <p className="mb-4">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                      Ipsum deserunt illo quis similique dolore voluptatem culpa 
-                      voluptas rerum, dolor totam.
-                    </p>
-                    <button className='btn btn-outline-primary btn-sm'>READ BIO</button>
-                  </div>
-                </div>
-              </div>
+                ))
+              }
+              
             </div>
 
           </div>

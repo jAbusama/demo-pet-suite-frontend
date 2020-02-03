@@ -4,15 +4,14 @@ import PublicLayout from '../../layouts/public'
 import VideoSection from '../components/videoSection'
 import Banner from '../components/banner'
 import BlogCard from '../components/blogCard'
+import RoomCard from '../components/roomCard'
 import { eventsList } from '../variables/blogList'
+import { roomList } from '../variables/roomList'
 import CardBar from '../components/cardBar'
 import '../../styles/public.css'
 
 import bg_image_1 from '../../images/big_image_1.jpg'
 import f_img_1 from '../../images/f_img_1.png'
-import img_1 from '../../images/img_1.jpg'
-import img_2 from '../../images/img_2.jpg'
-import img_4 from '../../images/img_4.jpg'
 
 
 function Home() { 
@@ -26,14 +25,27 @@ function Home() {
       return event
     }
   })
+  let x=0
+  const rooms = roomList.filter(room => {
+    if(x < 3) {
+      x++
+      return room
+    }
+  })
+
+  console.log(rooms)
 
   return (
     <PublicLayout>
-      <section className="">
+      <section>
         <div className="container-fluid" id='home-banner'>
           <Banner bg_media={ bg_image_1 } heading={ heading } introText={ introText }/>
-          <CardBar />
         </div>
+      </section>
+
+    
+      <section id='card-bar'>
+      <CardBar />
       </section>
 
       <section className='padding' id='public-home-section1'>
@@ -83,55 +95,50 @@ function Home() {
             </div>
 
             <div className="row">
-              <div className="col-lg-7">
-                <div className="section2-content">
-                  <div className="rooms-entry shadow-sm">
-                    <figure>
-                      <img src={img_1} alt="room1" className="card-img-top"/>
-                      <div className="overlap-text">
-                        <span>Featured</span>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                      </div>
-                    </figure>
+              <div className="col-lg-6">
+                <RoomCard 
+                media={ rooms[0].media } 
+                category={ rooms[0].category } 
+               
+                roomName={rooms[0].roomName} 
+                shortText={rooms[0].shortText} 
+                />     
 
-                  <div className="entry-body">
-                    <h3 className="room-name">
-                      Presidential Room
-                    </h3>
-                    <ul className="room-specs">
-                      <li className="specs">
-                        <i className="ion-ios-people-outline"></i>
-                        2 Guest
-                      </li>
-                      <li className="specs">
-                        <i className="ion-ios-people-outline"></i>
-                        Free Wifi
-                      </li>
-                    </ul>
-                    <p>
-                      Nulla vel metus scelerisque ante sollicitudin. 
-                      Fusce condimentum nunc ac nisi vulputate fringilla.
-                    </p>
-                    <p className="section2-btn">
-                      <button className='btn btn-primary'>Book From Now!</button>
-                    </p>
-                  </div>
-                  </div>
-                  
-                </div>
               </div>
 
+              <div className="col-md-1"></div>
+
             <div className="col-5">
-              <Link to='#'>
-                <img className='img-fluid' src={img_2} alt=""/>
-              </Link>
-              <Link to='#'>
-                <img className='img-fluid' src={img_4} alt=""/>
-              </Link>
+              <div className="rooms-entry">
+                <Link to='#'>
+                  
+                  <figure>
+                    <img src={ rooms[1].media } alt="" className="img-fluid"/>
+                    <div className="overlap-text">
+                      <span>{ rooms[1].category }&nbsp; </span>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                    </div>
+                  </figure> 
+
+                </Link>
+                <Link to='#'>
+                  <figure>
+                    <img src={ rooms[2].media } alt="" className="img-fluid"/>
+                    <div className="overlap-text">
+                      <span>{ rooms[2].category }&nbsp; </span>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                    </div>
+                  </figure> 
+                </Link>
+              </div>
             </div>
           </div>
         </div>
