@@ -110,7 +110,7 @@ function Bookings(props) {
 
 				<div className="card">
 					<div className="card-body">
-						<div className='table-border'>
+						<div className='table-border shadow-sm'>
 							<table className='table record-table table-sm table-hover'>
 								<thead>
 									<tr>

@@ -20,7 +20,7 @@ export const staffList = [
   {
     key: 'rob-macdonald',
     name: 'Rob McDonald',
-    position: 'Staff',
+    position: 'Cook',
     bio: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum deserunt illo quis similique dolore voluptatem culpa voluptas rerum, dolor totam.',
     profile: person_3
   }

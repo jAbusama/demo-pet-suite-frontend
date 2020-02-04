@@ -1,14 +1,15 @@
+
 html, body {
   padding: 0;
   margin: 0;
   background: #fff !important;
   color: #6c757d !important;
-  font-family: "Rubik" ,arial , sans-serif;
   font-weight: 300;
+  font-family: 'Rubik', serif !important;
 }
-h1, h2, h3, h4, h5, h6 {
+#public h1, h2, h3, h4, h5, h6 {
   color: #000;
-  font-family: "Playfair Display", times, serif;
+  font-family: "Playfair Display", serif;
   margin-bottom: .5rem !important;
 }
 p{
@@ -23,6 +24,22 @@ ul {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 40px;
+}
+#public .btn {
+  padding: 12px 30px !important;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+#public .btn-primary {
+  background: #b99365 !important;
+  color: #fff !important;
+  border: 2px solid #b99365 !important;
+}
+
+#public .btn-primary:hover {
+  background: transparent !important;
+  border: 2px solid #b99365;
+  color: #b99365 !important;
 }
 #public-header {
   padding: 0px;
@@ -54,19 +71,11 @@ ul {
   position: relative;
 }
 
-#book-bar {
-  /* position: absolute; */
-  transform: translateY(-50%);
-  right:30px;
-  left: auto !important;
-  width: 100%;
+#card-bar {
+  position: relative;
+  top: -50px;
 }
-.btn {
-  padding: 12px 30px !important;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  border-radius: 0;
-}
+
 .banner-bg-img {
   width: 100%;
   height: 100%;
@@ -148,17 +157,6 @@ ul {
   bottom: 20px;
   left: 20px;
   z-index: 99;
-}
-.btn-primary {
-  background: #b99365 !important;
-  color: #fff !important;
-  border: 2px solid #b99365 !important;
-}
-
-.btn-primary:hover {
-  background: transparent !important;
-  border: 2px solid #b99365;
-  color: #b99365 !important;
 }
 
 #public-video-section {

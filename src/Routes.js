@@ -44,7 +44,21 @@ const adminRoutes = [
 		icon      : 'fas fa-book-open',
 		label     : 'Booking',
 		component : Bookings
-	}
+	},
+	{
+		key:	'rooms',
+		path: '/rooms',
+		icon: 'fas fa-door-open',
+		label: 	'Rooms',
+		component: Bookings
+	},
+	{
+		key:	'blogs',
+		path: '/blogs',
+		icon: 'fab fa-blogger',
+		label: 	'Blogs',
+		component: Bookings
+	},
 ]
 
 const employeeRoutes = [
@@ -134,6 +148,7 @@ const publicRoutes = [
 		key: 'contact-us',
 		path: '/contact-us',
 		icon: 'fa fa-home',
+		class: 	'mr-5',
 		label: 'Contact Us',
 		component: ContactUs
 	},
@@ -141,7 +156,6 @@ const publicRoutes = [
 		key: 'login',
 		path: '/login',
 		icon: 'fa fa-home',
-		class: 	'ml-5',
 		label: 'Login',
 		component: login
 	},

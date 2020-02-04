@@ -4,7 +4,7 @@ import PublicFooter from '../public/components/footer'
 
 function PublicLayout({ children }) {
   return(
-    <div className="container-fluid">
+    <div className="container-fluid" id='public'>
       <header id='public-header'>
         <Navbar />
       </header>

@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
+
 import PublicLayout from '../../../layouts/public'
 import bg_image_1 from '../../../images/big_image_1.jpg'
 import img_1 from '../../../images/img_1.jpg'
@@ -7,6 +10,10 @@ import VideoSection from '../../components/videoSection'
 import Banner from '../../components/banner'
 
 function BookNow() {
+
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(new Date())
+
 
   const heading = 'Reservation'
   const introText = 'Discover the worlds #1 luxury suites for your pets'
@@ -19,7 +26,7 @@ function BookNow() {
       <section className='padding' id='booking-section'>
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-sm-12 col-md-6 col-lg-6 mb-4">
               <h2 className="mb-5">
                 Reservation Form
               </h2>
@@ -30,24 +37,26 @@ function BookNow() {
                     <label htmlFor="arrive-date">
                       Arrive Date
                     </label>
-                    <div className="input-group date" id="datetimepickerArrive" data-target-input="nearest">
-                      <input name='arrive-date' type="text" className="form-control datetimepicker-input" placeholder='dd/mm/yyyy' data-target="#datetimepickerArrive"/>
-                      <div className="input-group-append" data-target="#datetimepickerArrive" data-toggle="datetimepicker">
-                        <div className="input-group-text"><i className="fa fa-calendar"></i></div>
-                      </div>
-                    </div>  
+                    <DatePicker
+                      name='startDate'
+                      showPopperArrow={false}
+                      selected={startDate}
+                      onChange={date => setStartDate(date)}
+                      className='form-control'
+                    /> 
                   </div>
 
                   <div className="form-group col">
                     <label htmlFor="daparture-date">
                       Daparture Date
                     </label>
-                    <div className="input-group date" id="datetimepickerDaparture" data-target-input="nearest">
-                      <input name="deaparture-date" type="text" className="form-control datetimepicker-input" placeholder='dd/mm/yyyy' data-target="#datetimepickerDeparture"/>
-                      <div className="input-group-append" data-target="#datetimepickerDeparture" data-toggle="datetimepicker">
-                        <div className="input-group-text"><i className="fa fa-calendar"></i></div>
-                      </div>
-                    </div>  
+                    <DatePicker
+                      name='endDate'
+                      showPopperArrow={false}
+                      selected={endDate}
+                      onChange={date => setEndDate(date)}
+                      className='form-control'
+                    /> 
                   </div>
                 </div>
 
@@ -89,9 +98,9 @@ function BookNow() {
               </form>
             </div>
 
-            <div className="col-md-1"></div>
+            {/* <div className="col-sm-0 col-lg-1"></div> */}
 
-            <div className="col-md-5">
+            <div className="col-sm-12 col-md-6 col-lg-6">
               <h2 className="mb-5">
                 Featured Room
               </h2>

@@ -49,9 +49,9 @@ function ContactUs() {
               </form>
             </div>
 
-            <div className="col-md-1"></div>
+            {/* <div className="col-md-0 col-lg-1"></div> */}
 
-            <div className="col-md-5">
+            <div className="col-md-6">
               <h2 className="mb-5">
                 Paragraph
               </h2>

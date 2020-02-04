@@ -1,33 +1,70 @@
-import React from 'react'
+import React, { useState } from 'react'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 function CardBar() {
+
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(new Date())
+
+  // const ExampleCustomInput = ({ value, onClick }) => {
+  //   // <button type='button' className="example-custom-input" onClick={onClick}>
+  //   //   {value}
+  //   // </button>
+  //   return(
+  //   <div className="input-group">
+  //     {/* <input type="text" className='form-control' value={ value } onClick={onClick}/>
+  //      */}
+  //     <button type='button' className="example-custom-input" onClick={onClick}>
+  //       {value}
+  //     </button>
+  //     <div className="input-group-append">
+  //       <div className="input-group-text"><i className="fa fa-calendar"></i></div>
+  //     </div>
+  //   </div> 
+  //   ) 
+  // }
+  
   return (
     <div className="container" id='book-bar'>
       <div className="card shadow">
         <div className="card-body">
           <form action="">
-
             <div className="form-row">
               <div className="form-group col-2">
-                <div className="input-group date" id="datetimepickerArrive" data-target-input="nearest">
-                  <input name='arrive-date' type="text" className="form-control datetimepicker-input" placeholder='dd/mm/yyyy' data-target="#datetimepickerArrive"/>
-                  <div className="input-group-append" data-target="#datetimepickerArrive" data-toggle="datetimepicker">
-                    <div className="input-group-text"><i className="fa fa-calendar"></i></div>
-                  </div>
-                </div>  
+                <DatePicker
+                  name='startDate'
+                  showPopperArrow={false}
+                  selected={startDate}
+                  onChange={date => setStartDate(date)}
+                  // customInput={ <ExampleCustomInput />}
+                  className='form-control'
+                />
+                {/* <DatePicker
+                  selected={startDate}
+                  onChange={date => setStartDate(date)}
+                  customInput={<ExampleCustomInput />}
+                /> */}
               </div>
 
               <div className="form-group col-2">
-                <div className="input-group date" id="datetimepickerDaparture" data-target-input="nearest">
-                  <input name="deaparture-date" type="text" className="form-control datetimepicker-input" placeholder='dd/mm/yyyy' data-target="#datetimepickerDeparture"/>
-                  <div className="input-group-append" data-target="#datetimepickerDeparture" data-toggle="datetimepicker">
-                    <div className="input-group-text"><i className="fa fa-calendar"></i></div>
-                  </div>
-                </div>  
+                <DatePicker
+                  name='endDateDate'
+                  showPopperArrow={false}
+                  selected={endDate}
+                  onChange={date => setEndDate(date)}
+                  // customInput={ <ExampleCustomInput />}
+                  className='form-control'
+                />
               </div>
 
                 <div className="form-group col-2">
-                  <select name='room' className="custom-select" id="inputGroupSelect01">
+                  {/* <select name='room' className="selectpicker custom-select" multiple>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                  </select> */}
+                  <select name='room' className="custom-select"id="inputGroupSelect01">
                       <option value='0'>Room...</option>
                       <option value="1">1</option>
                       <option value="2">2</option>

@@ -6,8 +6,9 @@ function PublicFooter() {
   return (
     <footer id='public-footer'>
       <div className="container">
-        <div className="row mb-5">
-          <div className="col-md-4">
+        <div className="row  justify-content-center mb-4">
+          
+          <div className="col-xs-12 col-sm-6 col-md-4 mb-2">
             <h3>Phone Support</h3>
             <p>24/7 Call us Now.</p>
             <p className="lead">
@@ -15,7 +16,7 @@ function PublicFooter() {
             </p>
           </div>
 
-          <div className="col-md-4">
+          <div className="col-xs-12 col-sm-6 col-md-4 mb-2">
             <h3>CONNECT WITH US</h3>
             <p>We are socialized. Follow us</p>
             <p className="lead">
@@ -35,19 +36,19 @@ function PublicFooter() {
             </p>
           </div>
 
-          <div className="col-md-4">
+          <div className="col-xs-12 col-sm-6 col-md-4 mb-2">
             <h3>CONNECT WITH US</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, odio.</p>
             <form action="#" className="subscribe">
               <div className="form-group">
-                
                 <input type="text" className="form-control" placeholder='Enter Email'/>
                 <button type='submit' >
-                  <i className="fas fa-long-arrow-alt-right"></i>
+                  <i className="fas fa-arrow-right"></i>
                 </button>
               </div>
             </form>
           </div>
+
         </div>
 
         <div className="row justify-content-center">

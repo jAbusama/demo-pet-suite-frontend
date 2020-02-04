@@ -10,6 +10,7 @@ import { staffList } from '../../variables/staffList'
 function AboutUs() {
   const heading = 'About Luxury Pet Suites'
   const introText = 'Discover the worlds #1 luxury suites for your pets'
+  console.log(staffList)
   return(
     <PublicLayout>
 
@@ -24,7 +25,7 @@ function AboutUs() {
                 STAY WITH OUR LUXURY ROOMS &amp; SERVICES
               </h4>
               <h2 className='heading'>
-                Stay and Enjoy
+                Our Story
               </h2>
               <div className="section1-content-text pt-4">
                   <p className='text-left'>
@@ -59,8 +60,8 @@ function AboutUs() {
 
       <section className='padding' id='public-about-section2'>
         <div className="container">
-          <div className="row ">
-            <div className="col-12 section2-title text-center mb-5">
+          <div className="row mb-4">
+            <div className="col-12 section2-title text-center">
               <h4 className='section-title'>
                 OUR KIND STAFF
               </h4>
@@ -70,10 +71,10 @@ function AboutUs() {
             </div>
           </div>
 
-          <div className="row">
+          <div className="row justify-content-center">
             {
               staffList.map(staff => (
-                <div key={ staff.key } className="col-md-4">
+                <div key={ staff.key } className="col-md-6 col-lg-4">
                   <StaffCard 
                     profile={ staff.profile }
                     name= { staff.name }
@@ -87,7 +88,7 @@ function AboutUs() {
         </div>
       </section>
 
-      <VideoSection />s
+      <VideoSection />
 
     </PublicLayout>
   )

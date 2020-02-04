@@ -26,7 +26,7 @@ function Rooms() {
 
             {
               roomList.map(room => (
-                <div key={ room.key }  className="col-md-4 mb-4">
+                <div key={ room.key }  className="col-sm-12 col-md-6 col-lg-4 mb-4">
                   <RoomCard 
                     
                     category={ room.category } 

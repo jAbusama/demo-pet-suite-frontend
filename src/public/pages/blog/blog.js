@@ -23,7 +23,7 @@ function Blog() {
             </div>
 
               {newsList.map(news => (
-                <div  key={news.key} className="col-md-4">
+                <div  key={news.key} className="col-sm-12 col-md-6 col-lg-4">
                   <BlogCard media={ news.media } category={ news.category } title={ news.title } text={ news.text } />
                 </div>
               ))}
@@ -40,7 +40,7 @@ function Blog() {
             </div>
 
               {eventsList.map(news => (
-                <div  key={news.key} className="col-md-4">
+                <div  key={news.key} className="col-sm-12 col-md-6 col-lg-4">
                   <BlogCard media={ news.media } category={ news.category } title={ news.title } text={ news.text } />
                 </div>
               ))}

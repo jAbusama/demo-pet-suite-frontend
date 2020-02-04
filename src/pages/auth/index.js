@@ -9,7 +9,9 @@ export function login(props) {
     <div className='row login-front'>
       { background }
       <div className='col-4 mt-2'>
+        
         { homeButton }
+
         <div className='d-flex justify-content-center auth-form'>
           <Login props={props}/>
         </div>
@@ -22,6 +24,7 @@ export function register(props) {
   return (
     <div className='row login-front'>
       { background }
+
       <div className='col-4 mt-2'>
         
         { homeButton }

@@ -10,6 +10,7 @@ import { roomList } from '../variables/roomList'
 import CardBar from '../components/cardBar'
 import '../../styles/public.css'
 
+
 import bg_image_1 from '../../images/big_image_1.jpg'
 import f_img_1 from '../../images/f_img_1.png'
 
@@ -45,13 +46,13 @@ function Home() {
 
     
       <section id='card-bar'>
-      <CardBar />
+        <CardBar />
       </section>
 
       <section className='padding' id='public-home-section1'>
         <div className="container">
           <div className="row d-flex align-items-center">
-            <div className="col-lg-4 text-center">
+            <div className="col-lg-4 text-center mb-5">
               <h4 className="section-title">
                 STAY WITH OUR LUXURY ROOMS
               </h4>
@@ -95,7 +96,7 @@ function Home() {
             </div>
 
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-6 mb-5">
                 <RoomCard 
                 media={ rooms[0].media } 
                 category={ rooms[0].category } 
@@ -108,7 +109,7 @@ function Home() {
 
               <div className="col-md-1"></div>
 
-            <div className="col-5">
+            <div className="col-lg-5">
               <div className="rooms-entry">
                 <Link to='#'>
                   
@@ -149,14 +150,15 @@ function Home() {
 
       <section className='padding bg-light' id='public-home-section4'>
         <div className="container">
-          <div className="row mb-5">
+          <div className="row mb-4">
             <div className="col-12 text-center">
               <h5 className='text-muted section-title'>OUR BLOG</h5>
               <h2 className='heading'>Our Recent Blog</h2>
             </div>
-
+          </div>
+          <div className="row justify-content-center">
             {events.map(event => (
-              <div key={event.key} className="col-md-4">
+              <div key={event.key} className="col-md-6 col-lg-4">
                 <BlogCard 
                   title={event.title}
                   media={event.media}
@@ -165,7 +167,6 @@ function Home() {
                 />
               </div>
             ))}
-
           </div>          
 
         </div>
