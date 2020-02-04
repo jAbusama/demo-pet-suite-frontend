@@ -20,7 +20,7 @@ function MainLayout({ props, children }) {
 
 	return (
 		<div className="container-fluid">
-			<div className='row main-content' >
+			<div className='row main-content' id='admin-page'>
 				<div className={`col-2 ${isToggle && 'active' }`} id='sidebar-wrapper'>
 					<Sidebar />
 				</div>

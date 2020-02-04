@@ -32,6 +32,16 @@ body {
 .auth-form {
   padding: 0 !important;
 }
+.auth-form h1 {
+  color: #b99365;
+}
+.auth-form .btn {
+  padding: 5px 40px !important;
+  letter-spacing: normal;
+}
+.auth-form .form-group {
+  margin-bottom: 14px !important;
+}
 .login-front .form {
   padding: 0 !important;
   margin: auto !important;
@@ -75,6 +85,14 @@ body {
 
 .main-content {
   height: 100vh;
+}
+#admin-page .btn {
+  padding: 5px 16px !important;
+  letter-spacing: normal;
+  text-transform: none;
+}
+#admin-page .sidebar-header h3 {
+  color: #fff !important;
 }
 
 /* sidebar */

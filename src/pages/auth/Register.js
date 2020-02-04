@@ -65,8 +65,6 @@ function Register({ props }) {
           </div>
         </div>
 
-        <h5 className="text-muted">CONTACT</h5>
-
         <div className='form-group'>
           <label htmlFor='email'>Email</label>
           <input
@@ -123,10 +121,14 @@ function Register({ props }) {
                </Link>
                </u> here
           </small>
+         
+        </div>
+        <div className="text-center">
           <button type='submit' className='btn btn-primary '>
             Register
           </button>
         </div>
+       
       </form>
     </div>
     </React.Fragment>

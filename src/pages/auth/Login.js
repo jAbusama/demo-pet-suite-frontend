@@ -86,7 +86,7 @@ function Login({ props }) {
             </u>
           </small>
         </div>
-        <div className='text-center'>
+        <div className='form-group text-center'>
           <small className='form-text text-muted login-footer'>
             Don't have an account ? <u style={styles.accounts}>
                <Link to='/register'>
@@ -94,12 +94,14 @@ function Login({ props }) {
                </Link>
                </u> here
           </small>
-         
-            <button type='submit' className='btn btn-primary '>
-              Login
-            </button>
-
         </div>
+        <div className="text-center">
+          <button type='submit' className='btn btn-primary '>
+            Login
+          </button>
+        </div>
+        
+
       </form>
     </div>
   )

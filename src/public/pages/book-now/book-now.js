@@ -91,8 +91,6 @@ function BookNow() {
 
             <div className="col-md-1"></div>
 
-            
-
             <div className="col-md-5">
               <h2 className="mb-5">
                 Featured Room

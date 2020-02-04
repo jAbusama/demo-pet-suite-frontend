@@ -17,85 +17,77 @@ function AboutUs() {
 
       <section className='padding' id='public-about-section1'>
 
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-md-12 col-lg-4">
-                <div className="section-title text-muted">
-                  STAY WITH OUR LUXURY ROOMS &amp; SERVICES
-                </div>
-                <h2 className='heading'>
-                  Stay and Enjoy
-                </h2>
-                <div className="section1-content-text pt-4">
-                    <p className='text-left'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Minus illo similique natus, a recusandae? Dolorum, 
-                    unde a quibusdam est? Corporis deleniti obcaecati quibusdam 
-                    inventore fuga eveniet! Qui delectus tempore amet!
-                    </p>
-                    <p className='text-left'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Minus illo similique natus, a recusandae? Dolorum, 
-                    unde a quibusdam est? Corporis deleniti obcaecati quibusdam 
-                    inventore fuga eveniet! Qui delectus tempore amet!
-                    </p>
-                    <p className='text-left float-left'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Minus illo similique natus, a recusandae? Dolorum, 
-                    unde a quibusdam est? Corporis deleniti obcaecati quibusdam 
-                    inventore fuga eveniet! Qui delectus tempore amet!
-                    </p>
-                </div>
-              </div>
-
-
-              <div className="col-md-12 col-lg-8 d-flex align-items-center">
-                <img className='img-fluid' src={f_img_1} alt="like-family"/>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-
-        <section className='padding' id='public-about-section2'>
-          <div className="container">
-            <div className="row ">
-              <div className="col-12 section2-title mb-5">
-                <h4 className='sub-heading'>
-                  OUR KIND STAFF
-                </h4>
-                <h2 className='heading'>
-                  OUR STAFF
-                </h2>
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-12 col-lg-4">
+              <h4 className="section-title">
+                STAY WITH OUR LUXURY ROOMS &amp; SERVICES
+              </h4>
+              <h2 className='heading'>
+                Stay and Enjoy
+              </h2>
+              <div className="section1-content-text pt-4">
+                  <p className='text-left'>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                  Minus illo similique natus, a recusandae? Dolorum, 
+                  unde a quibusdam est? Corporis deleniti obcaecati quibusdam 
+                  inventore fuga eveniet! Qui delectus tempore amet!
+                  </p>
+                  <p className='text-left'>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                  Minus illo similique natus, a recusandae? Dolorum, 
+                  unde a quibusdam est? Corporis deleniti obcaecati quibusdam 
+                  inventore fuga eveniet! Qui delectus tempore amet!
+                  </p>
+                  <p className='text-left float-left'>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                  Minus illo similique natus, a recusandae? Dolorum, 
+                  unde a quibusdam est? Corporis deleniti obcaecati quibusdam 
+                  inventore fuga eveniet! Qui delectus tempore amet!
+                  </p>
               </div>
             </div>
 
-            <div className="row">
 
-              {
-                staffList.map(staff => (
-                  <div key={ staff.key } className="col-md-4">
-                    <StaffCard 
-                      profile={ staff.profile }
-                      name= { staff.name }
-                      position={ staff.position }
-                      bio={ staff.bio } 
-                    />
-                  </div>
-                ))
-              }
-              
+            <div className="col-md-12 col-lg-8 d-flex align-items-center">
+              <img className='img-fluid' src={f_img_1} alt="like-family"/>
             </div>
 
           </div>
-        </section>
+        </div>
+      </section>
 
+      <section className='padding' id='public-about-section2'>
+        <div className="container">
+          <div className="row ">
+            <div className="col-12 section2-title text-center mb-5">
+              <h4 className='section-title'>
+                OUR KIND STAFF
+              </h4>
+              <h2 className='heading'>
+                OUR STAFF
+              </h2>
+            </div>
+          </div>
 
-        <VideoSection />
+          <div className="row">
+            {
+              staffList.map(staff => (
+                <div key={ staff.key } className="col-md-4">
+                  <StaffCard 
+                    profile={ staff.profile }
+                    name= { staff.name }
+                    position={ staff.position }
+                    bio={ staff.bio } 
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
 
-
-
+      <VideoSection />s
 
     </PublicLayout>
   )

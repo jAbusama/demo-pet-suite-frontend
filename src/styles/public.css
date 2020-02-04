@@ -44,6 +44,12 @@ ul {
   font-size: 16px !important;
   font-weight: 400;
 }
+#public-header .btn-outline-success {
+  border: 2px solid #b99365;
+}
+#public-header .btn-outline-success:hover { 
+  background: #b99365;
+}
 #home-banner {
   position: relative;
 }
