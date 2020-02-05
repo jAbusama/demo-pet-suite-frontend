@@ -8,7 +8,7 @@ import BookNow from './public/pages/book-now/book-now'
 import Rooms from './public/pages/rooms/rooms'
 import Blog from './public/pages/blog/blog'
 import ContactUs  from './public/pages/contact-us/contact-us'
-import { login, register} from './pages/auth/index'
+import { Login, Register} from './pages/auth/index'
 
 import storage from 'store'
 
@@ -157,14 +157,14 @@ const publicRoutes = [
 		path: '/login',
 		icon: 'fa fa-home',
 		label: 'Login',
-		component: login
+		component: Login
 	},
 	{
 		key: 'register',
 		path: '/register',
 		icon: 'fa fa-home',
 		label: 'Register',
-		component: register
+		component: Register
 	},
 ]
 

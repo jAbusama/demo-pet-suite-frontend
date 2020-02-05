@@ -1,26 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Login from './Login'
-import Register from './Register'
+// import useGlobal from '../../services/useGlobal'
+import LoginPage from './Login'
+import RegisterPage from './Register'
 import bg from '../../images/bg.jpg'
 
-export function login(props) {
+export function Login(props) {
+
   return (
     <div className='row login-front'>
       { background }
       <div className='col-4 mt-2'>
         
         { homeButton }
-
+        
         <div className='d-flex justify-content-center auth-form'>
-          <Login props={props}/>
+          <LoginPage props={props}/>
         </div>
       </div>
     </div>
   )
 }
 
-export function register(props) {
+export function Register(props) {
   return (
     <div className='row login-front'>
       { background }
@@ -30,7 +32,7 @@ export function register(props) {
         { homeButton }
 
         <div className='d-flex justify-content-center auth-form'>
-          <Register />
+          <RegisterPage />
         </div>
 
       </div>

@@ -12,9 +12,11 @@ function MainLayout({ props, children }) {
 	const [ gState, gActions ] = useGlobal()
 	const [state, setState] = useState(initState)
 
+	console.log(gState.isLogin)
+
 	const isToggle = gState.isToggle
+	
 	useEffect(() => {
-		console.log(isToggle)
 		return () => console.log('unmount')
 	},[])
 

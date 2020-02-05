@@ -2,22 +2,33 @@ import React, { useState, useEffect } from 'react'
 import useGlobal from '../../services/useGlobal'
 import { Link } from 'react-router-dom'
 import Notification from '../../components/Notification'
-import {useForm} from '../useForm'
+import { useForm } from '../useForm'
 
 
-function Login({ props }) {
+function Login({props}) {
 
   let initialState = {
     email    : '',
     password : ''
   }
+
+  const [gState, gActions] = useGlobal()
+  useEffect(() => {
+    // if(isLogin){
+    //   props.history.push('/')
+    // }
+    console.log('Login is rendered')
+  })
   
   const [values, handleChange, data] = useForm(initialState)
-  const [ gState, gActions ] = useGlobal()
+
   // const [user, setUser] = useState(initialState)
   const logIn = async e => {
     e.preventDefault()
-    await gActions.login(values, props)
+    const res = await gActions.login(values, props)
+    if(res) {
+      props.history.push('/')
+    }
   }
 
 

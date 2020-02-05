@@ -43,7 +43,6 @@ function Home() {
           <Banner bg_media={ bg_image_1 } heading={ heading } introText={ introText }/>
         </div>
       </section>
-
     
       <section id='card-bar'>
         <CardBar />

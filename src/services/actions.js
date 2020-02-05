@@ -2,7 +2,7 @@ import { apiRequest } from './api'
 import storage from 'store'
 
 const actions = {
-  login   : async (store, user, props) => {
+  login   : async (store, user, {props}) => {
 		const res = await apiRequest('POST', 'login', user)
 		if(res.status){
 			storage.set('isLogin', true)
@@ -17,17 +17,19 @@ const actions = {
 			else {
 				await store.setState({  user: res.user, token: res.token, isLogin: true, loginLoaded: true })
 			}
-			props.history.push('/')
+			return true
 		}
 		else {
-			//console.log(res)
+			console.log(res)
 			await store.setState({ notificationError: res.message, notificationsLoaded: false})
+			return false
 		}
+		// console.log(res)
 	},
 
 	getLogin: (store) => {
 		store.setState({user: storage.get('user'), token: storage.get('token'), isLogin: storage.get('isLogin'),
-			routeLinks: storage.get('routeLinks'), loginLoaded: true })
+		routeLinks: storage.get('routeLinks'), loginLoaded: true })
 	},
 	
 	logout: async(store, props) => {
@@ -36,10 +38,11 @@ const actions = {
 			storage.clearAll()
 			storage.set('isLogin', false)
 			await store.setState({ user: [], token: '', isLogin: false })
-			props.history.push('/')
+			return true
 		}
 		else {
 			console.log('error', res)
+			return false
 		}
 	},
 

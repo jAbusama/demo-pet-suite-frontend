@@ -5,14 +5,13 @@ function Navigation({ props }) {
 	
 	const [gState, gActions] = useGlobal()
 	const user = gState.user.email
-	const logout = (e) => {
+	const logout = async (e) => {
 		e.preventDefault()
-		gActions.logout(props)
+		const res = await gActions.logout(props)
+		if(res) {
+		props.history.push('/login')
 	}
-
-	useEffect(() => {
-		console.log('render')
-	}, [])
+	}
 
 	return (
 		<header id='admin-header'>

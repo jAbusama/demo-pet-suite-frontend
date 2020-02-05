@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import routeLinks from '../../Routes'
 
 function Navbar() {
+
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    window.addEventListener('scroll', attachEvent )
+    return () => {
+      console.log('unmount')
+      window.removeEventListener('scroll', attachEvent )
+    }
+  },[])
+
+  const attachEvent = () => {
+    if(window.scrollY > 50 ) {
+      setScrolled(true)
+    }
+    else (
+      setScrolled(false)
+    )
+  }
+
   return(
     <React.Fragment>
       
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3">
+      <nav className={`navbar navbar-expand-lg navbar-dark bg-dark fixed-top pt-5 ${ scrolled && 'shrink' } `}>
         <div className='container'>
           <Link to='/' href="" className="navbar-brand">Logo</Link>
           <button 
@@ -26,7 +45,7 @@ function Navbar() {
                 routeLinks().map(route => (
                   route.key === 'register' ? 
                   <li key={route.key} className="nav-item">
-                    <NavLink exact className="nav-link btn btn-outline-success" to={ route.path }>
+                    <NavLink exact className=" btn btn-outline-primary" to={ route.path }>
                       { route.label }
                     </NavLink>
                   </li>
