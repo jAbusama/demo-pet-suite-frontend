@@ -8,6 +8,8 @@ const initState = {
 	isLogin: 							false,
 	token: 								'',
 	user: 								'',
+	userPets:							[],
+	userPetsLoaded:				false,
 	routeLinks:						[],
 	loginLoaded:					false,
 	isToggle: 						false,

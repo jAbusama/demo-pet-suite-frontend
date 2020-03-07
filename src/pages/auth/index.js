@@ -5,7 +5,8 @@ import LoginPage from './Login'
 import RegisterPage from './Register'
 import bg from '../../images/bg.jpg'
 
-export function Login(props) {
+export function Login({history}) {
+
 
   return (
     <div className='row login-front'>
@@ -13,10 +14,11 @@ export function Login(props) {
       <div className='col-4 mt-2'>
         
         { homeButton }
-        
+
         <div className='d-flex justify-content-center auth-form'>
-          <LoginPage props={props}/>
+          <LoginPage history={history}/>
         </div>
+
       </div>
     </div>
   )

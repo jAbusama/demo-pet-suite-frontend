@@ -1,36 +1,69 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import storage from 'store'
 
+import useGlobal from '../../../services/useGlobal'
 import PublicLayout from '../../../layouts/public'
 import bg_image_1 from '../../../images/big_image_1.jpg'
 import img_1 from '../../../images/img_1.jpg'
 import RoomCard from '../../components/roomCard'
 import VideoSection from '../../components/videoSection'
 import Banner from '../../components/banner'
+import { useForm } from '../../useForm'
 
-function BookNow() {
+function BookNow({history}) {
 
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
+  const user = storage.get('user')
+  const isLogin = storage.get('isLogin')
 
+  const [gState, gActions] = useGlobal()
+
+  const initValues = {
+    arriveDate: new Date(),
+    departureDate: new Date(),
+    room: 0,
+    pets: [],
+    notes: '',
+    owner: isLogin && user.id
+  }
+  const [values, handler, arriveDate, departureDate] = useForm(initValues)
+
+  useEffect(() => {
+    if(isLogin) {
+      if(!gState.userPetsLoaded) {
+        gActions.getUserPets(user.id)
+      }
+    }
+  },[gState, gActions, isLogin, user])
+
+  const bookingHandler = (e) => {
+    if(isLogin) {
+      e.preventDefault()
+      gActions.booking(values)
+    }
+  }
 
   const heading = 'Reservation'
   const introText = 'Discover the worlds #1 luxury suites for your pets'
 
+  const userPets = gState.userPets
+  
+  console.log(values)
+
   return(
-    <PublicLayout>
+    <PublicLayout history={ history }>
 
       <Banner bg_media={ bg_image_1 } heading= { heading } introText= { introText }/>
 
       <section className='padding' id='booking-section'>
         <div className="container">
           <div className="row">
-            <div className="col-sm-12 col-md-6 col-lg-6 mb-4">
+            <div className="col-sm-12 col-md-6 mb-4">
               <h2 className="mb-5">
                 Reservation Form
               </h2>
-              <form action="" method='post'>
+              <form onSubmit={ bookingHandler } method='post'>
                 
                 <div className="form-row">
                   <div className="form-group col">
@@ -40,8 +73,8 @@ function BookNow() {
                     <DatePicker
                       name='startDate'
                       showPopperArrow={false}
-                      selected={startDate}
-                      onChange={date => setStartDate(date)}
+                      selected={ values.arriveDate }
+                      onChange={ arriveDate }
                       className='form-control'
                     /> 
                   </div>
@@ -53,8 +86,8 @@ function BookNow() {
                     <DatePicker
                       name='endDate'
                       showPopperArrow={false}
-                      selected={endDate}
-                      onChange={date => setEndDate(date)}
+                      selected={ values.departureDate }
+                      onChange={ departureDate }
                       className='form-control'
                     /> 
                   </div>
@@ -63,24 +96,28 @@ function BookNow() {
                 <div className="form-row">
                   <div className="form-group col">
                     <label htmlFor="room">Room</label>
-                    <select name='room' className="custom-select" id="inputGroupSelect01">
-                      <option value='0'>Room...</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="5">4</option>
-                      <option value="5+">5+</option>
+                    <select 
+                      name='room' 
+                      className="custom-select" 
+                      id="inputGroupSelect01"
+                      onChange={ handler }
+                      value={ values.room }
+                      >
+                        <option value='0'>Room...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="5">4</option>
+                        <option value="5+">5+</option>
                     </select>   
                   </div>
 
                   <div className="form-group col">
                     <label htmlFor="pets">Pets</label>
-                    <select className="custom-select" id="guest">
-                      <option value='0' >Guest...</option>
-                      <option value="1">Pet 1</option>
-                      <option value="2">Pet 2</option>
-                      <option value="3">Pet 3</option>
-                      <option value="5">Pet 4</option>
+                    <select className="custom-select" id="guest" name='pets' onChange= { handler } values={ values.pets }>
+                      {userPets.map(pet => (
+                        <option key={pet._id} value={pet._id}>{pet.name}</option>
+                      ))}
                     </select>
                     
                   </div>
@@ -88,7 +125,16 @@ function BookNow() {
 
                 <div className="form-group">
                   <label htmlFor="note">Write Note</label>
-                  <textarea type="text" name='note' className='form-control' rows='5'></textarea>
+                  <textarea 
+                    type="text" 
+                    name='notes' 
+                    className='form-control' 
+                    rows='5'
+                    value= {values.notes}
+                    onChange={ handler }
+                    >
+                    {/* { values.notes } */}
+                  </textarea>
                 </div>
 
                 <div className="form-group d-flex justify-content-center">
@@ -98,9 +144,9 @@ function BookNow() {
               </form>
             </div>
 
-            {/* <div className="col-sm-0 col-lg-1"></div> */}
+            <div className="col-lg-1"></div>
 
-            <div className="col-sm-12 col-md-6 col-lg-6">
+            <div className="col-sm-12 col-md-5">
               <h2 className="mb-5">
                 Featured Room
               </h2>

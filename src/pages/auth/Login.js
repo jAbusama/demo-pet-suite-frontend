@@ -3,34 +3,40 @@ import useGlobal from '../../services/useGlobal'
 import { Link } from 'react-router-dom'
 import Notification from '../../components/Notification'
 import { useForm } from '../useForm'
+import TextFieldGroup from '../../components/common/TextFieldGroup'
+import storage from 'store'
 
-
-function Login({props}) {
+function Login({history}) {
 
   let initialState = {
     email    : '',
     password : ''
   }
 
+  
   const [gState, gActions] = useGlobal()
+  const isLogin = storage.get('isLogin')
   useEffect(() => {
-    // if(isLogin){
-    //   props.history.push('/')
-    // }
     console.log('Login is rendered')
-  })
+    // let unmounted = false
+    // if(unmounted) {
+    //   if(isLogin){
+    //     history.push('/')
+    //   }
+    // }
+   
+    return () => console.log('Login is unmounted')
+  },[])
   
   const [values, handleChange, data] = useForm(initialState)
 
-  // const [user, setUser] = useState(initialState)
-  const logIn = async e => {
+  const logIn = (e) => {
     e.preventDefault()
-    const res = await gActions.login(values, props)
-    if(res) {
-      props.history.push('/')
+    const res = gActions.login(values, history)
+    if(!res ){
+      
     }
   }
-
 
   const styles = {
     accounts : {
@@ -40,33 +46,27 @@ function Login({props}) {
   }
 
   return (
+    
     <div className='form'>
       {gState.notificationsLoaded === false && <Notification message= {gState.notificationError}
         gActions= {gActions} />}
       <form onSubmit={ logIn }>
         <h1 className='heading'>PetSuite</h1>
-        <div className='form-group'>
-          <label htmlFor='email'>Email</label>
-          <input
-            type='text'
-            name='email'
-            id='email'
-            className='form-control'
-            value={ values.email }
-            onChange={ handleChange }
-          />
-        </div>
-        <div className='form-group'>
-          <label htmlFor='password'>Password</label>
-          <input
-            type='password'
-            name='password'
-            id='password'
-            className='form-control'
-            value={ values.password }
-            onChange={ handleChange }
-          />
-        </div>
+        <TextFieldGroup 
+          type='text'
+          field='email'
+          label='Email'
+          value= {values.email}
+          onChange= {handleChange}
+          // error= ''
+        />
+        <TextFieldGroup 
+          type='password'
+          field='password'
+          label='Password'
+          value= {values.password}
+          onChange= {handleChange}
+        />
         <div className='form-group'>
           <small>
             <i className='sign-in-as'> Sign in as : </i>

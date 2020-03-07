@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Numans');
+/* @import url('https://fonts.googleapis.com/css?family=Numans'); */
+
+
 #admin html, body {
   width: 100%;
   height: 100%;
@@ -255,7 +257,7 @@ table th, td {
 .dropdown a{
   color: #000 !important;
 }
-.dropdown-menu {
+#admin .dropdown-menu {
   overflow: hidden;
   background-color: #152238 !important;
   margin: 0 !important;
@@ -264,13 +266,12 @@ table th, td {
 .dropdown-divider {
   margin: 0 !important;
 }
-.dropdown-item {
+#admin .dropdown-item {
   color: #fff !important;
- 
   padding: 4px auto !important;
 }
 
-.dropdown-item:hover   {
+#admin .dropdown-item:hover   {
   overflow: hidden;
   background-color: #000080 !important;
   color: #fff !important;

@@ -51,6 +51,21 @@
   background: #fff !important;
   color: #000;
 }
+#public .dropdown-item {
+  color: #fff !important;
+  padding: 4px auto !important;
+}
+#public .dropdown-item:hover   {
+  overflow: hidden;
+  background-color: #fff !important;
+  color: #b99365 !important;
+}
+#public .dropdown-menu {
+  overflow: hidden;
+  background-color: #b99365 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
 #public .btn-outline-primary {
   border-width: 2px;
   color: #b99365;
@@ -85,7 +100,12 @@
   align-items: center !important;
   line-height: 32px;
 }
+#public-header .show .nav-item .nav-link {
+  padding: 0 !important;
+}
+
 #public-header nav .nav-item .nav-link {
+  /* padding: 0 !important;  */
   font-size: 16px !important;
   font-weight: 400;
   color: #fff;
@@ -103,15 +123,14 @@
 #home-banner {
   position: relative;
 }
-
 #card-bar {
   position: relative;
   top: -50px;
 }
 #public header .shrink {
   background-color: rgba(185, 147, 101, 0.9) !important;
-  padding-top: 13px !important;
-  padding-bottom: 13px !important;
+  padding-top: 16px !important;
+  padding-bottom: 0 !important;
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
 }

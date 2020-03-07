@@ -4,7 +4,7 @@ import MainLayout from '../../layouts/MainLayout'
 import CreateForm from'./CreateForm'
 import { Link } from 'react-router-dom'
 
-function Pets(props) {
+function Pets({history}) {
 	
 	const searchState = {
 		search: '',
@@ -15,11 +15,10 @@ function Pets(props) {
 	const [gState, gActions] = useGlobal()
 
 	useEffect(() => {
-		console.log('render')
 		if(!gState.petsLoaded){
 			gActions.getPets()
 		}
-	})
+	},[])
 	
 	const tableHeader = [
 		{
@@ -71,7 +70,7 @@ function Pets(props) {
 	)
 
 	return (
-		<MainLayout props={props}>
+		<MainLayout history={history}>
 			{state.showCreate && <CreateForm state={state} setState={setState} />}
 
 			<div className="filters">

@@ -9,6 +9,7 @@ function BlogCard({ media, category, title, text, id}) {
         <img src={ media } alt="" className="img-fluid"/>
       </div>
       <div className="blog-entry-body">
+        
         <div className="blog-category">
           {category}
         </div>

@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 function Notification({message, gActions}) {
 
   useEffect(() => {
-    console.log('test')
+    // console.log('test')
   },[])
   const err = message
   const notify = () => {

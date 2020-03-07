@@ -3,20 +3,21 @@ import Nav from '../components/Nav'
 import Sidebar from '../components/Sidebar'
 import useGlobal from '../services/useGlobal'
 
-function MainLayout({ props, children }) {
+function MainLayout({ history, children }) {
 
 	const initState = {
 		showCreate: false
 	}
 
 	const [ gState, gActions ] = useGlobal()
-	const [state, setState] = useState(initState)
+	// const [state, setState] = useState(initState)
 
 	console.log(gState.isLogin)
 
 	const isToggle = gState.isToggle
 	
 	useEffect(() => {
+		console.log('mainLayout Rendered')
 		return () => console.log('unmount')
 	},[])
 
@@ -27,7 +28,7 @@ function MainLayout({ props, children }) {
 					<Sidebar />
 				</div>
 				<div className="col" id='content-wrapper'>
-					<Nav props={props} />
+					<Nav history={history} />
 					<div>{children}</div>
 				</div>
 			</div>

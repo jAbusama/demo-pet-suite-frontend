@@ -37,14 +37,8 @@ function CardBar() {
                   showPopperArrow={false}
                   selected={startDate}
                   onChange={date => setStartDate(date)}
-                  // customInput={ <ExampleCustomInput />}
                   className='form-control'
                 />
-                {/* <DatePicker
-                  selected={startDate}
-                  onChange={date => setStartDate(date)}
-                  customInput={<ExampleCustomInput />}
-                /> */}
               </div>
 
               <div className="form-group col-2">
@@ -53,17 +47,11 @@ function CardBar() {
                   showPopperArrow={false}
                   selected={endDate}
                   onChange={date => setEndDate(date)}
-                  // customInput={ <ExampleCustomInput />}
                   className='form-control'
                 />
               </div>
 
                 <div className="form-group col-2">
-                  {/* <select name='room' className="selectpicker custom-select" multiple>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                  </select> */}
                   <select name='room' className="custom-select"id="inputGroupSelect01">
                       <option value='0'>Room...</option>
                       <option value="1">1</option>

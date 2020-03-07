@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import useGlobal from '../../services/useGlobal'
+import storage from 'store'
 import routeLinks from '../../Routes'
 
-function Navbar() {
+function Navbar({history}) {
 
   const [scrolled, setScrolled] = useState(false)
+  const [gState, gActions] = useGlobal()
+  const user = storage.get('user')
+  const isLogin = storage.get('isLogin')
+
+
   useEffect(() => {
     window.addEventListener('scroll', attachEvent )
     return () => {
@@ -22,18 +29,23 @@ function Navbar() {
     )
   }
 
+  const logout = async(e) => {
+    e.preventDefault()
+    await gActions.logout()
+		history.push('/login')
+  }
+
   return(
     <React.Fragment>
-      
       <nav className={`navbar navbar-expand-lg navbar-dark bg-dark fixed-top pt-5 ${ scrolled && 'shrink' } `}>
         <div className='container'>
           <Link to='/' href="" className="navbar-brand">Logo</Link>
-          <button 
-            className='navbar-toggler' 
-            type='button' 
-            data-toggle='collapse' 
-            data-target='#navbarList' 
-            aria-expanded='false' 
+          <button
+            className='navbar-toggler'
+            type='button'
+            data-toggle='collapse'
+            data-target='#navbarList'
+            aria-expanded='false'
             aria-label='Toggle navigation'
             >
               <span className="navbar-toggler-icon"></span>
@@ -43,23 +55,48 @@ function Navbar() {
             <ul className='navbar-nav ml-auto'>
               {
                 routeLinks().map(route => (
-                  route.key === 'register' ? 
-                  <li key={route.key} className="nav-item">
-                    <NavLink exact className=" btn btn-outline-primary" to={ route.path }>
-                      { route.label }
-                    </NavLink>
-                  </li>
+                  isLogin ?
+                    route.key === 'user-profile' ?
+                      <li key={route.key} className="nav-item dropdown">
+                        <form onSubmit={logout}>
+                            <button className="dropdown-item" type='submit' >Logout</button>
+                          </form>
+                        {/* <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Welcome back! { user.firstname }
+                        </span>
+                        <div className="dropdown-menu dropdown-menu-right shadow" aria-labelledby="navbarDropdown">
+                          <Link className="dropdown-item" to='/'> <i className="fas fa-chart-line"></i> My Dashboard</Link>
+                          <Link className="dropdown-item" to='/'>My Profile</Link>
+                          <Link className="dropdown-item" to='/'>My Pets</Link>
+                          <Link className="dropdown-item" to='/'>Change Password</Link>
+                          <div className="dropdown-divider"></div>
+                          <form onSubmit={logout}>
+                            <button className="dropdown-item" type='submit' >Logout</button>
+                          </form>
+                        </div> */}
+                      </li>
+                    :
+                    <li key={route.key} className="nav-item">
+                      <NavLink exact className={`nav-link ${ route.class }`} to={ route.path }>{ route.label }</NavLink>
+                    </li>
                   :
-                  <li key={route.key} className="nav-item">
-                    <NavLink exact className={`nav-link ${ route.class }`} to={ route.path }>{ route.label }</NavLink>
-                  </li>
+                  route.key === 'register' ?
+                    <li key={route.key} className="nav-item">
+                      <NavLink exact className=" btn btn-outline-primary" to={ route.path }>
+                        { route.label }
+                      </NavLink>
+                    </li>
+                    :
+                    <li key={route.key} className="nav-item">
+                      <NavLink exact className={`nav-link ${ route.class }`} to={ route.path }>{ route.label }</NavLink>
+                    </li>
                 ))
               }
             </ul>
           </div>
         </div>
       </nav>
-     
+
 
     </React.Fragment>
   )

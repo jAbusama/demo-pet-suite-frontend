@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
+import TextFieldGroup from '../../components/common/TextFieldGroup'
 import { useForm }  from '../useForm'
 import { Link } from 'react-router-dom'
 import useGlobal from '../../services/useGlobal'
 
-function Register({ props }) {
+function Register({ history }) {
   const initValues = {
     firstname: '',
     lastname: '',
@@ -18,7 +19,8 @@ function Register({ props }) {
 
   const register = (e) => {
     e.preventDefault()
-    gActions.register(values, props)
+    gActions.register(values)
+    history.push('/login')
   }
 
   const styles = {
@@ -29,109 +31,81 @@ function Register({ props }) {
   }
 
   return (
-    <React.Fragment>
-      <div className='form'>
-        <div className="notification">
-        </div>
+    <div className='form'>
+      <div className="notification">
+      </div>
       <form onSubmit={ register } >
         <h1>Register</h1>
-  
+
         <div className="form-row">
-          <div className="form-group col-lg-6 col-md-12">
-            <label htmlFor='firstname'>Firstname</label>
-            <input
-              type='text'
-              name='firstname'
-              id='firstname'
-              className='form-control'
-              value={ values.firstname }
-              onChange={ handleChange }
-            />
-            <div className="invalid-feedback">
-              { gState.notificationError.message }
-            </div>
-            
-          </div>
-          <div className="form-group col-lg-6 col-md-12">
-            <label htmlFor='lastname'>Lastname</label>
-            <input
-              type='text'
-              name='lastname'
-              id='lastname'
-              className='form-control'
-              value={ values.lastname }
-              onChange={ handleChange }
-            />
-          </div>
+          <TextFieldGroup 
+            addClass = 'col-lg-6 col-md-12'
+            field= 'firstname'
+            value= {values.firstname}
+            onChange= {handleChange}
+            label= 'Firstname'
+          /> 
+
+          <TextFieldGroup 
+            addClass = 'col-lg-6 col-md-12'
+            field= 'lastname'
+            value= {values.lastname}
+            onChange= {handleChange}
+            label= 'Lastname'
+          /> 
+         
         </div>
 
-        <div className='form-group'>
-          <label htmlFor='email'>Email</label>
-          <input
-            type='text'
-            name='email'
-            id='email'
-            className='form-control'
-            value={ values.email }
-            onChange={ handleChange }
+        <TextFieldGroup 
+            field= 'email'
+            value= {values.email}
+            onChange= {handleChange}
+            label= 'Email'
+          /> 
+
+          <TextFieldGroup 
+            field= 'mobile'
+            value= {values.mobile}
+            onChange= {handleChange}
+            label= 'Mobile Number'
+          /> 
+
+          <TextFieldGroup 
+            type = 'password'
+            field= 'password'
+            value= {values.password}
+            onChange= {handleChange}
+            label= 'Password'
           />
-        </div>
+
+          <TextFieldGroup 
+            type = 'password'
+            field= 'repassword'
+            value= {values.repassword}
+            onChange= {handleChange}
+            label= 'Comfirm Password'
+          />
         
-        <div className='form-group'>
-          <label htmlFor='mobile'>Mobile</label>
-          <input
-            type='text'
-            name='mobile'
-            id='mobile'
-            className='form-control'
-            value={ values.mobile }
-            onChange={ handleChange }
-          />
-        </div>
-
-        <div className='form-group'>
-          <label htmlFor='Password'>Password</label>
-          <input
-            type='password'
-            name='password'
-            id='password'
-            className='form-control'
-            value={ values.password }
-            onChange={ handleChange }
-          />
-        </div>
-
-        <div className='form-group'>
-          <label htmlFor='repassword'>Confirm Password</label>
-          <input
-            type='password'
-            name='repassword'
-            id='repassword'
-            className='form-control'
-            value={ values.repassword }
-            onChange={ handleChange }
-          />
-        </div>
 
         <div className='text-center form-group'>
           <small className='form-text text-muted login-footer'>
-           Already have an account ? <u style={styles.accounts}>
-               <Link to='/login'>
+            Already have an account ? <u style={styles.accounts}>
+                <Link to='/login'>
                 Login
-               </Link>
-               </u> here
+                </Link>
+                </u> here
           </small>
-         
+          
         </div>
         <div className="text-center">
           <button type='submit' className='btn btn-primary '>
             Register
           </button>
         </div>
-       
+        
       </form>
     </div>
-    </React.Fragment>
+
   )
 }
 

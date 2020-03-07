@@ -1,21 +1,27 @@
 import { apiRequest } from './api'
 import storage from 'store'
+import { Redirect } from 'react-router-dom'
 
 const actions = {
-  login   : async (store, user, {props}) => {
+  login   : async (store, user, history) => {
+
 		const res = await apiRequest('POST', 'login', user)
+		console.log(res)
 		if(res.status){
 			storage.set('isLogin', true)
 			storage.set('user', res.user)
 			storage.set('token', res.token)
 			if(res.user.role === 'manager'){
-				await store.setState({ user: res.user, token: res.token, isLogin: true, loginLoaded: true } )
+				store.setState({ user: res.user, token: res.token, isLogin: true, loginLoaded: true } )
+				history.push('/manager')
 			}
 			else if(res.user.role === 'employee') {
-				await store.setState({  user: res.user, token: res.token, isLogin: true, loginLoaded: true })
+				store.setState({  user: res.user, token: res.token, isLogin: true, loginLoaded: true })
+				history.push('/employee')
 			}
 			else {
-				await store.setState({  user: res.user, token: res.token, isLogin: true, loginLoaded: true })
+				store.setState({  user: res.user, token: res.token, isLogin: true, loginLoaded: true })
+				history.push('/')
 			}
 			return true
 		}
@@ -27,8 +33,8 @@ const actions = {
 		// console.log(res)
 	},
 
-	getLogin: (store) => {
-		store.setState({user: storage.get('user'), token: storage.get('token'), isLogin: storage.get('isLogin'),
+	getLogin: async(store) => {
+		await store.setState({user: storage.get('user'), token: storage.get('token'), isLogin: storage.get('isLogin'),
 		routeLinks: storage.get('routeLinks'), loginLoaded: true })
 	},
 	
@@ -37,7 +43,9 @@ const actions = {
 		if(res.status) {
 			storage.clearAll()
 			storage.set('isLogin', false)
-			await store.setState({ user: [], token: '', isLogin: false })
+			store.setState({ user: [], token: '', isLogin: false })
+			// props.history.push('/login')
+
 			return true
 		}
 		else {
@@ -49,7 +57,7 @@ const actions = {
 	register: async (store, user, props ) => {
 		const res = await apiRequest('POST', 'register', user)
 		if(res.status) {
-			props.history.push('/')
+			// props.history.push('/')
 		}
 		console.log(res)
 		// await store.setState({ validationError: res.err })
@@ -65,7 +73,6 @@ const actions = {
 		else {
 			console.log('error: ', res)
 		}
-		
 	},
 
 	createUser: async(store, user) => {
@@ -88,7 +95,7 @@ const actions = {
 		const res = await apiRequest('GET', 'pets')
 		if(res.status) {
 			if(res.pets.length !==0) {
-				store.setState({ pets: res.pets, isLoading: false, petsLoaded: true })
+				await store.setState({ pets: res.pets, isLoading: false, petsLoaded: true })
 			}
 		}
 		else {
@@ -100,12 +107,28 @@ const actions = {
 		const res = await apiRequest('GET', 'bookings')
 		if(res.status) {
 			if(res.bookings.length !==0) {
-				store.setState({ bookings: res.bookings, isLoading: false, bookingsLoaded: true })
+				await store.setState({ bookings: res.bookings, isLoading: false, bookingsLoaded: true })
 			}	
 		}
 		else {
 			console.log('error: ', res)
 		}
+	},
+
+	getUserPets: async(store, id) => {
+		console.log(id)
+		const res = await apiRequest('GET', `user-pets/${id}`)
+		if(res.status){
+			await store.setState({ userPets: res.pets, userPetsLoaded: true })
+		}
+		else {
+			console.log(res)
+		}
+	},
+
+	booking: async(store, data) => {
+		const res = await apiRequest('POST', 'bookings', data)
+		console.log(res)
 	},
 
 	

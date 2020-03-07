@@ -7,12 +7,13 @@ import bg_image_1 from '../../../images/big_image_1.jpg'
 import f_img_1 from '../../../images/f_img_1.png'
 import { staffList } from '../../variables/staffList'
 
-function AboutUs() {
+function AboutUs({history}) {
+
   const heading = 'About Luxury Pet Suites'
   const introText = 'Discover the worlds #1 luxury suites for your pets'
-  console.log(staffList)
+
   return(
-    <PublicLayout>
+    <PublicLayout history={ history }>
 
       <Banner bg_media={ bg_image_1 } heading= { heading } introText= { introText }/>
 

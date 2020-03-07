@@ -6,12 +6,12 @@ import bg_image_1 from '../../../images/big_image_1.jpg'
 import img_1 from '../../../images/img_1.jpg'
 
 
-function ContactUs() {
+function ContactUs({history}) {
   const heading = 'Contact Us'
   const introText = "Discover our world's #1 Luxury Room For VIP."
 
   return (
-    <PublicLayout>
+    <PublicLayout history={ history }>
 
       <Banner bg_media={ bg_image_1 } heading={ heading } introText={ introText }/>
 

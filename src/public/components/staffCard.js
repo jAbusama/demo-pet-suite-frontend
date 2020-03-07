@@ -2,9 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function StaffCard({ profile, position, name, bio, id}) {
-  console.log(position)
+
+  const mouseEnter=()=>{
+    console.log('test')
+  }
   return (
-    <div className="blog-card shadow mb-4">
+    <div className="blog-card shadow mb-4" onMouseEnter={mouseEnter}>
       <div className="blog-entry-media">
         <img src={ profile } alt="" className="img-fluid"/>
       </div>

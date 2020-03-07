@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react'
 import MainLayout from '../layouts/MainLayout'
 
-function Dashboard(props) {
-
+function Dashboard({history}) {
+	useEffect(() => {
+		console.log('dashboard rendered')
+		return () => {
+			console.log('dashboard unmouted')
+		}
+	})
 	return (
-		<React.Fragment>
-			<MainLayout props={props}>Home</MainLayout>
-		</React.Fragment>
+		<MainLayout history={history}>Home</MainLayout>
 	)
 }
 

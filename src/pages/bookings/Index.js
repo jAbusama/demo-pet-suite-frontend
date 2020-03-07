@@ -4,7 +4,7 @@ import MainLayout from '../../layouts/MainLayout'
 import CreateForm from './CreateForm'
 import { Link } from 'react-router-dom'
  
-function Bookings(props) {
+function Bookings({history}) {
 
 	const searchState = {
 		search: ''
@@ -17,9 +17,7 @@ function Bookings(props) {
 		if(!gState.bookingsLoaded){
 			gActions.getBookings()
 		}
-	})
-
-	console.log(gState.s)
+	},[])
 
 	const tableHeader = [
 		{
@@ -71,7 +69,7 @@ function Bookings(props) {
 	)
 
 	return (
-		<MainLayout props={props}>
+		<MainLayout history={history}>
 			{state.showCreate && <CreateForm state={state} setState={setState} />}
 
 			<div className="filters">

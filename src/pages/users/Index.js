@@ -4,7 +4,7 @@ import MainLayout from '../../layouts/MainLayout'
 import CreateForm from './CreateForm'
 import { Link } from 'react-router-dom'
 
-function Users(props) {
+function Users({history}) {
 
 	const searchState = {
 		search: '',
@@ -18,7 +18,7 @@ function Users(props) {
 		if(!gState.usersLoaded){
 			gActions.getUsers()
 		}
-	})
+	},[])
 
 	const tableHeader = [
 		{
@@ -62,7 +62,7 @@ function Users(props) {
 	)
 	
 	return (
-		<MainLayout props={props}>
+		<MainLayout history={history}>
 			{state.showCreate && <CreateForm state={state} setState={setState} />}
 
 			<div className="filters">

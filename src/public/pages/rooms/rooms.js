@@ -6,12 +6,12 @@ import { roomList } from '../../variables/roomList'
 import VideoSection from '../../components/videoSection'
 import Banner from '../../components/banner'
 
-function Rooms() {
+function Rooms({history}) {
   const heading = 'Our Rooms'
   const introText = 'Discover the worlds #1 luxury suites for your pets'
 
   return(
-    <PublicLayout>
+    <PublicLayout history={ history }>
 
       <Banner bg_media={ bg_image_1 } heading={ heading } introText={ introText }/>
       

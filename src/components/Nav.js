@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import useGlobal from '../services/useGlobal'
 
-function Navigation({ props }) {
+function Navigation({ history }) {
 	
 	const [gState, gActions] = useGlobal()
 	const user = gState.user.email
-	const logout = async (e) => {
+
+	console.log(history)
+
+	const logout = (e) => {
 		e.preventDefault()
-		const res = await gActions.logout(props)
-		if(res) {
-		props.history.push('/login')
-	}
+		gActions.logout()
+		history.push('/login')
 	}
 
 	return (

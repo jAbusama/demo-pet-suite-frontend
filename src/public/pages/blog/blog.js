@@ -7,11 +7,11 @@ import BlogCard from '../../components/blogCard'
 import bg_image_1 from '../../../images/big_image_1.jpg'
 
 
-function Blog() {
+function Blog({history}) {
   const heading = 'News and Events'
   const introText = 'Read our daily news and events of our luxury suites.'
   return(
-    <PublicLayout>
+    <PublicLayout history={ history }>
       
       <Banner bg_media={ bg_image_1 } heading={ heading } introText= { introText } />
 

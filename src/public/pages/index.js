@@ -15,7 +15,8 @@ import bg_image_1 from '../../images/big_image_1.jpg'
 import f_img_1 from '../../images/f_img_1.png'
 
 
-function Home() { 
+function Home({history}) { 
+
   const heading = 'Welcome to Our luxury Pet Suites'
   const introText = 'Discover the worlds #1 luxury suites for your pets'
 
@@ -34,10 +35,8 @@ function Home() {
     }
   })
 
-  console.log(rooms)
-
   return (
-    <PublicLayout>
+    <PublicLayout history={ history }>
       <section>
         <div className="container-fluid" id='home-banner'>
           <Banner bg_media={ bg_image_1 } heading={ heading } introText={ introText }/>
