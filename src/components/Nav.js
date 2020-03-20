@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import useGlobal from '../services/useGlobal'
 
 function Navigation({ history }) {
@@ -22,7 +22,13 @@ function Navigation({ history }) {
 				</button>
 				<ul className='navbar-nav ml-auto'>
 					<li className="nav-item dropdown">
-						<span className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span 
+							className="nav-link dropdown-toggle" 
+							id="navbarDropdown" 
+							role="button" 
+							data-toggle="dropdown" 
+							aria-haspopup="true" 
+							aria-expanded="false">
 							{user}
 						</span>
 						<div className="dropdown-menu" aria-labelledby="navbarDropdown">

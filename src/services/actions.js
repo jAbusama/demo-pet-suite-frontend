@@ -13,11 +13,11 @@ const actions = {
 			storage.set('token', res.token)
 			if(res.user.role === 'manager'){
 				store.setState({ user: res.user, token: res.token, isLogin: true, loginLoaded: true } )
-				history.push('/manager')
+				history.push('/')
 			}
 			else if(res.user.role === 'employee') {
 				store.setState({  user: res.user, token: res.token, isLogin: true, loginLoaded: true })
-				history.push('/employee')
+				history.push('/')
 			}
 			else {
 				store.setState({  user: res.user, token: res.token, isLogin: true, loginLoaded: true })
@@ -130,9 +130,6 @@ const actions = {
 		const res = await apiRequest('POST', 'bookings', data)
 		console.log(res)
 	},
-
-	
-
 
 	notificationDefault: store => {
 		store.setState({ notificationError: '', notificationsLoaded: true })

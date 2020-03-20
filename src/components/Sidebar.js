@@ -9,11 +9,11 @@ function Sidebar() {
 
   return (
       <div className="sidebar-content sticky-top">
-        <div className=' d-flex justify-content-center sidebar-header'>
+        <div className='d-flex justify-content-center sidebar-header'>
           <h3 className='logo-web'>Pet Suite</h3>
           {/* <strong className='logo-mobile' >PS</strong> */}
         </div>
-        <ul className="nav flex-column sidebar-nav-list">
+        <ul className="nav flex-column sidebar-nav-list p-1">
           {
             routeLinks().map(link => (
               <li className='nav-item ' key={link.key} >
@@ -24,7 +24,7 @@ function Sidebar() {
                   className='nav-link'
                   to={link.path} > 
                     <i className={link.icon}></i>
-                    <span>{link.label}</span>
+                   {link.label}
                 </NavLink>
               </li>
             ))

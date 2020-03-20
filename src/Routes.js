@@ -21,7 +21,7 @@ const adminRoutes = [
 		key       : 'home',
 		path      : '/',
 		icon      : 'fa fa-home',
-		label     : 'Home',
+		label     : 'Dashboard',
 		exact     : true,
 		component : Dashboard
 	},
