@@ -27,10 +27,12 @@
   border: 2px solid #b99365 !important;
   outline-color: #b99365;
 }
-#public  .btn:focus, .btn:active {
+button:focus, :active {
+  outline: none !important;
+}
+.btn:focus, .btn:active {
   outline: none !important;
   box-shadow: none !important;
-  border: 2px solid #b99365 !important;
 }
 #public .btn-outline-primary:active {
   box-shadow: none;
@@ -44,7 +46,7 @@
   color: #fff ;
 }
 #public header .shrink .btn-outline-primary {
-  /* background: #fff; */
+ 
   border-color: #fff;
 }
 #public header .shrink .btn-outline-primary:hover {

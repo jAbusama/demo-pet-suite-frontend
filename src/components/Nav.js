@@ -6,8 +6,6 @@ function Navigation({ history }) {
 	const [gState, gActions] = useGlobal()
 	const user = gState.user.email
 
-	console.log(history)
-
 	const logout = (e) => {
 		e.preventDefault()
 		gActions.logout()
@@ -17,8 +15,8 @@ function Navigation({ history }) {
 	return (
 		<header id='admin-header'>
 			<nav className="navbar navbar-expand-lg navbar-ligth bg-ligth m-3 shadow">
-				<button className='btn btn-info btn-toggler btn-sm' onClick={() => gActions.toggleSidebar()}>
-				<i className="fas fa-outdent"></i>
+				<button className='btn btn-primary btn-toggler btn-sm d-md-none d-lg-block' onClick={() => gActions.toggleSidebar()}>
+					<i className="fas fa-outdent"></i>
 				</button>
 				<ul className='navbar-nav ml-auto'>
 					<li className="nav-item dropdown">
