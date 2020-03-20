@@ -24,7 +24,7 @@ function MainLayout({ history, children }) {
 	return (
 		<div className="container-fluid">
 			<div className='row main-content' id='admin'>
-				<div className={`col-2 ${isToggle && 'active' }`} id='sidebar-wrapper'>
+				<div className={`col ${isToggle ? 'active' : 'not-active' }`} id='sidebar-wrapper'>
 					<Sidebar />
 				</div>
 				<div className="col" id='content-wrapper'>
