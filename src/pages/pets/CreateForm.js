@@ -2,40 +2,31 @@ import React, { useState, useEffect } from 'react'
 import {useForm} from '../useForm'
 import useGlobal from '../../services/useGlobal'
 
-function Users({state, setState}) {
+function Users() {
 
-const initValues = {
-	name: '',
-	breed: '',
-	type: '',
-	size: '',
-	owner: ''
-}
-const [values, handleChange] = useForm(initValues)
-const [gState, gActions] = useGlobal()
-
-useEffect(() => {
-	console.log('render')
-	if(!gState.usersLoaded){
-		gActions.getUsers()
+	const initValues = {
+		name: '',
+		breed: '',
+		type: '',
+		size: '',
+		owner: ''
 	}
-})
+	const [values, handleChange] = useForm(initValues)
+	const [gState, gActions] = useGlobal()
 
-const owners = () => {
-	return gState.users.filter(onwer => onwer.role === 'owner')
-}
+	useEffect(() => {
+		console.log('render')
+		if(!gState.usersLoaded){
+			gActions.getUsers()
+		}
+	})
+
+	const owners = () => {
+		return gState.users.filter(onwer => onwer.role === 'owner')
+	}
 
 	return (
 		<React.Fragment>
-		<div id='drawer-wrapper' onClick={() => setState({...state, showCreate: false})}>
-		</div>
-		<div className="drawer">
-			<div className="drawer-header">
-				<div className="drawer-title">
-					Add Pet
-				</div>
-				<button className="btn btn-link drawer-close" onClick={() => setState({...state, showCreate: false})}>X</button>
-			</div>
 			<div className="drawer-body">
 				<form >
 					<div className="form-group">
@@ -111,7 +102,6 @@ const owners = () => {
 					</div>
 				</form>
 			</div>
-		</div>
 		</React.Fragment>
 	)
 }

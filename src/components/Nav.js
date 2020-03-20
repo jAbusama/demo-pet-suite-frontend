@@ -6,8 +6,6 @@ function Navigation({ history }) {
 	const [gState, gActions] = useGlobal()
 	const user = gState.user.email
 
-	console.log(history)
-
 	const logout = (e) => {
 		e.preventDefault()
 		gActions.logout()

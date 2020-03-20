@@ -2,17 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
 import Sidebar from '../components/Sidebar'
 import useGlobal from '../services/useGlobal'
+import '../styles/admin.css'
 
 function MainLayout({ history, children }) {
 
-	const initState = {
-		showCreate: false
-	}
-
 	const [ gState, gActions ] = useGlobal()
-	// const [state, setState] = useState(initState)
-
-	console.log(gState.isLogin)
 
 	const isToggle = gState.isToggle
 	

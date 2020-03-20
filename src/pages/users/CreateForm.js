@@ -1,39 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useForm} from '../useForm'
 import useGlobal from '../../services/useGlobal'
 
-function CreateUser({state, setState}) {
+function CreateUser() {
 
-const initValues = {
-	firstname: '',
-	lastname: '',
-	email: '',
-	mobile: '',
-	password: '',
-	repassword: '',
-	role: 'owner'
-}
-const [values, handleChange] = useForm(initValues)
-const [gState, gActions] = useGlobal()
+	const initValues = {
+		firstname: '',
+		lastname: '',
+		email: '',
+		mobile: '',
+		password: '',
+		repassword: '',
+		role: 'owner'
+	}
+	const [values, handleChange] = useForm(initValues)
+	const [gState, gActions] = useGlobal()
 
-const submitHandler = (e) => {
-	e.preventDefault()
-	// console.log('test')
-	gActions.createUser(values)
-	// form.resetField()
-}
+	const submitHandler = (e) => {
+		e.preventDefault()
+		// console.log('test')
+		gActions.createUser(values)
+		// form.resetField()
+	}
 
 	return (
 		<React.Fragment>
-		<div id='drawer-wrapper' onClick={() => setState({...state, showCreate: false})}>
-		</div>
-		<div className="drawer">
-			<div className="drawer-header">
-				<div className="drawer-title">
-					Add User
-				</div>
-				<button className="btn btn-link drawer-close" onClick={() => setState({...state, showCreate: false})}>X</button>
-			</div>
+		
 			<div className="drawer-body">
 				<form onSubmit={submitHandler}>
 					<div className="form-row">
@@ -137,7 +129,6 @@ const submitHandler = (e) => {
 					</div>
 				</form>
 			</div>
-		</div>
 		</React.Fragment>
 	)
 }
