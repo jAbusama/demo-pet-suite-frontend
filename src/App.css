@@ -262,11 +262,37 @@ table th, td {
 .btn-option span {
   padding: 0 !important;
 }
-
-.dropdown a{
-  color: #000 !important;
+.border-left-primary {
+  border-left: .25rem solid #4e73df !important;
 }
-#admin .dropdown-menu {
+.border-left-success {
+  border-left: .25rem solid #1cc88a !important;
+}
+.border-left-info {
+  border-left: .25rem solid #36b9cc !important;
+}
+.border-left-warning {
+  border-left: .25rem solid #f6c23e !important;
+}
+
+/* progress */
+.progress-sm {
+  height: .5rem !important;
+}
+/* text */
+.text-xs {
+  font-size: .7rem;
+}
+
+/* height */
+.h-100 {
+  height: 100% !important;
+}
+
+/* .dropdown a{
+  color: #000 !important;
+} */
+/* #admin .dropdown-menu {
   overflow: hidden;
   background-color: #152238 !important;
   margin: 0 !important;
@@ -284,7 +310,7 @@ table th, td {
   overflow: hidden;
   background-color: #000080 !important;
   color: #fff !important;
-}
+} */
 
 h3 {
   margin: 0 !important;
