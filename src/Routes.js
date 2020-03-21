@@ -3,6 +3,9 @@ import Dashboard from './pages/Dashboard'
 import Users from './pages/users/Index'
 import Pets from './pages/pets/Index'
 import Bookings from './pages/bookings/Index'
+import AdminRooms from './pages/rooms/Index'
+import AdminBlog from './pages/blogs/Index'
+
 import PublicHome from './public/pages/index'
 import AboutUs from './public/pages/about-us/About-us'
 import BookNow from './public/pages/book-now/Book-now'
@@ -54,14 +57,14 @@ const adminRoutes = [
 		path: '/rooms',
 		icon: 'fas fa-door-open',
 		label: 	'Rooms',
-		component: Bookings
+		component: AdminRooms
 	},
 	{
 		key:	'blogs',
 		path: '/blogs',
 		icon: 'fab fa-blogger',
 		label: 	'Blogs',
-		component: Bookings
+		component: AdminBlog
 	},
 ]
 
