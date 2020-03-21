@@ -1,30 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useForm} from '../useForm'
 import useGlobal from '../../services/useGlobal'
 
-function CreateUser({state, setState}) {
+function CreateUser() {
 
-const initValues = {
-	name: '',
-	breed: '',
-	type: '',
-	size: '',
-	owner: ''
-}
-const [values, handleChange] = useForm(initValues)
-const [gState, gActions] = useGlobal()
+	const initValues = {
+		name: '',
+		breed: '',
+		type: '',
+		size: '',
+		owner: ''
+	}
+	const [values, handleChange] = useForm(initValues)
+	const [gState, gActions] = useGlobal()
 
 	return (
 		<React.Fragment>
-		<div id='drawer-wrapper' onClick={() => setState({...state, showCreate: false})}>
-		</div>
-		<div className="drawer">
-			<div className="drawer-header">
-				<div className="drawer-title">
-					Add Booking
-				</div>
-				<button className="btn btn-link drawer-close" onClick={() => setState({...state, showCreate: false})}>X</button>
-			</div>
 			<div className="drawer-body">
 				<form >
 					<div className="form-row">
@@ -131,7 +122,6 @@ const [gState, gActions] = useGlobal()
 					</div>
 				</form>
 			</div>
-		</div>
 		</React.Fragment>
 	)
 }

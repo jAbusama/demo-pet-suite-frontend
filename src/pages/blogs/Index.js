@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import useGlobal from '../../services/useGlobal'
 import MainLayout from '../../layouts/MainLayout'
+import AddForm from '../../components/AddForm'
 import CreateForm from './CreateForm'
 import { Link } from 'react-router-dom'
  
-function Bookings({history}) {
+function Blogs({history}) {
 
 	const searchState = {
-		search: ''
+		search: '',
+		showCreate: false
 	}
 
 	const [state, setState] = useState(searchState)
@@ -70,7 +72,11 @@ function Bookings({history}) {
 
 	return (
 		<MainLayout history={history}>
-			{state.showCreate && <CreateForm state={state} setState={setState} />}
+			<div className={`${state.showCreate ? "d-block" : "d-none"}`}>
+				<AddForm title="Add Blog" state={state} setState={setState}>
+					<CreateForm/>
+				</AddForm>
+			</div>
 
 			<div className="filters">
 				<div className="row">
@@ -86,7 +92,7 @@ function Bookings({history}) {
 					</div>
 					<div className="col input-group d-flex justify-content-end">
 						<button className='btn btn-primary btn-sm' onClick={() => setState({...state, showCreate: true})}>
-							<i className="fas fa-plus-circle"></i> Add Booking
+							<i className="fas fa-plus-circle mr-1"></i>Add Blog
 						</button>
 					</div>
 				</div>
@@ -164,4 +170,4 @@ function Bookings({history}) {
 	)
 }
 
-export default Bookings
+export default Blogs

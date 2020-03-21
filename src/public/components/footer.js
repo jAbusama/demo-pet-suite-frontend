@@ -42,7 +42,7 @@ function PublicFooter() {
             <form action="#" className="subscribe">
               <div className="form-group">
                 <input type="text" className="form-control" placeholder='Enter Email'/>
-                <button type='submit' >
+                <button type='submit'>
                   <i className="fas fa-arrow-right"></i>
                 </button>
               </div>
