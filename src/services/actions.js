@@ -3,7 +3,7 @@ import storage from 'store'
 import { Redirect } from 'react-router-dom'
 
 const actions = {
-  login   : async (store, user, history) => {
+  login : async (store, user, history) => {
 
 		const res = await apiRequest('POST', 'login', user)
 		console.log(res)

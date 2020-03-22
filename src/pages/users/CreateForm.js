@@ -1,128 +1,212 @@
-import React, { useState } from 'react'
-import {useForm} from '../useForm'
-import useGlobal from '../../services/useGlobal'
-
+import React, { useState, useRef } from 'react'
+import InputFields from '../../wigets/Forms/InputFields'
+// import {useForm} from '../useForm'
+// import useGlobal from '../../services/useGlobal'
+// import FormFields from '../../wigets/forms/FormFields'
 function CreateUser() {
 
-	const initValues = {
-		firstname: '',
-		lastname: '',
-		email: '',
-		mobile: '',
-		password: '',
-		repassword: '',
-		role: 'owner'
+	const initState ={
+		firstname: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'First Name:',
+			formCol: true,
+			config: {
+				name: 'fistname',
+				type: 'text',
+			},
+			rules: [
+				{required: true, message: 'First Name is required!'},
+				{max: 5, message: 'Must be not greater 5 character'}
+			],
+			valid: true,
+			touched: false,
+		},
+		lastname: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'Last Name:',
+			formCol: true,
+			config: {
+				name: 'lastname',
+				type: 'text',
+			},
+			rules: [
+				{required: true, message: 'Last Name is required!'},
+				{min: 5, message: 'Must be atleast 5 character'}
+			],
+			valid: true,
+			touched: false,
+		},
+		email: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'Email Address:',
+			config: {
+				name: 'email',
+				type: 'email',
+			},
+			rules: [
+				{required: true, message: 'Email Address is required'},
+				{email: true, message: 'Email Address must be valid'}
+				// {max: 5, message: 'Must be not greater 5 character'}
+			],
+			valid: true,
+			touched: false,
+		},
+		mobile: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'Mobile Number:',
+			config: {
+				name: 'mobile',
+				type: 'text',
+			},
+			rules: [
+				{required: true, message: 'Mobile Number is required'},
+				// {max: 5, message: 'Must be not greater 5 character'}
+			],
+			valid: true,
+			touched: false,
+		},
+		password: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'Password:',
+			config: {
+				name: 'password',
+				type: 'password',
+			},
+			rules: [
+				{required: true, message: 'Password is required'},
+				// {max: 5, message: 'Must be not greater 5 character'}
+			],
+			valid: true,
+			touched: false,
+		},
+		repassword: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'Confirm Password:',
+			config: {
+				name: 'repassword',
+				type: 'text',
+			},
+			rules: [
+				{required: true, message: 'Comfirm Password is required'},
+				// {max: 5, message: 'Must be not greater 5 character'}
+			],
+			valid: true,
+			touched: false,
+		},
+		role: {
+			element: 'select',
+			value: '',
+			label: true,
+			labelText: 'Role:',
+			config: {
+				name: 'role',
+				options: [
+					{val: 'owner', text: 'Owner'},
+					{val: 'employee', text: 'Employee'},
+					{val: 'manage', text: 'Manager'},
+				]
+			},
+			valid: true,
+			touched: false,
+		},
 	}
-	const [values, handleChange] = useForm(initValues)
-	const [gState, gActions] = useGlobal()
 
-	const submitHandler = (e) => {
-		e.preventDefault()
-		// console.log('test')
-		gActions.createUser(values)
-		// form.resetField()
+	const inputRef = useRef();
+
+	const [state, setState] = useState(initState);
+
+	const updateInput = (element, id) => {
+		setState({...state, [id]: element})
+	}
+
+	const formSubmit = (event) => {
+		event.preventDefault();
+		let dataToSubmit = {}
+		let formIsValid = true;
+		for(let key in state) {
+			dataToSubmit[key] = state[key].value;
+		}
+
+		for(let key in state) {
+			const newInput = state[key];
+			let resValidation = inputRef.current.validate(newInput);
+			newInput.valid = resValidation[0];
+			newInput.touched = true;
+			formIsValid =	newInput.valid && formIsValid;
+			updateInput(newInput, key);
+		}
+		
+		if(formIsValid) {
+			console.log(dataToSubmit);
+		}
+
 	}
 
 	return (
 		<React.Fragment>
-		
 			<div className="drawer-body">
-				<form onSubmit={submitHandler}>
+				<form onSubmit={formSubmit}>
 					<div className="form-row">
-						<div className="form-group col">
-							<label htmlFor="label">Firstname</label>
-							<input 
-								type="text"
-								name='firstname' 
-								className="form-control"
-								value= { values.firstname }
-								onChange= { handleChange }
-								/>
-							<div className="invalid-feedback">
-								{ gState.notificationError.message }
-							</div>	
-						</div>
-						<div className="col form-group">
-							<label htmlFor="lastname">Lastname</label>
-							<input 
-								type="text" 
-								name="lastname" 
-								className="form-control"
-								value={ values.lastname }
-								onChange={ handleChange }
-								/>
-							<div className="invalid-feedback">
-								{ gState.validationError.message }
-							</div>
-						</div>
+						<InputFields 
+							inputData= {state.firstname}
+							id= {'firstname'}
+							change= {element => updateInput(element)}
+							ref={inputRef}
+						/>
+						<InputFields 
+							inputData= {state.lastname}
+							id= {'lastname'}
+							change= {element => updateInput(element)}
+							ref={inputRef}
+						/>
 					</div>
 
-					<div className="form-group">
-						<label htmlFor="email">Email Address</label>
-						<input 
-							type="text" 
-							name='email'
-							className="form-control"
-							value={ values.email }
-							onChange={ handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.validationError.message }
-						</div>
-					</div>
+					<InputFields 
+						inputData= {state.email}
+						id= {'email'}
+						change= {element => updateInput(element)}
+						ref={inputRef}
+					/>
 
-					<div className="form-group">
-						<label htmlFor="mobile">Mobile Number</label>
-						<input 
-							type="text" 
-							name='mobile'
-							className="form-control"
-							value={ values.mobile }
-							onChange={ handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.validationError.message }
-						</div>
-					</div>
+					<InputFields 
+						inputData= {state.mobile}
+						id= {'mobile'}
+						change= {element => updateInput(element)}
+						ref={inputRef}
+					/>
 
-					<div className="form-group">
-						<label htmlFor="password">Password</label>
-						<input 
-							type="password" 
-							name='password'
-							className="form-control"
-							value={ values.password }
-							onChange={ handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.validationError.message }
-						</div>
-					</div>
+					<InputFields 
+						inputData= {state.password}
+						id= {'password'}
+						change= {element => updateInput(element)}
+						ref={inputRef}
+					/>
 
-					<div className="form-group">
-						<label htmlFor="repassword">Confirm Password</label>
-						<input 
-							type="password" 
-							name='repassword'
-							className="form-control"
-							value={ values.repassword }
-							onChange={ handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.validationError.message }
-						</div>
-					</div>
+					<InputFields 
+						inputData= {state.repassword}
+						id= {'repassword'}
+						change= {element => updateInput(element)}
+						ref={inputRef}
+					/>
 
-					<div className="form-group">
-						<label htmlFor="role">Role</label>
-						<div className="input-group mb-3">
-							<select className='custom-select form-control' name='role' onChange={handleChange} id='roles'>
-								<option value="owner">Owner</option>
-								<option value="employee">Employee</option>
-								<option value="manager">Manager</option>
-							</select>
-						</div>
-					</div>
+					<InputFields 
+						inputData= {state.role}
+						id= {'role'}
+						change= {element => updateInput(element)}
+						ref={inputRef}
+					/>
 
 					<div className="form-group">
 						<button className='btn btn-primary btn-sm' type='submit' >Add User</button>
