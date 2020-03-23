@@ -37,8 +37,6 @@ const InputFields = forwardRef(({inputData, id, change}, ref) => {
             valid = element.value.trim() !== '';
             message = `${ !valid ? rule.message : ''}`;
           }
-          setState({...state, errMessage: 'jellads'})
-          console.log(state)
           return error = !valid ? [valid, message] : error;
         })
       }
@@ -68,7 +66,7 @@ const InputFields = forwardRef(({inputData, id, change}, ref) => {
     if(data.rules && !data.valid) {
       errorMessage = (
         <div className="invalid-feedback">
-          {state.errMessage}
+          {state.errMessage.trim() !== '' ? state.errMessage : data.rules[0].message}
         </div>
       )
     }
@@ -81,20 +79,17 @@ const InputFields = forwardRef(({inputData, id, change}, ref) => {
     switch(inputData.element) {
       case('input'):
         inputTemplate = (
-          <div>
-            <input 
-              {...inputData.config}
-              value= {inputData.value}
-              onBlur= {
-                event => onChangeHandler(event, true)
-              }
-              onChange= {
-                event => onChangeHandler(event, false)
-              }
-              className={`form-control ${inputData.touched ? inputData.valid ? 'is-valid' : 'is-invalid' : ''}`}
-            />
-            {showValidation(inputData)}
-          </div>
+          <input 
+            {...inputData.config}
+            value= {inputData.value}
+            onBlur= {
+              event => onChangeHandler(event, true)
+            }
+            onChange= {
+              event => onChangeHandler(event, false)
+            }
+            className={`form-control ${inputData.touched ? inputData.valid ? 'is-valid' : 'is-invalid' : ''}`}
+          />
         )
         break;
       case('select'):
@@ -102,10 +97,9 @@ const InputFields = forwardRef(({inputData, id, change}, ref) => {
           <div className="input-group">
           <select
             className= "custom-select form-control"
-            value= {inputData.value}
             name= {inputData.config.name}
             onChange= {
-              event => change({event, id, blur: false})
+              event => onChangeHandler(event, false)
             }
           >
             <option>Select Role...</option>
@@ -126,7 +120,7 @@ const InputFields = forwardRef(({inputData, id, change}, ref) => {
     <div className={`form-group ${inputData.formCol ? 'col' : ''}`}>
       <label className={`${inputData.label ? '' : 'd-none'}`} htmlFor="">{inputData.labelText}</label>
       {renderTemplate()}
-      
+      {showValidation(inputData)}
     </div>
   )
 })

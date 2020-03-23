@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react'
+import Notification from '../../components/Notification'
 import InputFields from '../../wigets/Forms/InputFields'
-// import {useForm} from '../useForm'
-// import useGlobal from '../../services/useGlobal'
-// import FormFields from '../../wigets/forms/FormFields'
+import useGlobal from '../../services/useGlobal'
 function CreateUser() {
 
 	const initState ={
@@ -18,7 +17,6 @@ function CreateUser() {
 			},
 			rules: [
 				{required: true, message: 'First Name is required!'},
-				{max: 5, message: 'Must be not greater 5 character'}
 			],
 			valid: true,
 			touched: false,
@@ -35,7 +33,6 @@ function CreateUser() {
 			},
 			rules: [
 				{required: true, message: 'Last Name is required!'},
-				{min: 5, message: 'Must be atleast 5 character'}
 			],
 			valid: true,
 			touched: false,
@@ -52,7 +49,6 @@ function CreateUser() {
 			rules: [
 				{required: true, message: 'Email Address is required'},
 				{email: true, message: 'Email Address must be valid'}
-				// {max: 5, message: 'Must be not greater 5 character'}
 			],
 			valid: true,
 			touched: false,
@@ -68,7 +64,6 @@ function CreateUser() {
 			},
 			rules: [
 				{required: true, message: 'Mobile Number is required'},
-				// {max: 5, message: 'Must be not greater 5 character'}
 			],
 			valid: true,
 			touched: false,
@@ -84,23 +79,6 @@ function CreateUser() {
 			},
 			rules: [
 				{required: true, message: 'Password is required'},
-				// {max: 5, message: 'Must be not greater 5 character'}
-			],
-			valid: true,
-			touched: false,
-		},
-		repassword: {
-			element: 'input',
-			value: '',
-			label: true,
-			labelText: 'Confirm Password:',
-			config: {
-				name: 'repassword',
-				type: 'text',
-			},
-			rules: [
-				{required: true, message: 'Comfirm Password is required'},
-				// {max: 5, message: 'Must be not greater 5 character'}
 			],
 			valid: true,
 			touched: false,
@@ -115,23 +93,24 @@ function CreateUser() {
 				options: [
 					{val: 'owner', text: 'Owner'},
 					{val: 'employee', text: 'Employee'},
-					{val: 'manage', text: 'Manager'},
+					{val: 'manager', text: 'Manager'},
 				]
 			},
 			valid: true,
 			touched: false,
-		},
+		}
 	}
-
+	
 	const inputRef = useRef();
-
+	const [notf, setNotf] = useState(false);
+	const [gStates, gActions] = useGlobal();
 	const [state, setState] = useState(initState);
 
 	const updateInput = (element, id) => {
 		setState({...state, [id]: element})
 	}
 
-	const formSubmit = (event) => {
+	const formSubmit = async(event) => {
 		event.preventDefault();
 		let dataToSubmit = {}
 		let formIsValid = true;
@@ -144,31 +123,61 @@ function CreateUser() {
 			let resValidation = inputRef.current.validate(newInput);
 			newInput.valid = resValidation[0];
 			newInput.touched = true;
-			formIsValid =	newInput.valid && formIsValid;
 			updateInput(newInput, key);
-		}
-		
-		if(formIsValid) {
-			console.log(dataToSubmit);
+			formIsValid =	newInput.valid && formIsValid;
 		}
 
+		if(formIsValid) {
+			const res = await gActions.createUser(dataToSubmit);
+			if(res) {
+				setState(initState);
+				setNotf(true);
+			}
+			else {
+				setNotf(true);
+			}
+		}
+	}
+
+	const notificationState = () => {
+		let id = 'error';
+		let message = '';
+		if(gStates.success.trim() !== '') {
+			id = 'success'
+			message = gStates.success;
+		}
+		else if(gStates.error.trim() !== '') {
+			id= 'error'
+			message = gStates.error;
+		}
+		else {
+			id = 'warning'
+			message = gStates.warning;
+		}
+		return [id, message]
+	}
+
+	const [notfId, notfMessage] = notificationState()
+	const notfStatus = () => {
+			setNotf(false);
 	}
 
 	return (
 		<React.Fragment>
 			<div className="drawer-body">
+				{notf && <Notification id={notfId} message={notfMessage} isDone={notfStatus} />}
 				<form onSubmit={formSubmit}>
 					<div className="form-row">
 						<InputFields 
 							inputData= {state.firstname}
 							id= {'firstname'}
-							change= {element => updateInput(element)}
+							change= {(element,id) => updateInput(element,id)}
 							ref={inputRef}
 						/>
 						<InputFields 
 							inputData= {state.lastname}
 							id= {'lastname'}
-							change= {element => updateInput(element)}
+							change= {(element,id) => updateInput(element,id)}
 							ref={inputRef}
 						/>
 					</div>
@@ -176,35 +185,28 @@ function CreateUser() {
 					<InputFields 
 						inputData= {state.email}
 						id= {'email'}
-						change= {element => updateInput(element)}
+						change= {(element,id) => updateInput(element,id)}
 						ref={inputRef}
 					/>
 
 					<InputFields 
 						inputData= {state.mobile}
 						id= {'mobile'}
-						change= {element => updateInput(element)}
+						change= {(element,id) => updateInput(element,id)}
 						ref={inputRef}
 					/>
 
 					<InputFields 
 						inputData= {state.password}
 						id= {'password'}
-						change= {element => updateInput(element)}
+						change= {(element,id) => updateInput(element,id)}
 						ref={inputRef}
-					/>
-
-					<InputFields 
-						inputData= {state.repassword}
-						id= {'repassword'}
-						change= {element => updateInput(element)}
-						ref={inputRef}
-					/>
+					/> 
 
 					<InputFields 
 						inputData= {state.role}
 						id= {'role'}
-						change= {element => updateInput(element)}
+						change= {(element,id) => updateInput(element,id)}
 						ref={inputRef}
 					/>
 

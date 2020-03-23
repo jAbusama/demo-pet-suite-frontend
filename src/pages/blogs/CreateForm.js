@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import FormFields from '../../wigets/Forms/FormFields'
 
-function CreateUser({state, setState}) {
+function CreateUser() {
 
 	const initValues = {
 		name: {
@@ -86,6 +86,7 @@ function CreateUser({state, setState}) {
 
 		for(let key in formData) {
 			dataToSubmit[key] = formData[key].value;
+			console.log(key);
 		}
 		let formIsValid =  true;
 

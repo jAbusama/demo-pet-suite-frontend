@@ -78,9 +78,14 @@ const actions = {
 	createUser: async(store, user) => {
 		const res = await apiRequest('POST', 'users', user)
 		if(res.status){
-			await store.actions.getUsers()
+			console.log(res);
+			await store.actions.getUsers();
+			await store.setState({isLoading: false, success: res.message, error: '', warning: ''})
+			return true;
 		}
-		console.log('error: ', res)
+		console.log('error: ', res);
+		await store.setState({ isLoading: false, error: res.message, success: '', warning: '' })
+		return false;
 	},
 
 	deleteUser: async(store, id) => {
@@ -99,6 +104,7 @@ const actions = {
 			}
 		}
 		else {
+			await store.setState({ isLoading: false, error: res.message })
 			console.log('error: ', res)
 		}
 	},
