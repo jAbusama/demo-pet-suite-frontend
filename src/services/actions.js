@@ -27,7 +27,7 @@ const actions = {
 		}
 		else {
 			console.log(res)
-			await store.setState({ notificationError: res.message, notificationsLoaded: false})
+			await store.setState({ error: res.message, notificationsLoaded: false})
 			return false
 		}
 		// console.log(res)
@@ -109,16 +109,45 @@ const actions = {
 		}
 	},
 
+	createPet: async(store, pet) => {
+		const res = await apiRequest('POST', 'pets', pet)
+		if(res.status){
+			console.log(res);
+			await store.actions.getPets();
+			await store.setState({isLoading: false, success: res.message, error: '', warning: ''})
+			return true;
+		}
+		console.log('error: ', res);
+		await store.setState({ isLoading: false, error: res.message, success: '', warning: '' })
+		return false;
+	},
+
 	getBookings: async(store) => {
 		const res = await apiRequest('GET', 'bookings')
 		if(res.status) {
 			if(res.bookings.length !==0) {
 				await store.setState({ bookings: res.bookings, isLoading: false, bookingsLoaded: true })
-			}	
+			}
 		}
 		else {
 			console.log('error: ', res)
 		}
+	},
+	bookPet: async(store, data) => {
+		const header = {
+			Authorization : `Bearer ${storage.get('token')}`
+		}
+		const res = await apiRequest('POST', 'bookings', data, header)
+		console.log(res);  
+		if(res.status){
+			console.log(res);
+			await store.actions.getBookings();
+			await store.setState({isLoading: false, success: res.message, error: '', warning: ''})
+			return true;
+		}
+		console.log('error: ', res);
+		await store.setState({ isLoading: false, error: res.message, success: '', warning: '' })
+		return false;
 	},
 
 	getUserPets: async(store, id) => {
@@ -132,13 +161,53 @@ const actions = {
 		}
 	},
 
-	booking: async(store, data) => {
-		const res = await apiRequest('POST', 'bookings', data)
-		console.log(res)
+	getRooms: async(store) => {
+		const res = await apiRequest('GET', 'rooms')
+		if(res.status) {
+			await store.setState({ rooms: res.rooms, isLoading: false, roomsLoaded: true })
+		}
+		else {
+			await store.setState({ isLoading: false, error: res.message })
+			console.log('error: ', res)
+		}
 	},
 
-	notificationDefault: store => {
-		store.setState({ notificationError: '', notificationsLoaded: true })
+	createRoom: async(store, room) => {
+		const res = await apiRequest('POST', 'rooms', room)
+		if(res.status){
+			console.log(res);
+			await store.setState({ isLoading: false, success: res.message, error: '', warning: '' });
+			store.actions.getRooms();
+			return true;
+		}
+		console.log('error: ', res);
+		await store.setState({ isLoading: false, error: res.message, success: '', warning: '' })
+		return false;
+	},
+
+	getBlogs: async(store) => {
+		const res = await apiRequest('GET', 'blogs')
+		if(res.status) {
+			console.log(res);
+			await store.setState({ blogs: res.blogs, isLoading: false, blogsLoaded: true })
+		}
+		else {
+			await store.setState({ isLoading: false, error: res.message })
+			console.log('error: ', res)
+		}
+	},
+
+	createBlog: async(store, blog) => {
+		const res = await apiRequest('POST', 'blogs', blog)
+		if(res.status){
+			console.log(res);
+			await store.setState({ isLoading: false, success: res.message, error: '', warning: '' });
+			store.actions.getRooms();
+			return true;
+		}
+		console.log('error: ', res);
+		await store.setState({ isLoading: false, error: res.message, success: '', warning: '' })
+		return false;
 	},
 
 	toggleSidebar: store => {

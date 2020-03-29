@@ -22,7 +22,7 @@
   background-color: #fff;
   top: 0;
   height: 100%;
-  width: 480px;
+  width: 35%;
   right: -100%;
   position: fixed;
   z-index: 200;
@@ -120,4 +120,16 @@
 .show-help-leave {
   -webkit-animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
           animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+@media (max-width: 992px) {
+  .drawer {
+    width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .drawer {
+    width: 70%;
+  }
 }

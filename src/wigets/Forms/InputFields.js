@@ -1,7 +1,8 @@
 import React, {useState, forwardRef, useImperativeHandle} from 'react';
 import initState from '../../services/initState';
+import DatePicker from 'react-datepicker'
 
-const InputFields = forwardRef(({inputData, id, change}, ref) => {
+const InputFields = forwardRef(({ inputData, id, change, options }, ref) => {
 
   useImperativeHandle(ref, () => ({
     
@@ -61,6 +62,12 @@ const InputFields = forwardRef(({inputData, id, change}, ref) => {
     change(newInput, id);
   }
 
+  const datePickerHandler = (event) => {
+    const newInput = inputData;
+    newInput.value = event;
+    change(newInput, id);
+  }
+
   const showValidation = (data) => {
     let errorMessage = null;
     if(data.rules && !data.valid) {
@@ -102,13 +109,38 @@ const InputFields = forwardRef(({inputData, id, change}, ref) => {
               event => onChangeHandler(event, false)
             }
           >
-            <option>Select Role...</option>
-            {inputData.config.options.map((role, i) => (
-              <option key={i} value={role.val}>{role.text}</option>
+            <option >{inputData.config.label}</option>
+            {options().map((option, i) => (
+              <option key={i} value={option.val}>{option.text}</option>
             ))}
           </select>
           </div>
         )
+        break;
+
+      case('datepicker'):
+        inputTemplate = (
+          <DatePicker
+            name='startDate'
+            showPopperArrow={false}
+            selected={ inputData.value }
+            onChange= { datePickerHandler }
+            className='form-control'
+          />
+        );
+        break;
+      case('textarea'):
+        inputTemplate = (
+            <textarea
+              {...inputData.config}
+              rows={'4'}
+              className="form-control"
+              value={inputData.value}
+              onChange= {
+                (event) => onChangeHandler(event, id)
+              }
+            ></textarea>
+        );
         break;
       default:
         inputTemplate = null;

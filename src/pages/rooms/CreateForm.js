@@ -1,124 +1,158 @@
-import React, { useState } from 'react'
-import {useForm} from '../useForm'
+import React, { useState, useRef } from 'react'
+import Notification from '../../components/Notification'
+import InputFields from '../../wigets/Forms/InputFields'
 import useGlobal from '../../services/useGlobal'
-
 function CreateUser() {
 
-	const initValues = {
-		name: '',
-		breed: '',
-		type: '',
-		size: '',
-		owner: ''
+	const inputData ={
+		type: {
+			element: 'select',
+			value: '',
+			label: true,
+			labelText: 'Room Type:',
+			config: {
+				name: 'type',
+				label: 'Select Type...',
+				options: []
+			},
+			rules: [
+				{required: true, message: 'Room type is required!'},
+			],
+			valid: true,
+			touched: false,
+		},
+		images: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'Images:',
+			config: {
+				name: 'images',
+				type: 'text',
+			},
+			// rules: [
+			// 	{required: true, message: 'Images is required!'},
+			// ],
+			valid: true,
+			touched: false,
+		},
+		total: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'Total Rooms:',
+			config: {
+				name: 'total',
+				type: 'text',
+			},
+			rules: [
+				{required: true, message: 'Total rooms is required'},
+			],
+			valid: true,
+			touched: false,
+		}
+		
 	}
-	const [values, handleChange] = useForm(initValues)
-	const [gState, gActions] = useGlobal()
+
+	const optionsList = () => {
+		const list = [
+			{val: 'Class A', text: 'Class A'},
+			{val: 'Class B', text: 'Class B'},
+			{val: 'Class C', text: 'Class C'},
+			{val: 'Class D', text: 'Class D'},
+		]
+		return list;
+	}
+	
+	const inputRef = useRef();
+	const [notf, setNotf] = useState(false);
+	const [gStates, gActions] = useGlobal();
+	const [state, setState] = useState(inputData);
+
+	const updateInput = (element, id) => {
+		setState({...state, [id]: element})
+	}
+
+	const formSubmit = async(event) => {
+		event.preventDefault();
+		let dataToSubmit = {}
+		let formIsValid = true;
+		for(let key in state) {
+			dataToSubmit[key] = state[key].value;
+		}
+
+		for(let key in state) {
+			const newInput = state[key];
+			let resValidation = inputRef.current.validate(newInput);
+			newInput.valid = resValidation[0];
+			newInput.touched = true;
+			updateInput(newInput, key);
+			formIsValid =	newInput.valid && formIsValid;
+		}
+
+		if(formIsValid) {
+			const res = await gActions.createRoom(dataToSubmit);
+			if(res) {
+				setState(inputData);
+				setNotf(true);
+			}
+			else {
+				setNotf(true);
+			}
+		}
+	}
+
+	const notificationState = () => {
+		let id = 'error';
+		let message = '';
+		if(gStates.success.trim() !== '') {
+			id = 'success'
+			message = gStates.success;
+		}
+		else if(gStates.error.trim() !== '') {
+			id= 'error'
+			message = gStates.error;
+		}
+		else {
+			id = 'warning'
+			message = gStates.warning;
+		}
+		return [id, message]
+	}
+
+	const [notfId, notfMessage] = notificationState()
+	const notfStatus = () => {
+			setNotf(false);
+	}
 
 	return (
 		<React.Fragment>
 			<div className="drawer-body">
-				<form >
-					<div className="form-row">
-						<div className="form-group col">
-							<label htmlFor="label">Firstname</label>
-							<input 
-								type="text"
-								name='firstname' 
-								className="form-control"
-								value= { values.firstname }
-								onChange= { handleChange }
-								/>
-							<div className="invalid-feedback">
-								{ gState.notificationError.message }
-							</div>	
-						</div>
-						<div className="col form-group">
-							<label htmlFor="lastname">Lastname</label>
-							<input 
-								type="text" 
-								name="lastname" 
-								className="form-control"
-								value={ values.lastname }
-								onChange={ handleChange }
-								/>
-							<div className="invalid-feedback">
-								{ gState.validationError.message }
-							</div>
-						</div>
-					</div>
+				{notf && <Notification id={notfId} message={notfMessage} isDone={notfStatus} />}
+			<form onSubmit={formSubmit}>
+					<InputFields 
+						inputData= {state.type}
+						id= {'firstname'}
+						change= {(element,id) => updateInput(element,id)}
+						ref={inputRef}
+						options={optionsList}
+					/>
+					<InputFields 
+						inputData= {state.images}
+						id= {'images'}
+						change= {(element,id) => updateInput(element,id)}
+						ref={inputRef}
+					/>
+
+					<InputFields 
+						inputData= {state.total}
+						id= {'total'}
+						change= {(element,id) => updateInput(element,id)}
+						ref={inputRef}
+					/>
 
 					<div className="form-group">
-						<label htmlFor="email">Email Address</label>
-						<input 
-							type="text" 
-							name='email'
-							className="form-control"
-							value={ values.email }
-							onChange={ handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.validationError.message }
-						</div>
-					</div>
-
-					<div className="form-group">
-						<label htmlFor="mobile">Mobile Number</label>
-						<input 
-							type="text" 
-							name='mobile'
-							className="form-control"
-							value={ values.mobile }
-							onChange={ handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.validationError.message }
-						</div>
-					</div>
-
-					<div className="form-group">
-						<label htmlFor="password">Password</label>
-						<input 
-							type="password" 
-							name='password'
-							className="form-control"
-							value={ values.password }
-							onChange={ handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.validationError.message }
-						</div>
-					</div>
-
-					<div className="form-group">
-						<label htmlFor="repassword">Confirm Password</label>
-						<input 
-							type="password" 
-							name='repassword'
-							className="form-control"
-							value={ values.repassword }
-							onChange={ handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.validationError.message }
-						</div>
-					</div>
-
-					<div className="form-group">
-						<label htmlFor="role">Role</label>
-						<div className="input-group mb-3">
-							<div className="input-group-prepend">
-								<label className='input-group-text' htmlFor="roles">Options</label>
-							</div>
-							<select className='custom-select form-control' name='role' id='roles'>
-								<option value="owner">Owner</option>
-								<option value="employee">Employee</option>
-								<option value="manager">Manager</option>
-							</select>
-						</div>
-					</div>
-
-					<div className="form-group">
-						<button className='btn btn-primary btn-sm '>Add Room</button>
+						<button className='btn btn-primary btn-sm' type='submit' >Add Rooms</button>
 					</div>
 				</form>
 			</div>

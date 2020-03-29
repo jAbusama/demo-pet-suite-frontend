@@ -4,7 +4,7 @@ import InputFields from '../../wigets/Forms/InputFields'
 import useGlobal from '../../services/useGlobal'
 function CreateUser() {
 
-	const initState ={
+	const inputData ={
 		firstname: {
 			element: 'input',
 			value: '',
@@ -90,21 +90,26 @@ function CreateUser() {
 			labelText: 'Role:',
 			config: {
 				name: 'role',
-				options: [
-					{val: 'owner', text: 'Owner'},
-					{val: 'employee', text: 'Employee'},
-					{val: 'manager', text: 'Manager'},
-				]
+				label: 'Select Role...'
 			},
 			valid: true,
 			touched: false,
 		}
 	}
+
+	const optionsList = () => {
+		const list = [
+			{val: 'owner', text: 'Owner'},
+			{val: 'employee', text: 'Employee'},
+			{val: 'manager', text: 'Manager'},
+		]
+		return list;
+	}
 	
 	const inputRef = useRef();
 	const [notf, setNotf] = useState(false);
 	const [gStates, gActions] = useGlobal();
-	const [state, setState] = useState(initState);
+	const [state, setState] = useState(inputData);
 
 	const updateInput = (element, id) => {
 		setState({...state, [id]: element})
@@ -130,7 +135,7 @@ function CreateUser() {
 		if(formIsValid) {
 			const res = await gActions.createUser(dataToSubmit);
 			if(res) {
-				setState(initState);
+				setState(inputData);
 				setNotf(true);
 			}
 			else {
@@ -200,14 +205,15 @@ function CreateUser() {
 						inputData= {state.password}
 						id= {'password'}
 						change= {(element,id) => updateInput(element,id)}
-						ref={inputRef}
+						ref= {inputRef}
 					/> 
 
 					<InputFields 
 						inputData= {state.role}
 						id= {'role'}
 						change= {(element,id) => updateInput(element,id)}
-						ref={inputRef}
+						ref= {inputRef}
+						options= {optionsList}
 					/>
 
 					<div className="form-group">

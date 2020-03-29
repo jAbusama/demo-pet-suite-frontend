@@ -1,127 +1,123 @@
 import React, { useState, useRef } from 'react'
-import FormFields from '../../wigets/Forms/FormFields'
-
+import Notification from '../../components/Notification'
+import InputFields from '../../wigets/Forms/InputFields'
+import useGlobal from '../../services/useGlobal'
 function CreateUser() {
 
-	const initValues = {
-		name: {
+	const inputData ={
+		title: {
 			element: 'input',
 			value: '',
 			label: true,
-			labelText: 'Name',
+			labelText: 'Title:',
 			config: {
-				name: 'name_input',
+				name: 'title',
 				type: 'text',
-				placeholder: 'Enter Your Name'
 			},
-			validation: {
-				required: true,
-				minLen: 5
-			},
-			valid: false,
+			rules: [
+				{required: true, message: 'Title is required!'},
+			],
+			valid: true,
 			touched: false,
-			validationMessage: ''
 		},
-		lastname: {
-			element: 'input',
-			value: '',
-			label: true,
-			labelText: 'Last Name',
-			config: {
-				name: 'lastname_input',
-				type: 'text',
-				placeholder: 'Enter Your Last Name'
-			},
-			validation: {
-				required: true,
-			},
-			valid: false,
-			touched: false,
-			validationMessage: ''
-		},
-		message: {
+		body: {
 			element: 'textarea',
 			value: '',
 			label: true,
-			labelText: 'Message',
+			labelText: 'Body:',
 			config: {
-				name: 'message_input',
-				rows: 3,
-				// cols:36
+				name: 'body',
 			},
-			validation: {
-				required: false,
-			},
+			rules: [
+				{required: true, message: 'Title is required!'},
+			],
 			valid: true,
-		},
-		age: {
-			element: 'select',
-			value: '',
-			label: true,
-			labelText: 'Age',
-			config: {
-				name: 'age_input',
-				options: [
-					{val: '1', text: '10-20'},
-					{val: '2', text: '21-30'},
-					{val: '3', text: '30+'},
-				]
-			},
-			validation: {
-				required: false,
-			},
-			valid: true,
+			touched: false
 		}
 	}
-
-	const [formData, setFormData] = useState(initValues)
-
-	const updateForm = (newFormData) => {
-		setFormData({...formData, ...newFormData})
-	}
-
-	const submitForm = (event) => {
-		event.preventDefault();
-		let dataToSubmit = {};
-
-		for(let key in formData) {
-			dataToSubmit[key] = formData[key].value;
-			console.log(key);
-		}
-		let formIsValid =  true;
-
-		for(let key in formData) {
-			const newState = formData;
-			formIsValid = formData[key].valid && formIsValid;
-			let validForm = childRef.current.validate(formData[key]);
-			newState[key].valid = validForm[0];
-    	newState[key].validationMessage = validForm[1];
-			newState[key].touched = true
-			
-			updateForm(newState);
-		}
-		
-		if(formIsValid){
-			console.log(dataToSubmit);
-		}
-	}
-
-	const childRef = useRef();
 	
+	const inputRef = useRef();
+	const [notf, setNotf] = useState(false);
+	const [gStates, gActions] = useGlobal();
+	const [state, setState] = useState(inputData);
+
+	const updateInput = (element, id) => {
+		setState({...state, [id]: element})
+	}
+
+	const formSubmit = async(event) => {
+		event.preventDefault();
+		let dataToSubmit = {}
+		let formIsValid = true;
+		for(let key in state) {
+			dataToSubmit[key] = state[key].value;
+		}
+
+		for(let key in state) {
+			const newInput = state[key];
+			let resValidation = inputRef.current.validate(newInput);
+			newInput.valid = resValidation[0];
+			newInput.touched = true;
+			updateInput(newInput, key);
+			formIsValid =	newInput.valid && formIsValid;
+		}
+
+		if(formIsValid) {
+			const res = await gActions.createUser(dataToSubmit);
+			if(res) {
+				setState(inputData);
+				setNotf(true);
+			}
+			else {
+				setNotf(true);
+			}
+		}
+	}
+
+	const notificationState = () => {
+		let id = 'error';
+		let message = '';
+		if(gStates.success.trim() !== '') {
+			id = 'success'
+			message = gStates.success;
+		}
+		else if(gStates.error.trim() !== '') {
+			id= 'error'
+			message = gStates.error;
+		}
+		else {
+			id = 'warning'
+			message = gStates.warning;
+		}
+		return [id, message]
+	}
+
+	const [notfId, notfMessage] = notificationState()
+	const notfStatus = () => {
+			setNotf(false);
+	}
+
 	return (
 		<React.Fragment>
 			<div className="drawer-body">
-				<form onSubmit={submitForm}>
+				{notf && <Notification id={notfId} message={notfMessage} isDone={notfStatus} />}
+				<form onSubmit={formSubmit}>
 
-					<FormFields 
-						formData = { formData }
-						change = {(newFormData) => updateForm(newFormData)}
-						onBlur = {(newFormData) => updateForm(newFormData)}
-						ref={childRef}
+					<InputFields 
+						inputData= {state.title}
+						id= {'title'}
+						change= {(element,id) => updateInput(element,id)}
+						ref={inputRef}
+					/>
+					<InputFields 
+						inputData= {state.body}
+						id= {'body'}
+						change= {(element,id) => updateInput(element,id)}
+						ref={inputRef}
 					/>
 
 					<div className="form-group">
-						<button  type="submit" className='btn btn-primary btn-sm '>Add Blog</button>
+						<button className='btn btn-primary btn-sm' type='submit' >Add Blog</button>
 					</div>
 				</form>
 			</div>
