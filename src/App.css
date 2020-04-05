@@ -1,22 +1,10 @@
 /* @import url('https://fonts.googleapis.com/css?family=Numans'); */
 
 
-#admin html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  font-family: 'Numans', serif;
-  background: #fafafa !important;
-}
+
 
 .container-fluid {
   padding: 0 !important;
-}
-#admin-header .navbar {
-  border-radius: 10px;
-  padding: 15px !important;
 }
 .row {
   margin: 0 !important;
@@ -81,11 +69,7 @@
 .main-content {
   height: 100vh;
 }
-#admin .btn {
-  padding: 5px 16px !important;
-  letter-spacing: normal;
-  text-transform: none;
-}
+
 
 /* sidebar */
 
@@ -391,9 +375,6 @@ label {
   }
   @keyframes slide-open {
     100% {left: 0}
-  }
-  #admin-header .navbar .btn-toggler {
-    display: block;
   }
   .auth-bg {
     display: block;

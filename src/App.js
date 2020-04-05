@@ -13,13 +13,10 @@ function App() {
   let user = storage.get('user')
   
   useEffect(() => {
-    console.log('Rendered App js')
-    
     if(isLogin) {
       gActions.getLogin(user.id)
     }
   },[])
-  console.log('is login: ',isLogin)
   
   return (
       <Router>

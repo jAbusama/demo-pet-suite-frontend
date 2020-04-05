@@ -1,4 +1,4 @@
-import { useState, useReducer } from  'react'
+import { useState } from  'react'
 // import initState from '../services/initState'
 
 export const useForm = (initValues) => {
@@ -28,11 +28,16 @@ export const useForm = (initValues) => {
     }
   }
 
+  const resetData = () => {
+    setValues(initValues);
+  } 
+
   return [
     values,
     e => {
       setValues({ ...values, [e.target.name]: e.target.value })
     },
-    data
+    data,
+    resetData
   ]
 }

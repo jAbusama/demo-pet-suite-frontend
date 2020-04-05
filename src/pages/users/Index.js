@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useGlobal from '../../services/useGlobal'
 import MainLayout from '../../layouts/MainLayout'
-import AddForm from '../../components/AddForm'
+import AddForm from '../../wigets/Forms/FormConfig'
 import CreateForm from './CreateForm'
 
 import { Link } from 'react-router-dom'
@@ -11,6 +11,7 @@ function Users({history}) {
 	const searchState = {
 		search: '',
 		showCreate: false,
+		formCreated: false
 	}
 
 	const [state, setState] = useState(searchState)
@@ -62,14 +63,22 @@ function Users({history}) {
 			</div>
 		</div>
 	)
+
+	const showForm = () => {
+		setState({...state, showCreate: true, formCreated: true})
+	}
 	
 	return (
 		<MainLayout history={history}>
-			<div className={`${state.showCreate ? "d-block" : "d-none"}`}>
-				<AddForm title="Add User" state={state} setState={setState} >
-					<CreateForm/>
-				</AddForm>
-			</div>
+			{state.showCreate ?
+				<div className={`${state.showCreate && state.formCreated ? "d-block" : "d-none"}`}>
+					<AddForm title="Add Pet" state={state} setState={setState}>
+						<CreateForm />
+					</AddForm>
+				</div>
+				:
+				null
+			}
 
 			<div className="filters">
 				<div className="row">
@@ -84,7 +93,7 @@ function Users({history}) {
 						</div>
 					</div>
 					<div className="col input-group d-flex justify-content-end">
-						<button className='btn btn-primary btn-sm' onClick={() => setState({...state, showCreate: true})}>
+						<button className='btn btn-primary btn-sm' onClick={showForm}>
 							<i className="fas fa-plus-circle mr-1"></i>
 							Add User
 						</button>

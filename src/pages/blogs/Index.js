@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useGlobal from '../../services/useGlobal'
 import MainLayout from '../../layouts/MainLayout'
-import AddForm from '../../components/AddForm'
+import AddForm from '../../wigets/Forms/FormConfig'
 import CreateForm from './CreateForm'
 import { Link } from 'react-router-dom'
  
@@ -9,50 +9,44 @@ function Blogs({history}) {
 
 	const searchState = {
 		search: '',
-		showCreate: false
+		showCreate: false,
+		formCreated: false
 	}
 
 	const [state, setState] = useState(searchState)
 	const [gState, gActions] = useGlobal()
 
 	useEffect(() => {
-		if(!gState.bookingsLoaded){
-			gActions.getBookings()
+		if(!gState.blogsLoaded){
+			
+			gActions.getBlogs()
 		}
 	},[])
 
 	const tableHeader = [
 		{
-			title: 'Pets',
-			key: 'pets',
+			title: 'Title',
+			key: 1
 		},
 		{
-			title: 'Check In',
-			key: 'checkin',
+			title: 'Author',
+			key: 2
 		},
 		{
-			title: 'Check Out',
-			key: 'checkout',
-		},
-		{
-			title: 'Book By',
-			key: 'bookby',
+			title: 'Duration',
+			key: 3
 		},
 		{
 			title: 'Status',
-			key: 'status',
-		},
-		{
-			title: '',
-			key: 'actions'
+			key: 4
 		}
 	]
 
 	const tableData = () => {
 		if(state.search.legth > 3) {
-			return gState.bookings.filter(bookings => JSON.stringify(bookings).search(new RegExp(state.search, 'ig')) > -1)
+			return gState.blogs.filter(bookings => JSON.stringify(bookings).search(new RegExp(state.search, 'ig')) > -1)
 		}
-		return gState.bookings
+		return gState.blogs
 	}
 
 	const bookingOption = (
@@ -69,20 +63,27 @@ function Blogs({history}) {
 		</div>
 	</div>
 	)
+	const showForm = () => {
+		setState({...state, showCreate: true, formCreated: true})
+	}
 
 	return (
 		<MainLayout history={history}>
-			<div className={`${state.showCreate ? "d-block" : "d-none"}`}>
-				<AddForm title="Add Blog" state={state} setState={setState}>
-					<CreateForm/>
-				</AddForm>
-			</div>
+				{state.showCreate ?
+				<div className={`${state.showCreate && state.formCreated ? "d-block" : "d-none"}`}>
+					<AddForm title="Add Pet" state={state} setState={setState}>
+						<CreateForm />
+					</AddForm>
+				</div>
+				:
+				null
+			}
 
 			<div className="filters">
 				<div className="row">
 					<div className="col">
-						<div className=" bg-light rounded rounded-pill shadow-sm">
-							<div className="input-group search ">
+						<div className="bg-light rounded rounded-pill shadow-sm">
+							<div className="input-group search">
 								<input type="search" placeholder="What're you searching for?" aria-describedby="button-search" className="form-control border-0 bg-light"/>
 								<div className="input-group-append">
 									<button id="button-seacrh" type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
@@ -91,7 +92,7 @@ function Blogs({history}) {
 						</div>
 					</div>
 					<div className="col input-group d-flex justify-content-end">
-						<button className='btn btn-primary btn-sm' onClick={() => setState({...state, showCreate: true})}>
+						<button className='btn btn-primary btn-sm' onClick={showForm}>
 							<i className="fas fa-plus-circle mr-1"></i>Add Blog
 						</button>
 					</div>
@@ -124,15 +125,12 @@ function Blogs({history}) {
 									</tr>
 								</thead>
 								<tbody>
-									{tableData().map(booking => (
-										<tr key= {booking._id}>
-											{booking.pet.map(pet => (
-													<td key={pet._id}>{ pet.name }</td>
-											))}
-											<td>{ booking.checkIn }</td>
-											<td>{ booking.checkOut }</td>
-											<td>{ booking.bookBy.firstname } { booking.bookBy.lastname }</td>
-											<td>{ booking.status }</td>
+									{tableData().map(blog => (
+										<tr key= {blog._id}>
+											<td>{ blog.title }</td>
+											<td>{ blog.author }</td>
+											<td>{ blog.duration }</td>
+											<td>{ blog.status }</td>
 											<td>{ bookingOption }</td>
 										</tr>
 									))}
