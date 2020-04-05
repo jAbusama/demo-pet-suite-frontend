@@ -21,21 +21,6 @@ function CreateUser() {
 			valid: true,
 			touched: false,
 		},
-		images: {
-			element: 'input',
-			value: '',
-			label: true,
-			labelText: 'Images:',
-			config: {
-				name: 'images',
-				type: 'text',
-			},
-			// rules: [
-			// 	{required: true, message: 'Images is required!'},
-			// ],
-			valid: true,
-			touched: false,
-		},
 		total: {
 			element: 'input',
 			value: '',
@@ -50,8 +35,20 @@ function CreateUser() {
 			],
 			valid: true,
 			touched: false,
-		}
-		
+		},
+		images: {
+			element: 'file',
+			value: null,
+			previewUrl: [],
+			label: true,
+			labelText: 'Pictures',
+			config: {
+				name: 'images',
+				type: 'file'
+			},
+			valid: true,
+			touched: false
+		},
 	}
 
 	const optionsList = () => {
@@ -62,44 +59,6 @@ function CreateUser() {
 			{val: 'Class D', text: 'Class D'},
 		]
 		return list;
-	}
-	
-	const inputRef = useRef();
-	const [notf, setNotf] = useState(false);
-	const [gStates, gActions] = useGlobal();
-	const [state, setState] = useState(inputData);
-
-	const updateInput = (element, id) => {
-		setState({...state, [id]: element})
-	}
-
-	const formSubmit = async(event) => {
-		event.preventDefault();
-		let dataToSubmit = {}
-		let formIsValid = true;
-		for(let key in state) {
-			dataToSubmit[key] = state[key].value;
-		}
-
-		for(let key in state) {
-			const newInput = state[key];
-			let resValidation = inputRef.current.validate(newInput);
-			newInput.valid = resValidation[0];
-			newInput.touched = true;
-			updateInput(newInput, key);
-			formIsValid =	newInput.valid && formIsValid;
-		}
-
-		if(formIsValid) {
-			const res = await gActions.createRoom(dataToSubmit);
-			if(res) {
-				setState(inputData);
-				setNotf(true);
-			}
-			else {
-				setNotf(true);
-			}
-		}
 	}
 
 	const notificationState = () => {
@@ -120,7 +79,63 @@ function CreateUser() {
 		return [id, message]
 	}
 
+	const inputRef = useRef();
+	const [notf, setNotf] = useState(false);
+	const [gStates, gActions] = useGlobal();
+	const [state, setState] = useState(inputData);
 	const [notfId, notfMessage] = notificationState()
+
+
+	const updateInput = (element, id) => {
+		setState({...state, [id]: element})
+	}
+
+	const formSubmit = async(event) => {
+		event.preventDefault();
+		let dataToSubmit = {}
+		let formIsValid = true;
+		let fd = new FormData();
+		for(let key in state) {
+			if(key === "images") {
+				fd.append(key, state.images.value);
+			}
+			else {
+				fd.append(key, state[key].value);
+				// dataToSubmit[key] = state[key].value;
+			}
+		}
+
+		for(let key in state) {
+			const newInput = state[key];
+			let resValidation = inputRef.current.validate(newInput);
+			newInput.valid = resValidation[0];
+			newInput.touched = true;
+			updateInput(newInput, key);
+			formIsValid =	newInput.valid && formIsValid;
+		}
+
+		if(formIsValid) {
+			// for(let image in state.images.value.values()) {
+			// 	console.log(image);
+			// }
+			console.log(fd);
+			
+			const res = await gActions.createRoom(fd);
+			if(res) {
+				setState(inputData);
+				setNotf(true);
+			}
+			else {
+				setNotf(true);
+			}
+		}
+		// let fd = new FormData();
+		// fd.append('images', state.images.value);
+		// console.log(fd)
+		// const res = await gActions.createRoom(fd);
+
+	}
+
 	const notfStatus = () => {
 			setNotf(false);
 	}
@@ -129,19 +144,13 @@ function CreateUser() {
 		<React.Fragment>
 			<div className="drawer-body">
 				{notf && <Notification id={notfId} message={notfMessage} isDone={notfStatus} />}
-			<form onSubmit={formSubmit}>
+				<form onSubmit={formSubmit}>
 					<InputFields 
 						inputData= {state.type}
-						id= {'firstname'}
+						id= {'type'}
 						change= {(element,id) => updateInput(element,id)}
 						ref={inputRef}
 						options={optionsList}
-					/>
-					<InputFields 
-						inputData= {state.images}
-						id= {'images'}
-						change= {(element,id) => updateInput(element,id)}
-						ref={inputRef}
 					/>
 
 					<InputFields 
@@ -151,9 +160,17 @@ function CreateUser() {
 						ref={inputRef}
 					/>
 
-					<div className="form-group">
-						<button className='btn btn-primary btn-sm' type='submit' >Add Rooms</button>
+					<InputFields 
+						inputData= {state.images}
+						id= {'images'}
+						change= {(element,id) => updateInput(element,id)}
+						ref={inputRef}
+					/>
+
+					<div className="form-group float-none">
+						<button className='btn btn-primary btn-sm' type='submit'>Add Rooms</button>
 					</div>
+					
 				</form>
 			</div>
 		</React.Fragment>

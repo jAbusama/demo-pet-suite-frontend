@@ -25,23 +25,19 @@ function Rooms({history}) {
 	const tableHeader = [
 		{
 			title: 'Room Types',
-			key: 1,
-		},
-		{
-			title: 'Images',
-			key: 2,
+			key: 1
 		},
 		{
 			title: 'Room Available',
-			key: 3,
+			key: 2
 		},
 		{
 			title: 'Total Room',
-			key: 4,
+			key: 3
 		},
 		{
 			title: '',
-			key: 5
+			key: 4
 		}
 	]
 
@@ -54,17 +50,17 @@ function Rooms({history}) {
 
 	const roomOption = (
 		<div className='btn-option'>
-		<span className="btn btn-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i className="fas fa-caret-down"></i>
-		</span>
-		<div className="dropdown-menu" aria-labelledby="navbarDropdown">
-			<button className='dropdown-item options btn-sm'>Edit</button>
-			<div className="dropdown-divider"></div>
-			<form>
-				<button className="dropdown-item options btn-sm" type='submit' >Delete</button>
-			</form>	
+			<span className="btn btn-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i className="fas fa-caret-down"></i>
+			</span>
+			<div className="dropdown-menu" aria-labelledby="navbarDropdown">
+				<button className='dropdown-item options btn-sm'>Edit</button>
+				<div className="dropdown-divider"></div>
+				<form>
+					<button className="dropdown-item options btn-sm" type='submit' >Delete</button>
+				</form>	
+			</div>
 		</div>
-	</div>
 	)
 	const showForm = () => {
 		setState({...state, showCreate: true, formCreated: true})
@@ -74,7 +70,7 @@ function Rooms({history}) {
 		<MainLayout history={history}>
 				{state.showCreate ?
 				<div className={`${state.showCreate && state.formCreated ? "d-block" : "d-none"}`}>
-					<AddForm title="Add Pet" state={state} setState={setState}>
+					<AddForm title="Add Room" state={state} setState={setState}>
 						<CreateForm />
 					</AddForm>
 				</div>
@@ -131,7 +127,6 @@ function Rooms({history}) {
 									{tableData().map(room => (
 										<tr key= {room._id}>
 											<td>{ room.type }</td>
-											<td>{ room.images }</td>
 											<td>{ room.available}</td>
 											<td>{ room.total }</td>
 											<td>{ roomOption }</td>

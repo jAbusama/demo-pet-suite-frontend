@@ -68,6 +68,20 @@ const InputFields = forwardRef(({ inputData, id, change, options }, ref) => {
     change(newInput, id);
   }
 
+  const fileHandler = (e) => {
+    const newInput = inputData;
+    const file = e.target.files;
+    let value = newInput.value
+		let previewUrl = newInput.previewUrl;
+		for(let i = 0; i < file.length; i++) {
+      previewUrl.push(URL.createObjectURL(file[i]));
+      value = file[i];
+    }
+    newInput.previewUrl = previewUrl;
+    newInput.value = value;
+    change(newInput, id);
+  }
+
   const showValidation = (data) => {
     let errorMessage = null;
     if(data.rules && !data.valid) {
@@ -127,6 +141,34 @@ const InputFields = forwardRef(({ inputData, id, change, options }, ref) => {
             onChange= { datePickerHandler }
             className='form-control'
           />
+        );
+        break;
+      case('file'): 
+        inputTemplate = (
+          <div className="form-group p-2 upload-panel text-center row">
+            {
+              inputData.previewUrl.map( (image,i) => (
+                <div key={i} className="btn-file-img p-1 text-center col-4">
+                  <img src={image} alt="" className="upload-images img-thumbnail" width="100%" height="100px"/>
+                </div>
+              ))
+            }
+            <div className=" p-1 text-center col-4">
+              <label className="upload-file-btn py-4 img-thumbnail m-0">
+                <i className="fas fa-plus"></i>
+                <p className="m-0">
+                  upload
+                </p>
+                <input 
+                type="file" 
+                name="file-1" 
+                id="file-1"
+                onChange={fileHandler}
+                className="custom-input-file d-none" 
+                multiple />
+              </label>
+            </div>
+          </div>
         );
         break;
       case('textarea'):

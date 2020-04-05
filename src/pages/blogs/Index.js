@@ -17,7 +17,8 @@ function Blogs({history}) {
 	const [gState, gActions] = useGlobal()
 
 	useEffect(() => {
-		if(!gState.bookingsLoaded){
+		if(!gState.blogsLoaded){
+			
 			gActions.getBlogs()
 		}
 	},[])
@@ -45,7 +46,6 @@ function Blogs({history}) {
 		if(state.search.legth > 3) {
 			return gState.blogs.filter(bookings => JSON.stringify(bookings).search(new RegExp(state.search, 'ig')) > -1)
 		}
-		console.log(gState.blogs)
 		return gState.blogs
 	}
 

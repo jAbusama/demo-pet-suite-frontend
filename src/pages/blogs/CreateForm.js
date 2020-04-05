@@ -63,7 +63,7 @@ function CreateUser() {
 		}
 
 		if(formIsValid) {
-			const res = await gActions.createUser(dataToSubmit);
+			const res = await gActions.createBlog(dataToSubmit);
 			if(res) {
 				setState(inputData);
 				setNotf(true);

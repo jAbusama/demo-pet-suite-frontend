@@ -1,3 +1,91 @@
+
+#admin html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-family: 'Numans', serif;
+  background: #fafafa !important;
+}
+#admin-header .navbar {
+  border-radius: 10px;
+  padding: 15px !important;
+}
+
+#admin .btn {
+  padding: 5px 16px !important;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+#admin-header .navbar .btn-toggler {
+  display: block;
+}
+
+.img-thumbnail {
+  height: 100px !important;
+}
+
+.upload-file-btn {
+  width: 100% !important;
+  cursor: pointer;
+}
+
+.upload-file-btn:hover {
+  border: 1px dotted #4e73df ;
+}
+
+.upload-panel {
+  background: #e8e8e8;
+}
+
+.custom-input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  outline: none;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.custom-input-file + label {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid #E0E6ED;
+  border-radius: 0.25rem;
+  color: #8492A6;
+  background-color: #FFF;
+  outline: none;
+  margin: 0;
+}
+
+.custom-input-file + label i {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  margin-top: -0.25em;
+  margin-right: 0.5em;
+}
+
+.custom-input-file + label:hover,
+.custom-input-file.has-focus + label,
+.custom-input-file:focus + label {
+  background-color: #FFF;
+}
+
+.no-js .custom-input-file + label {
+  display: none;
+}
+
+
+
 /* Drawer */
 
 #drawer-wrapper {
