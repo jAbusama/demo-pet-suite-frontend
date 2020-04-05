@@ -48,8 +48,6 @@ function Login({history}) {
   return (
     
     <div className='form'>
-      {gState.notificationsLoaded === false && <Notification message= {gState.notificationError}
-        gActions= {gActions} />}
       <form onSubmit={ logIn }>
         <h1 className='heading'>PetSuite</h1>
         <TextFieldGroup 

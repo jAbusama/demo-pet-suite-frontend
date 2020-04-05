@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function AddForm({title ,state, setState, children}) {
 
   const [ unActive , setUnActive ] = useState(true)
 
 	const hideCreateForm = () => {
-		setUnActive(false)
+    setUnActive(false);
 		setTimeout(() => {
-			setState({...state, showCreate: false})
-			setUnActive(true)
-		},200)		
+      setState({...state, formCreated: false})
+      setUnActive(true);
+    },200)
 	}
 
   return (

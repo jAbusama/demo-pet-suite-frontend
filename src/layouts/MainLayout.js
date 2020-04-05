@@ -6,12 +6,11 @@ import '../styles/admin.css'
 
 function MainLayout({ history, children }) {
 
-	const [ gState, gActions ] = useGlobal()
+	const [ gStates ] = useGlobal()
 
-	const isToggle = gState.isToggle
+	const isToggle = gStates.isToggle
 	
 	useEffect(() => {
-		console.log('mainLayout Rendered')
 		return () => console.log('unmount')
 	},[])
 

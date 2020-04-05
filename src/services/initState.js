@@ -10,13 +10,17 @@ const initState = {
 	user: 								'',
 	userPets:							[],
 	userPetsLoaded:				false,
+	rooms:								[],
+	roomsLoaded:					false,
+	blogs:								[],
+	blogsLoaded:					false,
 	routeLinks:						[],
 	loginLoaded:					false,
 	isToggle: 						false,
 	validationError:			[],
-	notificationsLoaded:	false,
-	notificationError: 		'',
-	notificationSuccess: 	''
+	error: 								'',
+	success: 							'',
+	warning: 							''
 	
 }
 // storage.get('isLogin'),

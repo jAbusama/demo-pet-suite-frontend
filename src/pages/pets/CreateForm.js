@@ -1,104 +1,204 @@
-import React, { useState, useEffect } from 'react'
-import {useForm} from '../useForm'
+import React, { useState, useEffect, useRef } from 'react'
+import Notification from '../../components/Notification'
+import InputFields from '../../wigets/Forms/InputFields'
 import useGlobal from '../../services/useGlobal'
+function CreateUser() {
 
-function Users() {
-
-	const initValues = {
-		name: '',
-		breed: '',
-		type: '',
-		size: '',
-		owner: ''
+	const inputData ={
+		name: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'Pet Name:',
+			config: {
+				name: 'name',
+				type: 'text',
+			},
+			rules: [
+				{required: true, message: 'Pet Name is required!'},
+			],
+			valid: true,
+			touched: false,
+		},
+		breed: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'Breed:',
+			config: {
+				name: 'breed',
+				type: 'text',
+			},
+			rules: [
+				{required: true, message: 'Breed is required!'},
+			],
+			valid: true,
+			touched: false,
+		},
+		type: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'Pet Type:',
+			config: {
+				name: 'type',
+				type: 'text',
+			},
+			rules: [
+				{required: true, message: 'Email Address is required'},
+			],
+			valid: true,
+			touched: false,
+		},
+		size: {
+			element: 'input',
+			value: '',
+			label: true,
+			labelText: 'Size:',
+			config: {
+				name: 'mobile',
+				type: 'text',
+			},
+			rules: [
+				{required: true, message: 'Pet size is required'},
+			],
+			valid: true,
+			touched: false,
+		},
+		owner: {
+			element: 'select',
+			value: '',
+			label: true,
+			labelText: 'Owner:',
+			config: {
+				name: 'role',
+				label: 'Choose Owner...',
+				options: []
+			},
+			valid: true,
+			touched: false,
+		}
 	}
-	const [values, handleChange] = useForm(initValues)
-	const [gState, gActions] = useGlobal()
+	
+	const inputRef = useRef();
+	const [notf, setNotf] = useState(false);
+	const [state, setState] = useState(inputData);
+	const [gStates, gActions] = useGlobal();
 
 	useEffect(() => {
-		console.log('render')
-		if(!gState.usersLoaded){
+		if(!gStates.usersLoaded){
 			gActions.getUsers()
 		}
 	})
 
-	const owners = () => {
-		return gState.users.filter(onwer => onwer.role === 'owner')
+	const optionsList = () => {
+		const owners = gStates.users.filter(onwer => onwer.role === 'owner')
+		const newOwners = owners.map(owner => {
+				return { val: owner._id, text: `${owner.firstname} ${owner.lastname}` }
+			}
+		)
+		return newOwners;
+	}
+
+	const updateInput = (element, id) => {
+		setState({...state, [id]: element})
+	}
+
+	const formSubmit = async(event) => {
+		event.preventDefault();
+		let dataToSubmit = {}
+		let formIsValid = true;
+		for(let key in state) {
+			dataToSubmit[key] = state[key].value;
+		}
+
+		for(let key in state) {
+			const newInput = state[key];
+			let resValidation = inputRef.current.validate(newInput);
+			newInput.valid = resValidation[0];
+			newInput.touched = true;
+			updateInput(newInput, key);
+			formIsValid =	newInput.valid && formIsValid;
+		}
+
+		if(formIsValid) {
+			const res = await gActions.createPet(dataToSubmit);
+			if(res) {
+				setState(inputData);
+				setNotf(true);
+			}
+			else {
+				setNotf(true);
+			}
+		}
+	}
+
+	const notificationState = () => {
+		let id = 'error';
+		let message = '';
+		if(gStates.success.trim() !== '') {
+			id = 'success'
+			message = gStates.success;
+		}
+		else if(gStates.error.trim() !== '') {
+			id= 'error'
+			message = gStates.error;
+		}
+		else {
+			id = 'warning'
+			message = gStates.warning;
+		}
+		return [id, message]
+	}
+
+	const [notfId, notfMessage] = notificationState()
+
+	const notfStatus = () => {
+			setNotf(false);
 	}
 
 	return (
 		<React.Fragment>
 			<div className="drawer-body">
-				<form >
-					<div className="form-group">
-						<label htmlFor="name">Pet Name</label>
-						<input 
-							type="text"
-							name='name' 
-							className="form-control"
-							value= { values.name }
-							onChange= { handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.notificationError.message }
-						</div>	
-					</div>
+				{notf && <Notification id={notfId} message={notfMessage} isDone={notfStatus} />}
+				<form onSubmit={formSubmit}>
+					<InputFields 
+						inputData= {state.name}
+						id= {'name'}
+						change= {(element,id) => updateInput(element,id)}
+						ref={inputRef}
+					/>
+					<InputFields 
+						inputData= {state.breed}
+						id= {'breed'}
+						change= {(element,id) => updateInput(element,id)}
+						ref={inputRef}
+					/>
+
+					<InputFields 
+						inputData= {state.type}
+						id= {'type'}
+						change= {(element,id) => updateInput(element,id)}
+						ref={inputRef}
+					/>
+
+					<InputFields 
+						inputData= {state.size}
+						id= {'size'}
+						change= {(element,id) => updateInput(element,id)}
+						ref={inputRef}
+					/>
+
+					<InputFields 
+						inputData= {state.owner}
+						id= {'owner'}
+						change= {(element,id) => updateInput(element,id)}
+						ref={inputRef}
+						options= {optionsList}
+					/>
 
 					<div className="form-group">
-						<label htmlFor="breed">Pet Breed</label>
-						<input 
-							type="text" 
-							name='breed'
-							className="form-control"
-							value={ values.breed }
-							onChange={ handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.validationError.message }
-						</div>
-					</div>
-
-					<div className="form-group">
-						<label htmlFor="type">Pet Type</label>
-						<input 
-							type="text" 
-							name='type'
-							className="form-control"
-							value={ values.type }
-							onChange={ handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.validationError.message }
-						</div>
-					</div>
-
-					<div className="form-group">
-						<label htmlFor="size">Pet Size</label>
-						<input 
-							type="text" 
-							name='size'
-							className="form-control"
-							value={ values.size }
-							onChange={ handleChange }
-							/>
-						<div className="invalid-feedback">
-							{ gState.validationError.message }
-						</div>
-					</div>
-
-					<div className="form-group">
-						<label htmlFor="owner">Pet Owner</label>
-						<div className="input-group mb-3">
-							<select className='custom-select form-control' name='owner' id='owner'>
-								<option>Select Owner...</option>
-								{owners().map(owner => (
-								<option key={owner._id} value={owner._id}>{ owner.firstname } { owner.lastname }</option>
-								))}
-							</select>
-						</div>
-					</div>
-
-					<div className="form-group">
-						<button className='btn btn-primary btn-sm '>Add Pet</button>
+						<button className='btn btn-primary btn-sm' type='submit' >Add User</button>
 					</div>
 				</form>
 			</div>
@@ -106,4 +206,4 @@ function Users() {
 	)
 }
 
-export default Users
+export default CreateUser
