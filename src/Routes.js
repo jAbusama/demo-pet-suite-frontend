@@ -22,7 +22,7 @@ import storage from 'store'
 const adminRoutes = [
 	{
 		key       : 'home',
-		path      : '/',
+		path      : '/manage',
 		icon      : 'fa fa-home',
 		label     : 'Dashboard',
 		exact     : true,
@@ -31,7 +31,7 @@ const adminRoutes = [
 
 	{
 		key       : 'users',
-		path      : '/users',
+		path      : '/manage/users',
 		icon      : 'fas fa-users',
 		label     : 'Users',
 		component : Users
@@ -39,7 +39,7 @@ const adminRoutes = [
 
 	{
 		key       : 'pets',
-		path      : '/pets',
+		path      : '/manage/pets',
 		icon      : 'fas fa-paw',
 		label     : 'Pets',
 		component : Pets
@@ -47,21 +47,21 @@ const adminRoutes = [
 
 	{
 		key       : 'booking',
-		path      : '/bookings',
+		path      : '/manage/bookings',
 		icon      : 'fas fa-book-open',
 		label     : 'Booking',
 		component : Bookings
 	},
 	{
 		key:	'rooms',
-		path: '/rooms',
+		path: '/manage/rooms',
 		icon: 'fas fa-door-open',
 		label: 	'Rooms',
 		component: AdminRooms
 	},
 	{
 		key:	'blogs',
-		path: '/blogs',
+		path: '/manage/blogs',
 		icon: 'fab fa-blogger',
 		label: 	'Blogs',
 		component: AdminBlog
@@ -71,7 +71,7 @@ const adminRoutes = [
 const employeeRoutes = [
 	{
 		key       : 'home',
-		path      : '/',
+		path      : '/manage',
 		icon      : 'fa fa-home',
 		label     : 'Home',
 		exact     : true,
@@ -80,7 +80,7 @@ const employeeRoutes = [
 
 	{
 		key       : 'pets',
-		path      : '/pets',
+		path      : '/manage/pets',
 		icon      : 'fas fa-paw',
 		label     : 'Pets',
 		component : Pets
@@ -88,7 +88,7 @@ const employeeRoutes = [
 
 	{
 		key       : 'booking',
-		path      : '/bookings',
+		path      : '/manage/bookings',
 		icon      : 'fas fa-book-open',
 		label     : 'Booking',
 		component : Bookings

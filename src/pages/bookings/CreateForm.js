@@ -103,7 +103,9 @@ function CreateUser() {
 	}
 
 	const petOptions = () => {
-		const pets = gStates.pets.filter(pet => pet.owner._id === state.owner.value)
+		const pets = gStates.pets.filter(pet => {
+			return pet.owner != null ? pet.owner._id === state.owner.value : null; 
+		})
 		const newPets = pets.map(pet => {
 				return { val: pet._id, text: `${pet.name}` }
 			}
@@ -145,25 +147,6 @@ function CreateUser() {
 		}
 	}
 
-	const notificationState = () => {
-		let id = 'error';
-		let message = '';
-		if(gStates.success.trim() !== '') {
-			id = 'success'
-			message = gStates.success;
-		}
-		else if(gStates.error.trim() !== '') {
-			id= 'error'
-			message = gStates.error;
-		}
-		else {
-			id = 'warning'
-			message = gStates.warning;
-		}
-		return [id, message]
-	}
-
-	const [notfId, notfMessage] = notificationState()
 	const notfStatus = () => {
 			setNotf(false);
 	}
@@ -171,7 +154,7 @@ function CreateUser() {
 	return (
 		<React.Fragment>
 			<div className="drawer-body">
-				{notf && <Notification id={notfId} message={notfMessage} isDone={notfStatus} />}
+				{notf && <Notification state={gStates.notificationMessage} isDone={notfStatus} />}
 				<form onSubmit={formSubmit}>
 						<InputFields 
 							inputData= {state.owner}

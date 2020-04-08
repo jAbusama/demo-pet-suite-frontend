@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import TextFieldGroup from '../../components/common/TextFieldGroup'
+import Notification from '../../components/Notification'
 import { useForm }  from '../useForm'
 import { Link } from 'react-router-dom'
 import useGlobal from '../../services/useGlobal'
@@ -15,12 +16,19 @@ function Register({ history }) {
   }
 
   const [ values, handleChange ] = useForm(initValues)
-  const [ gState, gActions ] = useGlobal()
+  const [ gStates, gActions ] = useGlobal()
+  const [notf, setNotf] = useState(false);
 
-  const register = (e) => {
+  const register = async(e) => {
     e.preventDefault()
-    gActions.register(values)
-    history.push('/login')
+    const res = await gActions.register(values, history)
+    if(res){
+      history.push('/login');
+    }
+    else {
+      setNotf(true);
+    }    
+    
   }
 
   const styles = {
@@ -30,10 +38,13 @@ function Register({ history }) {
     }
   }
 
+  const notfStatus = () => {
+    setNotf(false);
+  }
+
   return (
     <div className='form'>
-      <div className="notification">
-      </div>
+      {notf && <Notification state={gStates.notificationMessage} isDone={notfStatus} />}
       <form onSubmit={ register } >
         <h1>Register</h1>
 

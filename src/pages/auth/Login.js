@@ -12,29 +12,35 @@ function Login({history}) {
     email    : '',
     password : ''
   }
+  
+  const [gStates, gActions] = useGlobal()
 
-  
-  const [gState, gActions] = useGlobal()
-  const isLogin = storage.get('isLogin')
-  useEffect(() => {
-    console.log('Login is rendered')
-    // let unmounted = false
-    // if(unmounted) {
-    //   if(isLogin){
-    //     history.push('/')
-    //   }
-    // }
-   
-    return () => console.log('Login is unmounted')
-  },[])
-  
+  const initNotf = () => {
+    if(gStates.notificationMessage.success.trim() !== "" || gStates.notificationMessage.error.trim() !== "") {
+      return true;
+    }
+    return false;
+  }
+
+  const [notf, setNotf] = useState(initNotf());
   const [values, handleChange, data] = useForm(initialState)
-
-  const logIn = (e) => {
+  
+  const signIn = async(e) => {
     e.preventDefault()
-    const res = gActions.login(values, history)
-    if(!res ){
-      
+    const res = await gActions.login(values, history)
+    
+    if(res){
+      const user = storage.get('user');
+      console.log(user);
+      if(user.role === 'manager' || user.role ==='employee') {
+        history.push('/manage');
+      }
+      else {
+        history.push('/');
+      }
+    }
+    else {
+      setNotf(true);
     }
   }
 
@@ -45,10 +51,15 @@ function Login({history}) {
     }
   }
 
+  const notfStatus = () => {
+    console.log('test');
+    setNotf(false);
+  }
+
   return (
-    
     <div className='form'>
-      <form onSubmit={ logIn }>
+      {notf && <Notification state={gStates.notificationMessage} isDone={notfStatus} />}
+      <form onSubmit={ signIn }>
         <h1 className='heading'>PetSuite</h1>
         <TextFieldGroup 
           type='text'

@@ -1,8 +1,19 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Notification from '../../components/Notification'
 import InputFields from '../../wigets/Forms/InputFields'
 import useGlobal from '../../services/useGlobal'
 function CreateUser() {
+
+	useEffect(() => {
+		console.log('Form is rendered')
+		// let unmounted = false
+		// if(unmounted) {
+		//   if(isLogin){
+		//     history.push('/')
+		//   }
+		// }
+	   
+	  },[])
 
 	const inputData ={
 		firstname: {
@@ -144,33 +155,14 @@ function CreateUser() {
 		}
 	}
 
-	const notificationState = () => {
-		let id = 'error';
-		let message = '';
-		if(gStates.success.trim() !== '') {
-			id = 'success'
-			message = gStates.success;
-		}
-		else if(gStates.error.trim() !== '') {
-			id= 'error'
-			message = gStates.error;
-		}
-		else {
-			id = 'warning'
-			message = gStates.warning;
-		}
-		return [id, message]
-	}
-
-	const [notfId, notfMessage] = notificationState()
 	const notfStatus = () => {
-			setNotf(false);
+		setNotf(false);
 	}
 
 	return (
 		<React.Fragment>
 			<div className="drawer-body">
-				{notf && <Notification id={notfId} message={notfMessage} isDone={notfStatus} />}
+				{notf && <Notification state={gStates.notificationMessage} isDone={notfStatus} />}
 				<form onSubmit={formSubmit}>
 					<div className="form-row">
 						<InputFields 

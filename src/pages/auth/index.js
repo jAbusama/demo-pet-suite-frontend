@@ -12,9 +12,7 @@ export function Login({history}) {
     <div className='row login-front'>
       { background }
       <div className='col-4 mt-2'>
-        
         { homeButton }
-
         <div className='d-flex justify-content-center auth-form'>
           <LoginPage history={history}/>
         </div>
@@ -24,7 +22,7 @@ export function Login({history}) {
   )
 }
 
-export function Register(props) {
+export function Register({history}) {
   return (
     <div className='row login-front'>
       { background }
@@ -34,7 +32,7 @@ export function Register(props) {
         { homeButton }
 
         <div className='d-flex justify-content-center auth-form'>
-          <RegisterPage />
+          <RegisterPage history={history} />
         </div>
 
       </div>
