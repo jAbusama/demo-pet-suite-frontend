@@ -61,30 +61,10 @@ function CreateUser() {
 		return list;
 	}
 
-	const notificationState = () => {
-		let id = 'error';
-		let message = '';
-		if(gStates.success.trim() !== '') {
-			id = 'success'
-			message = gStates.success;
-		}
-		else if(gStates.error.trim() !== '') {
-			id= 'error'
-			message = gStates.error;
-		}
-		else {
-			id = 'warning'
-			message = gStates.warning;
-		}
-		return [id, message]
-	}
-
 	const inputRef = useRef();
 	const [notf, setNotf] = useState(false);
 	const [gStates, gActions] = useGlobal();
 	const [state, setState] = useState(inputData);
-	const [notfId, notfMessage] = notificationState()
-
 
 	const updateInput = (element, id) => {
 		setState({...state, [id]: element})
@@ -143,7 +123,7 @@ function CreateUser() {
 	return (
 		<React.Fragment>
 			<div className="drawer-body">
-				{notf && <Notification id={notfId} message={notfMessage} isDone={notfStatus} />}
+				{notf && <Notification state={gStates.notificationMessage} isDone={notfStatus} />}
 				<form onSubmit={formSubmit}>
 					<InputFields 
 						inputData= {state.type}
