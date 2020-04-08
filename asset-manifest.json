@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/demo-pet-suite-frontend/static/css/main.0718551c.chunk.css",
+    "main.js": "/demo-pet-suite-frontend/static/js/main.822cdc26.chunk.js",
+    "main.js.map": "/demo-pet-suite-frontend/static/js/main.822cdc26.chunk.js.map",
+    "runtime-main.js": "/demo-pet-suite-frontend/static/js/runtime-main.7f88b4d4.js",
+    "runtime-main.js.map": "/demo-pet-suite-frontend/static/js/runtime-main.7f88b4d4.js.map",
+    "static/css/2.47830b25.chunk.css": "/demo-pet-suite-frontend/static/css/2.47830b25.chunk.css",
+    "static/js/2.e538ba5c.chunk.js": "/demo-pet-suite-frontend/static/js/2.e538ba5c.chunk.js",
+    "static/js/2.e538ba5c.chunk.js.map": "/demo-pet-suite-frontend/static/js/2.e538ba5c.chunk.js.map",
+    "index.html": "/demo-pet-suite-frontend/index.html",
+    "precache-manifest.b1cbf155b57b7518dc55956dcda0d1e0.js": "/demo-pet-suite-frontend/precache-manifest.b1cbf155b57b7518dc55956dcda0d1e0.js",
+    "service-worker.js": "/demo-pet-suite-frontend/service-worker.js",
+    "static/css/2.47830b25.chunk.css.map": "/demo-pet-suite-frontend/static/css/2.47830b25.chunk.css.map",
+    "static/css/main.0718551c.chunk.css.map": "/demo-pet-suite-frontend/static/css/main.0718551c.chunk.css.map",
+    "static/media/bg.jpg": "/demo-pet-suite-frontend/static/media/bg.b17141ba.jpg",
+    "static/media/big_image_1.jpg": "/demo-pet-suite-frontend/static/media/big_image_1.5f9e2bad.jpg",
+    "static/media/f_img_1.png": "/demo-pet-suite-frontend/static/media/f_img_1.478bf5d6.png",
+    "static/media/img_1.jpg": "/demo-pet-suite-frontend/static/media/img_1.434189d6.jpg",
+    "static/media/img_2.jpg": "/demo-pet-suite-frontend/static/media/img_2.f588ed9c.jpg",
+    "static/media/img_3.jpg": "/demo-pet-suite-frontend/static/media/img_3.612e7615.jpg",
+    "static/media/public.css": "/demo-pet-suite-frontend/static/media/img_5.2bac5d2e.jpg",
+    "static/media/img_6.jpg": "/demo-pet-suite-frontend/static/media/img_6.51eacf80.jpg",
+    "static/media/person_1.jpg": "/demo-pet-suite-frontend/static/media/person_1.7b2e984f.jpg",
+    "static/media/person_2.jpg": "/demo-pet-suite-frontend/static/media/person_2.e902842d.jpg",
+    "static/media/person_3.jpg": "/demo-pet-suite-frontend/static/media/person_3.a474e1fc.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7f88b4d4.js",
+    "static/css/2.47830b25.chunk.css",
+    "static/js/2.e538ba5c.chunk.js",
+    "static/css/main.0718551c.chunk.css",
+    "static/js/main.822cdc26.chunk.js"
+  ]
+}
