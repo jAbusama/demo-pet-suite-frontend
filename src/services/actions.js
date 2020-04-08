@@ -5,31 +5,43 @@ import { Redirect } from 'react-router-dom'
 const actions = {
   login : async (store, user, history) => {
 		const res = await apiRequest('POST', 'login', user)
-		console.log(res)
-		if(res.status === 200){
+		if(typeof(res) === 'undefined') {
+			store.setState({
+				isLoading: false,
+				notificationMessage: {
+					success: '',
+					error: "Connection Problem",
+					warning: ''
+				}
+			})
+			return false
+		}
+		if(res.data.status){
 			storage.set('isLogin', true)
 			storage.set('user', res.data.user)
 			storage.set('token', res.data.token)
-			if(res.data.user.role === 'manager'){
-				store.setState({ user: res.data.user, token: res.data.token, isLogin: true, loginLoaded: true } )
-				history.push('/')
-			}
-			else if(res.data.user.role === 'employee') {
-				store.setState({  user: res.data.user, token: res.data.token, isLogin: true, loginLoaded: true })
-				history.push('/')
-			}
-			else {
-				store.setState({  user: res.data.user, token: res.data.token, isLogin: true, loginLoaded: true })
-				history.push('/')
-			}
-			return true
+			store.setState({ 
+				user: res.data.user,
+				token: res.data.token,
+				isLogin: true,
+				loginLoaded: true,
+				notificationMessage: {
+					error: '',
+					success: res.data.message,
+					warning: ''
+				} 
+			})
+			return true;
 		}
-		else {
-			console.log(res.data)
-			await store.setState({ error: res.data.message, notificationsLoaded: false})
-			return false
-		}
-		// console.log(res.data)
+		store.setState({
+			isLoading: false,
+			notificationMessage: {
+				success: '',
+				error: res.data.message,
+				warning: ''
+			}
+		})
+		return false
 	},
 
 	getLogin: async(store) => {
@@ -53,13 +65,31 @@ const actions = {
 		}
 	},
 
-	register: async (store, user, props ) => {
-		const res = await apiRequest('POST', 'register', user)
-		if(res.status) {
-			// props.history.push('/')
+	register: async (store, user, history) => {
+		const res = await apiRequest('POST', 'users', user)
+		if(res.data.status){
+			console.log(res.data);
+			store.actions.getUsers();
+			store.setState({
+				isLoading: false,
+				notificationMessage: {
+					success: res.data.message, 
+					error: '', 
+					warning: ''
+				}
+			})
+			return true;
 		}
-		console.log(res.data)
-		// await store.setState({ validationError: res.data.err })
+		console.log('error: ', res.data);
+		store.setState({
+			isLoading: false,
+			notificationMessage: {
+				success: '',
+				error: res.data.message,
+				warning: ''
+			}
+		})
+		return false;
 	},
 
 	getUsers: async(store) => {
@@ -76,14 +106,28 @@ const actions = {
 
 	createUser: async(store, user) => {
 		const res = await apiRequest('POST', 'users', user)
-		if(res.status){
+		if(res.data.status){
 			console.log(res.data);
-			await store.actions.getUsers();
-			await store.setState({isLoading: false, success: res.data.message, error: '', warning: ''})
+			store.actions.getUsers();
+			store.setState({
+				isLoading: false,
+				notificationMessage: {
+					success: res.data.message, 
+					error: '', 
+					warning: ''
+				}
+			})
 			return true;
 		}
 		console.log('error: ', res.data);
-		await store.setState({ isLoading: false, error: res.data.message, success: '', warning: '' })
+		store.setState({
+			isLoading: false,
+			notificationMessage: {
+				success: '',
+				error: res.data.message,
+				warning: ''
+			}
+		})
 		return false;
 	},
 
@@ -97,35 +141,55 @@ const actions = {
 
 	getPets: async(store) => {
 		const res = await apiRequest('GET', 'pets')
-		if(res.status) {
-			if(res.data.pets.length !==0) {
-				await store.setState({ pets: res.data.pets, isLoading: false, petsLoaded: true })
-			}
+		if(res.data.status) {
+			store.setState({ pets: res.data.pets, isLoading: false, petsLoaded: true })
 		}
 		else {
-			await store.setState({ isLoading: false, error: res.data.message })
+			store.setState({
+				isLoading: false,
+				notificationMessage: { 
+					success: '', 
+					error: res.data.message, 
+					warning: ''}
+			})
 			console.log('error: ', res.data)
+			return false;
+			
 		}
 	},
 
 	createPet: async(store, pet) => {
 		const res = await apiRequest('POST', 'pets', pet)
-		if(res.status){
+		if(res.data.status){
 			console.log(res.data);
-			await store.actions.getPets();
-			await store.setState({isLoading: false, success: res.data.message, error: '', warning: ''})
+			 store.actions.getPets();
+			 store.setState({
+				 isLoading: false,
+				 notificationMessage: { 
+					 success: res.data.message,
+					 error: '',
+					 warning: ''		
+				}
+			})
 			return true;
 		}
 		console.log('error: ', res.data);
-		await store.setState({ isLoading: false, error: res.data.message, success: '', warning: '' })
+		 store.setState({ 
+			isLoading: false,
+			notificationMessage: {
+				success: '',
+				error: res.data.message,
+				warning: ''
+			}
+		})
 		return false;
 	},
 
 	getBookings: async(store) => {
 		const res = await apiRequest('GET', 'bookings')
-		if(res.status) {
+		if(res.data.status) {
 			if(res.data.bookings.length !==0) {
-				await store.setState({ bookings: res.data.bookings, isLoading: false, bookingsLoaded: true })
+				store.setState({ bookings: res.data.bookings, isLoading: false, bookingsLoaded: true })
 			}
 		}
 		else {
@@ -137,20 +201,30 @@ const actions = {
 			Authorization : `Bearer ${storage.get('token')}`
 		}
 		const res = await apiRequest('POST', 'bookings', data, header)
-		console.log(res);  
 		if(res.status){
-			console.log(res.data);
 			await store.actions.getBookings();
-			await store.setState({isLoading: false, success: res.data.message, error: '', warning: ''})
-			return true;
+			store.setState({
+				isLoading: false,
+				notificationMessage: { 
+					success: res.data.message,
+					error: '',
+					warning: ''		
+			   }
+		   })
+		   return true;
 		}
-		console.log('error: ', res.data);
-		await store.setState({ isLoading: false, error: res.data.message, success: '', warning: '' })
+		 store.setState({ 
+			isLoading: false,
+			notificationMessage: {
+				success: '',
+				error: res.data.message,
+				warning: ''
+			}
+		})
 		return false;
 	},
 
 	getUserPets: async(store, id) => {
-		console.log(id)
 		const res = await apiRequest('GET', `user-pets/${id}`)
 		if(res.status){
 			await store.setState({ userPets: res.data.pets, userPetsLoaded: true })
@@ -175,13 +249,26 @@ const actions = {
 	createRoom: async(store, room) => {
 		const res = await apiRequest('POST', 'rooms', room)
 		console.log(res);
-		if(res.status === 200){
-			await store.setState({ isLoading: false, success: res.data.message, error: '', warning: '' });
-			store.actions.getRooms();
-			return true;
+		if(res.status){
+			await store.actions.getRooms();
+			store.setState({
+				isLoading: false,
+				notificationMessage: { 
+					success: res.data.message,
+					error: '',
+					warning: ''		
+			   }
+		   })
+		   return true;
 		}
-		console.log('error: ', res.data);
-		await store.setState({ isLoading: false, error: res.data.message, success: '', warning: '' })
+		 store.setState({ 
+			isLoading: false,
+			notificationMessage: {
+				success: '',
+				error: res.data.message,
+				warning: ''
+			}
+		})
 		return false;
 	},
 
@@ -200,12 +287,25 @@ const actions = {
 	createBlog: async(store, blog) => {
 		const res = await apiRequest('POST', 'blogs', blog)
 		if(res.status){
-			await store.setState({ isLoading: false, success: res.data.message, error: '', warning: '' });
 			await store.actions.getBlogs();
-			return true;
+			store.setState({
+				isLoading: false,
+				notificationMessage: { 
+					success: res.data.message,
+					error: '',
+					warning: ''		
+			   }
+		   })
+		   return true;
 		}
-		console.log('error: ', res);
-		await store.setState({ isLoading: false, error: res.data.message, success: '', warning: '' })
+		 store.setState({ 
+			isLoading: false,
+			notificationMessage: {
+				success: '',
+				error: res.data.message,
+				warning: ''
+			}
+		})
 		return false;
 	},
 
