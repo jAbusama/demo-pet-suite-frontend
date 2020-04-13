@@ -60,7 +60,7 @@ function Login({history}) {
     <div className='form'>
       {notf && <Notification state={gStates.notificationMessage} isDone={notfStatus} />}
       <form onSubmit={ signIn }>
-        <h1 className='heading'>PetSuite</h1>
+        <h1 className='heading'>Login</h1>
         <TextFieldGroup 
           type='text'
           field='email'

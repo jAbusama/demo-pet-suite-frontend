@@ -11,12 +11,11 @@ export function Login({history}) {
   return (
     <div className='row login-front'>
       { background }
-      <div className='col-4 mt-2'>
+      <div className='col-xs-9 col-sm-8 col-md-4 m-auto p-0'>
+        <div className='auth-form'>
         { homeButton }
-        <div className='d-flex justify-content-center auth-form'>
           <LoginPage history={history}/>
         </div>
-
       </div>
     </div>
   )
@@ -26,14 +25,11 @@ export function Register({history}) {
   return (
     <div className='row login-front'>
       { background }
-
-      <div className='col-4 mt-2'>
-        
-        { homeButton }
-
-        <div className='d-flex justify-content-center auth-form'>
-          <RegisterPage history={history} />
-        </div>
+      <div className='col-xs-9 col-sm-8 col-md-4 m-auto m-sx-5'>
+          <div className='auth-form'>
+          { homeButton }
+            <RegisterPage history={history} />
+          </div>
 
       </div>
     </div>
@@ -41,8 +37,69 @@ export function Register({history}) {
 }
 
 const background = (
-  <div className='col auth-bg'>
-    <img src={bg} alt='dogs-in-the-basket' className='bg-auth' />
+  <div className="col px-0 bg-img d-flex align-items-center">
+    <div className="row justify-content-center">
+      <div className="col-lg-5 d-flex align-items-center">
+        <div className='py-5 text-center text-lg-left'>
+        <span className="badge badge-soft-primary badge-pill">Be stronger</span>
+          <h2 className="h1 text-white mb-3">
+            Pet Suite Love your Pet
+          </h2>
+          <p className="lead 1h-180 text-white">
+            Build responsive, mobile-first projects on the web with the world's most popular front-end component library.
+          </p>
+        </div>
+      </div>
+
+      <div className="col-lg-6 d-none d-lg-block">
+        <div className="card mt-7 mb-0 py-3 px-3 shadow-lg perspective-right hover-scale-110">
+        <div class="card-body">
+                <h2 class="heading h2">
+                  <strong>Experience</strong> the greatest pet care.
+                </h2>
+                <p class="lead lh-180 mt-4">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.</p>
+                <ul class="list-unstyled mt-4">
+                  <li class="py-2">
+                    <div class="d-flex align-items-center">
+                      <div>
+                        <div class="icon icon-shape icon-primary icon-sm rounded-circle mr-3">
+                          <i class="fas fa-store-alt"></i>
+                        </div>
+                      </div>
+                      <div>
+                        <span class="h6 mb-0">Perfect for modern startups</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="py-2">
+                    <div class="d-flex align-items-center">
+                      <div>
+                        <div class="icon icon-shape icon-warning icon-sm rounded-circle mr-3">
+                          <i class="fas fa-palette"></i>
+                        </div>
+                      </div>
+                      <div>
+                        <span class="h6 mb-0">Built with ease-of-use at its core</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="py-2">
+                    <div class="d-flex align-items-center">
+                      <div>
+                        <div class="icon icon-shape icon-success icon-sm rounded-circle mr-3">
+                          <i class="fas fa-cog"></i>
+                        </div>
+                      </div>
+                      <div>
+                        <span class="h6 mb-0">Quality design that is meant to last</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+        </div>
+      </div>
+    </div>
   </div>
 )
 
