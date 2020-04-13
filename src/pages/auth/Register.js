@@ -46,11 +46,11 @@ function Register({ history }) {
     <div className='form'>
       {notf && <Notification state={gStates.notificationMessage} isDone={notfStatus} />}
       <form onSubmit={ register } >
-        <h1>Register</h1>
+        <h1 className="heading" >Register</h1>
 
         <div className="form-row">
           <TextFieldGroup 
-            addClass = 'col-lg-6 col-md-12'
+            addClass= 'col-6'
             field= 'firstname'
             value= {values.firstname}
             onChange= {handleChange}
@@ -58,7 +58,7 @@ function Register({ history }) {
           /> 
 
           <TextFieldGroup 
-            addClass = 'col-lg-6 col-md-12'
+            addClass= 'col-6'
             field= 'lastname'
             value= {values.lastname}
             onChange= {handleChange}
