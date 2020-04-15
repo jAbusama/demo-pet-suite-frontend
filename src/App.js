@@ -19,7 +19,7 @@ function App() {
   },[])
   
   return (
-      <Router>
+      <Router basename={window.location.pathname || ''}>
         <div className='App'>
           <Switch>
             { routeLinks().map(route => <Route {...route} />) }
