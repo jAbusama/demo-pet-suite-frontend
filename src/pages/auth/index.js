@@ -53,45 +53,45 @@ const background = (
 
       <div className="col-lg-6 d-none d-lg-block">
         <div className="card mt-7 mb-0 py-3 px-3 shadow-lg perspective-right hover-scale-110">
-        <div class="card-body">
-                <h2 class="heading h2">
+        <div className="card-body">
+                <h2 className="heading h2">
                   <strong>Experience</strong> the greatest pet care.
                 </h2>
-                <p class="lead lh-180 mt-4">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.</p>
-                <ul class="list-unstyled mt-4">
-                  <li class="py-2">
-                    <div class="d-flex align-items-center">
+                <p className="lead lh-180 mt-4">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.</p>
+                <ul className="list-unstyled mt-4">
+                  <li className="py-2">
+                    <div className="d-flex align-items-center">
                       <div>
-                        <div class="icon icon-shape icon-primary icon-sm rounded-circle mr-3">
-                          <i class="fas fa-store-alt"></i>
+                        <div className="icon icon-shape icon-primary icon-sm rounded-circle mr-3">
+                          <i className="fas fa-store-alt"></i>
                         </div>
                       </div>
                       <div>
-                        <span class="h6 mb-0">Perfect for modern startups</span>
+                        <span className="h6 mb-0">Perfect for modern startups</span>
                       </div>
                     </div>
                   </li>
-                  <li class="py-2">
-                    <div class="d-flex align-items-center">
+                  <li className="py-2">
+                    <div className="d-flex align-items-center">
                       <div>
-                        <div class="icon icon-shape icon-warning icon-sm rounded-circle mr-3">
-                          <i class="fas fa-palette"></i>
+                        <div className="icon icon-shape icon-warning icon-sm rounded-circle mr-3">
+                          <i className="fas fa-palette"></i>
                         </div>
                       </div>
                       <div>
-                        <span class="h6 mb-0">Built with ease-of-use at its core</span>
+                        <span className="h6 mb-0">Built with ease-of-use at its core</span>
                       </div>
                     </div>
                   </li>
-                  <li class="py-2">
-                    <div class="d-flex align-items-center">
+                  <li className="py-2">
+                    <div className="d-flex align-items-center">
                       <div>
-                        <div class="icon icon-shape icon-success icon-sm rounded-circle mr-3">
-                          <i class="fas fa-cog"></i>
+                        <div className="icon icon-shape icon-success icon-sm rounded-circle mr-3">
+                          <i className="fas fa-cog"></i>
                         </div>
                       </div>
                       <div>
-                        <span class="h6 mb-0">Quality design that is meant to last</span>
+                        <span className="h6 mb-0">Quality design that is meant to last</span>
                       </div>
                     </div>
                   </li>

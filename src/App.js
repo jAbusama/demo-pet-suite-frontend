@@ -19,10 +19,10 @@ function App() {
   },[])
   
   return (
-      <Router basename={window.location.pathname || ''}>
+      <Router>
         <div className='App'>
           <Switch>
-            { routeLinks().map(route => <Route {...route} />) }
+            { routeLinks.map(route => <Route {...route} />) }
           </Switch>
         </div>
       </Router>
