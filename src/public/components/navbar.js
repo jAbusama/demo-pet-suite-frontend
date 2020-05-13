@@ -39,7 +39,7 @@ function Navbar({history}) {
     <React.Fragment>
       <nav className={`navbar navbar-expand-lg navbar-dark bg-dark fixed-top pt-5 ${ scrolled && 'shrink' } `}>
         <div className='container'>
-          <Link to='/' href="" className="navbar-brand">Logo</Link>
+          <Link to='/' href="" className="navbar-brand" id="navbar-logo">Logo</Link>
           <button
             className='navbar-toggler'
             type='button'
