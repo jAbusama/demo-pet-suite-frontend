@@ -22,7 +22,7 @@ function App() {
       <Router>
         <div className='App'>
           <Switch>
-            { routeLinks().map(route => <Route {...route} />) }
+            { routeLinks.map(route => <Route {...route} />) }
           </Switch>
         </div>
       </Router>
