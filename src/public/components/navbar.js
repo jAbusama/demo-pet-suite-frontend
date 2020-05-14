@@ -7,15 +7,13 @@ import routeLinks from '../../Routes';
 function Navbar({history}) {
 
   const [scrolled, setScrolled] = useState(false)
-  const [gState, gActions] = useGlobal()
-  const user = storage.get('user')
+  const [gStates, gActions] = useGlobal()
   const isLogin = storage.get('isLogin')
 
 
   useEffect(() => {
     window.addEventListener('scroll', attachEvent )
     return () => {
-      console.log('unmount')
       window.removeEventListener('scroll', attachEvent )
     }
   },[])

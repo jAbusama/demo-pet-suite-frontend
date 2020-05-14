@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import useGlobal from '../../services/useGlobal'
 import { Link } from 'react-router-dom'
 import Notification from '../../components/Notification'
@@ -28,10 +28,8 @@ function Login({history}) {
   const signIn = async(e) => {
     e.preventDefault()
     const res = await gActions.login(values, history)
-    
     if(res){
       const user = storage.get('user');
-      console.log(user);
       if(user.role === 'manager' || user.role ==='employee') {
         history.push('/manage');
       }
@@ -52,7 +50,6 @@ function Login({history}) {
   }
 
   const notfStatus = () => {
-    console.log('test');
     setNotf(false);
   }
 
@@ -114,6 +111,14 @@ function Login({history}) {
                </Link>
                </u> here
           </small>
+        </div>
+        <div>
+          { 
+            gStates.isLogin ? 
+              null
+              :
+              gStates.isLoading ? 'Loading...' : ''
+          }
         </div>
         <div className="text-center">
           <button type='submit' className='btn btn-primary '>

@@ -8,7 +8,7 @@ import './App.css'
 function App() {
 
   // storage.clearAll()
-  const [gState, gActions] = useGlobal()
+  const [gStates, gActions] = useGlobal()
   let isLogin = storage.get('isLogin')
   let user = storage.get('user')
   
