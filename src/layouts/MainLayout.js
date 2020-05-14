@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Nav from '../components/Nav'
 import Sidebar from '../components/Sidebar'
 import useGlobal from '../services/useGlobal'
@@ -9,10 +9,6 @@ function MainLayout({ history, children }) {
 	const [ gStates ] = useGlobal()
 
 	const isToggle = gStates.isToggle
-	
-	useEffect(() => {
-		return () => console.log('unmount')
-	},[])
 
 	return (
 		<div className="container-fluid">

@@ -2,10 +2,13 @@ import React from 'react'
 import useGlobal from '../services/useGlobal'
 import { NavLink } from 'react-router-dom'
 import routeLinks from '../Routes'
+import storage  from 'store'
 
 function Sidebar() {
 
-  const [ gStates, gActions ] = useGlobal();
+  const [gStates, gActions] = useGlobal();
+  const user = storage.get('user')
+
   return (
       <div className="sidebar-content sticky-top">
         <div className='d-flex align-items-center text-center sidebar-header'>
@@ -18,18 +21,21 @@ function Sidebar() {
         </div>
         <ul className="nav flex-column sidebar-nav-list p-2">
           {
-            routeLinks().map(link => (
-              <li className='nav-item ' key={link.key} >
-                <NavLink 
-                  style={{ textDecoration: 'none' }}  
-                  exact
-                  activeClassName='selected' 
-                  className='nav-link'
-                  to={link.path} > 
-                    <i className={link.icon}></i>
-                    <span>{link.label}</span>
-                </NavLink>
-              </li>
+            routeLinks.map(link => (
+              link.accessLabel === user.role ?
+                <li className='nav-item ' key={link.key} >
+                  <NavLink 
+                    style={{ textDecoration: 'none' }}  
+                    exact
+                    activeClassName='selected' 
+                    className='nav-link'
+                    to={link.path} > 
+                      <i className={link.icon}></i>
+                      <span>{link.label}</span>
+                  </NavLink>
+                </li>
+              :
+              null
             ))
           }
         </ul>

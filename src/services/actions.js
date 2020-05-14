@@ -1,9 +1,9 @@
 import { apiRequest } from './api'
 import storage from 'store'
-import { Redirect } from 'react-router-dom'
 
 const actions = {
-  login : async (store, user, history) => {
+  login : async (store, user) => {
+		store.setState({isLoading: true})
 		const res = await apiRequest('POST', 'login', user)
 		if(typeof(res) === 'undefined') {
 			store.setState({
@@ -24,7 +24,6 @@ const actions = {
 				user: res.data.user,
 				token: res.data.token,
 				isLogin: true,
-				loginLoaded: true,
 				notificationMessage: {
 					error: '',
 					success: res.data.message,
@@ -40,23 +39,31 @@ const actions = {
 				error: res.data.message,
 				warning: ''
 			}
-		})
+		})		
 		return false
 	},
 
 	getLogin: async(store) => {
-		await store.setState({user: storage.get('user'), token: storage.get('token'), isLogin: storage.get('isLogin'),
-		routeLinks: storage.get('routeLinks'), loginLoaded: true })
+		await store.setState({
+			user: storage.get('user'), 
+			token: storage.get('token'), 
+			isLogin: storage.get('isLogin'),
+		})
 	},
 	
 	logout: async(store, props) => {
+		store.setState({ isLoading: true })
 		const res = await apiRequest('GET', 'logout')
 		if(res.status) {
 			storage.clearAll()
 			storage.set('isLogin', false)
-			store.setState({ user: [], token: '', isLogin: false })
+			store.setState({ 
+				user: [],
+				token: '',
+				isLogin: false,
+				isLoading: false
+			})
 			// props.history.push('/login')
-
 			return true
 		}
 		else {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import MainLayout from '../layouts/MainLayout'
 import SmallCard from '../components/common/dashboardCard/SmallCard'
 import MediumCard from '../components/common/dashboardCard/MediumCard'
@@ -7,12 +7,6 @@ import LargeCard2 from '../components/common/dashboardCard/LargeCard2'
 import ExtraSmallCard from '../components/common/dashboardCard/ExtraSmallCard'
 
 function Dashboard({history}) {
-	useEffect(() => {
-		console.log('dashboard rendered')
-		return () => {
-			console.log('dashboard unmouted')
-		}
-	})
 
 	const subData = {
 		hasData: true,

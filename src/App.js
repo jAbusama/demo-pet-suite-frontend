@@ -8,7 +8,7 @@ import './App.css'
 function App() {
 
   // storage.clearAll()
-  const [gState, gActions] = useGlobal()
+  const [gStates, gActions] = useGlobal()
   let isLogin = storage.get('isLogin')
   let user = storage.get('user')
   
@@ -22,7 +22,7 @@ function App() {
       <Router>
         <div className='App'>
           <Switch>
-            { routeLinks().map(route => <Route {...route} />) }
+            { routeLinks.map(route => <Route {...route} />) }
           </Switch>
         </div>
       </Router>

@@ -72,7 +72,7 @@ function CreateUser() {
 
 	const formSubmit = async(event) => {
 		event.preventDefault();
-		let dataToSubmit = {}
+		// let dataToSubmit = {}
 		let formIsValid = true;
 		let fd = new FormData();
 		for(let key in state) {
@@ -95,10 +95,6 @@ function CreateUser() {
 		}
 
 		if(formIsValid) {
-			// for(let image in state.images.value.values()) {
-			// 	console.log(image);
-			// }
-			console.log(fd);
 			
 			const res = await gActions.createRoom(fd);
 			if(res) {
