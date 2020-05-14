@@ -1,19 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import Notification from '../../components/Notification'
 import InputFields from '../../wigets/Forms/InputFields'
 import useGlobal from '../../services/useGlobal'
 function CreateUser() {
-
-	useEffect(() => {
-		console.log('Form is rendered')
-		// let unmounted = false
-		// if(unmounted) {
-		//   if(isLogin){
-		//     history.push('/')
-		//   }
-		// }
-	   
-	  },[])
 
 	const inputData ={
 		firstname: {

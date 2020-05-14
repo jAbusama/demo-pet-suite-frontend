@@ -6,8 +6,9 @@ import storage  from 'store'
 
 function Sidebar() {
 
-  const [ gStates, gActions ] = useGlobal();
+  const [gStates, gActions] = useGlobal();
   const user = storage.get('user')
+
   return (
       <div className="sidebar-content sticky-top">
         <div className='d-flex align-items-center text-center sidebar-header'>

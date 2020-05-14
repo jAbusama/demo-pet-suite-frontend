@@ -91,7 +91,7 @@ function CreateUser() {
 		if(!gStates.petsLoaded){
 			gActions.getPets()
 		}
-	},[])
+	})
 
 	const optionsList = () => {
 		const owners = gStates.users.filter(onwer => onwer.role === 'owner')
@@ -138,7 +138,6 @@ function CreateUser() {
 			const res = await gActions.bookPet(dataToSubmit);
 			if(res) {
 				setState(inputData);
-				console.log(state);
 				setNotf(true);
 			}
 			else {

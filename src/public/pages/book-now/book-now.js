@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import storage from 'store'
@@ -49,8 +49,6 @@ function BookNow({history}) {
 
   const userPets = gState.userPets
   
-  console.log(values)
-
   return(
     <PublicLayout history={ history }>
 
