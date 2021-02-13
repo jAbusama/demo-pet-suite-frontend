@@ -1,5 +1,5 @@
-
-#public html, body {
+#public html,
+body {
   padding: 0;
   margin: 0;
   background: #fff !important;
@@ -7,18 +7,23 @@
   font-weight: 300;
   font-family: 'Rubik', serif !important;
 }
-#public h1, h2, h3, h4, h5, h6 {
+#public h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #000;
-  font-family: "Playfair Display", serif;
-  margin-bottom: .5rem !important;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 0.5rem !important;
 }
-#public p{
+#public p {
   margin-top: 0;
   margin-bottom: 1rem;
 }
 #public .btn {
   padding: 12px 30px !important;
-  letter-spacing: .15em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 #public .btn-primary {
@@ -27,10 +32,12 @@
   border: 2px solid #b99365 !important;
   outline-color: #b99365;
 }
-button:focus, :active {
+button:focus,
+:active {
   outline: none !important;
 }
-.btn:focus, .btn:active {
+.btn:focus,
+.btn:active {
   outline: none !important;
   box-shadow: none !important;
 }
@@ -40,13 +47,12 @@ button:focus, :active {
 }
 #public .btn-outline-primary:focus {
   background: #b99365 !important;
-  color:  #fff
+  color: #fff;
 }
 #public header .btn-outline-primary {
-  color: #fff ;
+  color: #fff;
 }
 #public header .shrink .btn-outline-primary {
- 
   border-color: #fff;
 }
 #public header .shrink .btn-outline-primary:hover {
@@ -57,7 +63,7 @@ button:focus, :active {
   color: #fff !important;
   padding: 4px auto !important;
 }
-#public .dropdown-item:hover   {
+#public .dropdown-item:hover {
   overflow: hidden;
   background-color: #fff !important;
   color: #b99365 !important;
@@ -75,7 +81,7 @@ button:focus, :active {
   background-color: transparent;
 }
 #public .btn-outline-primary:hover {
-  background: #b99365 ;
+  background: #b99365;
   color: #fff;
 }
 #public .btn-primary:hover {
@@ -92,7 +98,7 @@ button:focus, :active {
   align-items: center !important;
   background-color: transparent !important;
   /* padding: 1.5rem 4rem 1.5rem 4rem !important; */
-  transition:all .7s ease;
+  transition: all 0.7s ease;
 }
 #public-header nav .navbar-brand {
   margin-bottom: 13px;
@@ -113,11 +119,12 @@ button:focus, :active {
   color: #fff;
   margin-bottom: 13px;
 }
-#public-header nav .nav-item .nav-link:hover {
+#public-header nav .nav-item .nav-link:hover,
+#public-header nav .nav-item .active {
   color: #ccc;
   border-bottom: 3px solid #fff;
   padding-bottom: 0;
-  transition: all .1s ease;
+  transition: all 0.1s ease;
 }
 #public-header .btn-outline-success {
   border: 2px solid #b99365;
@@ -133,8 +140,8 @@ button:focus, :active {
   background-color: rgba(185, 147, 101, 0.9) !important;
   padding-top: 16px !important;
   padding-bottom: 0 !important;
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 1s ease;
 }
 .banner-bg-img {
   width: 100%;
@@ -147,9 +154,8 @@ button:focus, :active {
 }
 .banner-bg-img .carousel-caption {
   top: 250px;
-  
 }
-.banner-bg-img .carousel-caption h1{
+.banner-bg-img .carousel-caption h1 {
   font-size: 38px;
   font-weight: 500;
   color: #fff !important;
@@ -168,7 +174,7 @@ button:focus, :active {
 .padding {
   padding: 7rem 0;
 }
-.rooms-entry .room-name { 
+.rooms-entry .room-name {
   color: #b99365;
 }
 .rooms-entry .entry-body {
@@ -186,7 +192,7 @@ button:focus, :active {
   margin: 0;
   padding: 0 20px 20px 0;
 }
-.rooms-entry .entry-body .room-specs li i{
+.rooms-entry .entry-body .room-specs li i {
   font-size: 20px;
   /* position: relative; */
   margin-right: 10px;
@@ -206,7 +212,7 @@ button:focus, :active {
   right: 0;
   bottom: 0;
   background: #000;
-  opacity: .5;
+  opacity: 0.5;
   content: '';
 }
 .rooms-entry figure .overlap-text {
@@ -222,7 +228,7 @@ button:focus, :active {
 #public-video-section {
   width: 100%;
   height: 500px !important;
-  background: url('../images/img_5.jpg') no-repeat center fixed ;
+  background: url('../images/img_5.jpg') no-repeat center fixed;
   background-size: cover;
   /* filter: brightness(70%); 
   position: relative; */
@@ -240,11 +246,11 @@ button:focus, :active {
 } */
 #public-video-section .caption {
   z-index: -99 !important;
-  color:#fff;
+  color: #fff;
   filter: none !important;
 }
 #public-video-section .heading {
-  color:#fff;
+  color: #fff;
 }
 .subscribe .form-group {
   position: relative;
@@ -262,7 +268,7 @@ button:focus, :active {
 .section-title {
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   color: #ccc;
 }
 .blog-card .blog-entry-body {
@@ -278,7 +284,7 @@ button:focus, :active {
   margin-bottom: 10px;
   text-transform: uppercase;
   font-size: 12px;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   color: #ccc;
 }
 #book-bar .btn {
@@ -298,12 +304,12 @@ button:focus, :active {
 }
 .blog-card .blog-entry-body h3 {
   color: #b99365;
-  transition: all .3s ease;
-  font-size:24px;
+  transition: all 0.3s ease;
+  font-size: 24px;
 }
 .blog-card .blog-entry-body h2 Link {
   text-decoration: none;
-  transition: .3s all ease;
+  transition: 0.3s all ease;
 }
 .blog-card .blog-entry-body .btn-primary {
   background-color: #b99365;
@@ -322,7 +328,7 @@ button:focus, :active {
 #public-footer h3 {
   margin-bottom: 20px !important;
   font-size: 13px;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   color: #b3b3b3;
   text-transform: uppercase;
 }
@@ -332,4 +338,3 @@ button:focus, :active {
 #public-footer a {
   color: #000;
 }
-
