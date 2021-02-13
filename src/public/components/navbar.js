@@ -16,8 +16,6 @@ function Navbar({ history }) {
     };
   }, []);
 
-  console.log(scrolled);
-
   useEffect(() => {
     if (window.pageYOffset > 50) {
       if (!scrolled) {
