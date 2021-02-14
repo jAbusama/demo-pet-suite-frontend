@@ -1,11 +1,4 @@
 [[redirects]]
-    from = "/home"
-    to = "/"
-    status = 200
-    force = false
-    headers = {X-From = "Netlify"}
-
-[[redirects]]
-    from = "/about-us"
-    to = "/about-us"
+    from = "/*"
+    to = "/index.html"
     status = 200
